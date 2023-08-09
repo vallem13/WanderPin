@@ -1,7 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField
-from wtforms.validators import DataRequired, Email, ValidationError
+from wtforms import StringField, PasswordField, DateField, SelectField, TextAreaField
+from wtforms.validators import DataRequired, ValidationError, EqualTo, Length
 from app.models import User
+from enum import Enum
+import re
 
 
 def user_exists(form, field):
@@ -12,15 +14,26 @@ def user_exists(form, field):
         raise ValidationError('Email address is already in use.')
 
 
-def username_exists(form, field):
-    # Checking if username is already in use
-    username = field.data
-    user = User.query.filter(User.username == username).first()
-    if user:
-        raise ValidationError('Username is already in use.')
+def is_valid_email(form, field):
+    email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    email = field.data
+    if not re.match(email_pattern, email):
+        raise ValidationError('Invalid email address.')
+
+
+class GenderEnum(Enum):
+    female = 'female'
+    male = 'male'
+    other = 'other'
 
 
 class SignUpForm(FlaskForm):
-    username = StringField('username', validators=[DataRequired(), username_exists])
-    email = StringField('email', validators=[DataRequired(), user_exists])
-    password = StringField('password', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), user_exists, is_valid_email ])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=6)])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    first_name = StringField('First Name', validators=[DataRequired()])
+    last_name = StringField('Last Name', validators=[DataRequired()])
+    birth_date = DateField('Birth Date', validators=[DataRequired()])
+    gender = SelectField('Gender', choices=[(gender.value, gender.value.capitalize()) for gender in GenderEnum], validators=[DataRequired()])
+    country = StringField('Country', validators=[DataRequired()])
+    interests = TextAreaField('Interests', validators=[Length(max=1000)])
