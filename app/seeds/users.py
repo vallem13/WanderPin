@@ -1,19 +1,47 @@
 from app.models import db, User, environment, SCHEMA
 from sqlalchemy.sql import text
+from datetime import date
 
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+        email='demo@aa.io',
+        password='password',
+        profile_img='https://media.self.com/photos/5f0885ffef7a10ffa6640daa/4:3/w_5240,h_3929,c_limit/travel_plane_corona.jpeg',
+        first_name = 'Demo',
+        last_name = 'User',
+        birth_date = date(2000, 10, 6),
+        gender = 'other',
+        country = 'USA',
+        interests = 'travel, backpack, nooks and crevices'
+    )
+    natalia = User(
+        email='natalia@aa.io',
+        password='password',
+        profile_img='https://media.self.com/photos/5f0885ffef7a10ffa6640daa/4:3/w_5240,h_3929,c_limit/travel_plane_corona.jpeg',
+        first_name = 'Natalia',
+        last_name = 'Ramirez',
+        birth_date = date(1992, 1, 1),
+        gender = 'female',
+        country = 'USA',
+        interests = 'I love the ocean, anything island related. I am an island boy if you may ;)'
+    )
+    makayla = User(
+        email='makayla@aa.io',
+        password='password',
+        profile_img='https://media.self.com/photos/5f0885ffef7a10ffa6640daa/4:3/w_5240,h_3929,c_limit/travel_plane_corona.jpeg',
+        first_name = 'Makayla',
+        last_name = 'Jameson',
+        birth_date = date(1994, 8, 9),
+        gender = 'female',
+        country = 'USA',
+        interests = 'I love hiking and National Parks. Nature fan! Experience different cultures.'
+    )
 
     db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    db.session.add(natalia)
+    db.session.add(makayla)
     db.session.commit()
 
 
@@ -28,5 +56,5 @@ def undo_users():
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM users"))
-        
+
     db.session.commit()
