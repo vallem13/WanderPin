@@ -29,7 +29,6 @@ def upgrade():
     sa.Column('first_name', sa.String(length=255), nullable=False),
     sa.Column('last_name', sa.String(length=255), nullable=False),
     sa.Column('birth_date', sa.Date(), nullable=False),
-    sa.Column('gender', sa.Enum('female', 'male', 'other', name='genderenum'), nullable=False),
     sa.Column('country', sa.String(length=255), nullable=False),
     sa.Column('interests', sa.String(length=1000), nullable=True),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),

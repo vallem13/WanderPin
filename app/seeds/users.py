@@ -12,7 +12,6 @@ def seed_users():
         first_name = 'Demo',
         last_name = 'User',
         birth_date = date(2000, 10, 6),
-        gender = 'other',
         country = 'USA',
         interests = 'travel, backpack, nooks and crevices'
     )
@@ -23,7 +22,6 @@ def seed_users():
         first_name = 'Natalia',
         last_name = 'Ramirez',
         birth_date = date(1992, 1, 1),
-        gender = 'female',
         country = 'USA',
         interests = 'I love the ocean, anything island related. I am an island boy if you may ;)'
     )
@@ -34,7 +32,6 @@ def seed_users():
         first_name = 'Makayla',
         last_name = 'Jameson',
         birth_date = date(1994, 8, 9),
-        gender = 'female',
         country = 'USA',
         interests = 'I love hiking and National Parks. Nature fan! Experience different cultures.'
     )
