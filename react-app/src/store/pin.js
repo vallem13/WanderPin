@@ -2,6 +2,8 @@
 const GET_ALL_PINS = "pins/GET_ALL_PINS";
 const GET_SINGLE_PIN = "pins/GET_SINGLE_PIN";
 const CREATE_SINGLE_PIN = "pins/CREATE_SINGLE_PIN";
+const DELETE_SINGLE_PIN = "pins/DELETE_SINGLE_PIN";
+
 
 
 // Action Creator
@@ -20,11 +22,17 @@ const createSinglePin = (pin) => ({
     pin
 })
 
+const deleteSinglePin = (pinId) => ({
+    type: DELETE_SINGLE_PIN,
+    pinId,
+  });
+
 
 
 // Thunk
 export const getAllPinsThunk = () => async (dispatch) => {
     const response = await fetch('/api/pins');
+
     if (response.ok) {
         const pins = await response.json();
         dispatch(getAllPins(pins));
@@ -37,6 +45,7 @@ export const getAllPinsThunk = () => async (dispatch) => {
 
 export const getSinglePinThunk = (pinId) => async (dispatch) => {
     const response = await fetch(`/api/pins/${pinId}`)
+
     if (response.ok) {
         const pin = await response.json()
         dispatch(getSinglePin(pin))
@@ -67,6 +76,26 @@ export const createSinglePinThunk = (formData) => async (dispatch) => {
 	}
 }
 
+export const deleteSinglePinThunk = (pinId) => async (dispatch) => {
+    const response = await fetch(`/api/pins/${pinId}`, {
+        method: "DELETE",
+    });
+
+    if(response.ok) {
+        const pin = await response.json()
+        dispatch(deleteSinglePin(pinId))
+        return response
+    } else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) {
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
+	}
+  };
+
+
 
 
 // Initial State
@@ -76,6 +105,7 @@ const initialState = {
   };
 
 
+  
 // Reducer
 export default function reducer(state = initialState, action) {
 
@@ -97,9 +127,11 @@ export default function reducer(state = initialState, action) {
 
     case CREATE_SINGLE_PIN:
         newState = { ...state, allPins: { ...state.allPins}, singlePin: { ...action.pin} }
-        // const pin = action.pin
-        // newState.singlePin = pin
-        // newState.allPins[pin.id] = pin
+    return newState
+
+    case DELETE_SPOT:
+        newState = { ...state, allPins: { ...state.allPins}, singlePin: {}}
+        delete newState.allPins[action.pinId]
     return newState
 
     default:
