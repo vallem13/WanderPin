@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import HomePage from "./components/HomePage"
 import SinglePinDetails from "./components/SinglePinDetails";
+import CreateSinglePin from "./components/Pins/CreateSinglePin";
 
 
 function App() {
@@ -31,6 +32,11 @@ function App() {
           <Route path="/home">
             <ProtectedRoute>
               <HomePage />
+            </ProtectedRoute>
+          </Route>
+          <Route path="/pins/new-pin">
+            <ProtectedRoute>
+              <CreateSinglePin />
             </ProtectedRoute>
           </Route>
           <Route path="/pins/:pinId">
