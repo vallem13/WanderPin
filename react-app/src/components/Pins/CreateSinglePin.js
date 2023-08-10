@@ -52,6 +52,8 @@ const CreateSinglePin = () => {
         formData.append("images", images);
         formData.append("user_id", user.id);
 
+        
+
         if (!images) {
         	console.log("No image selected");
         	return;

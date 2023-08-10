@@ -16,6 +16,7 @@ function SignupFormModal() {
 	const [birthDate, setBirthDate] = useState("")
 	const [country, setCountry] = useState("")
 	const [interests, setInterests] = useState("")
+	const [frontendErrors, setFrontendErrors] = useState({})
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
@@ -43,8 +44,8 @@ function SignupFormModal() {
 			frontendErrors.lastName = "Last Name is required"
 		}
 
-		setErrors(frontendErrors)
-		
+		setFrontendErrors(frontendErrors)
+
 	}, [email, password, confirmPassword, firstName, lastName])
 
 	const handleSubmit = async (e) => {
