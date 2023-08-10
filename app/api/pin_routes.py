@@ -8,7 +8,6 @@ pin_routes = Blueprint('pins', __name__)
 
 # Get all Pins
 @pin_routes.route('/')
-@login_required
 def getAllPins():
 
     pins = Pin.query.all()
@@ -17,8 +16,7 @@ def getAllPins():
 
 # Get Pin by ID
 @pin_routes.route('/<int:pinId>')
-@login_required
-def get_restaurant(pinId):
+def getSinglePin(pinId):
 
     pin = Pin.query.get(pinId)
     return pin.to_dict()
