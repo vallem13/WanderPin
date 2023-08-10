@@ -5,6 +5,10 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import HomePage from "./components/HomePage"
+import SinglePinDetails from "./components/SinglePinDetails";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +27,16 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/home">
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          </Route>
+          <Route path="/pins/:pinId">
+            <ProtectedRoute>
+              <SinglePinDetails />
+            </ProtectedRoute>
           </Route>
         </Switch>
       )}

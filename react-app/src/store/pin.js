@@ -6,7 +6,7 @@ const GET_SINGLE_PIN ="pins/GET_SINGLE_PIN";
 
 // Action Creator
 const getAllPins = (pins) => ({
-    type: GET_ALL_RESTAURANTS,
+    type: GET_ALL_PINS,
     pins
 });
 
@@ -53,8 +53,11 @@ const initialState = {
 
 // Reducer
 export default function reducer(state = initialState, action) {
+    
     let newState;
+
     switch (action.type) {
+
     case GET_ALL_PINS:
             newState = { ...state, allPins: {}, singlePin: {} };
             action.pins.forEach((pin) => {
