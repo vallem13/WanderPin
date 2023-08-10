@@ -8,6 +8,25 @@ from app.forms import PinForm
 pin_routes = Blueprint('pins', __name__)
 
 
+# Delete Pin
+@pin_routes.route('/<int:pinId>', methods=['DELETE'])
+@login_required
+def deletePin(pinId):
+
+    current_user_id = current_user.to_dict()['id']
+    pin_owner = Pin.query.get(pinId)
+
+    if not pin_owner:
+        return {'errors': "pin not found"}, 400
+    if (current_user_id != pin_owner.user_id):
+        return {'errors': "can only delete your own pin"}, 401
+
+    db.session.delete(pin_owner)
+    db.session.commit()
+
+    return {"message":f"Successfully deleted review {pin_owner}"}
+
+
 # Post a new Pin
 @pin_routes.route('/new-pin', methods=['POST'])
 @login_required

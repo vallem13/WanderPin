@@ -52,7 +52,7 @@ const CreateSinglePin = () => {
         formData.append("images", images);
         formData.append("user_id", user.id);
 
-        
+
 
         if (!images) {
         	console.log("No image selected");
@@ -77,11 +77,11 @@ const CreateSinglePin = () => {
     return (
         <div>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
-                {/* <ul>
+                <ul>
                     {errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
-                </ul> */}
+                </ul>
                 <label>
                     Image
                     <input
