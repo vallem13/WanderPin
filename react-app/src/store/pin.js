@@ -25,7 +25,7 @@ const createSinglePin = (pin) => ({
 const deleteSinglePin = (pinId) => ({
     type: DELETE_SINGLE_PIN,
     pinId,
-  });
+});
 
 
 
@@ -105,7 +105,7 @@ const initialState = {
   };
 
 
-  
+
 // Reducer
 export default function reducer(state = initialState, action) {
 
@@ -129,7 +129,7 @@ export default function reducer(state = initialState, action) {
         newState = { ...state, allPins: { ...state.allPins}, singlePin: { ...action.pin} }
     return newState
 
-    case DELETE_SPOT:
+    case DELETE_SINGLE_PIN:
         newState = { ...state, allPins: { ...state.allPins}, singlePin: {}}
         delete newState.allPins[action.pinId]
     return newState

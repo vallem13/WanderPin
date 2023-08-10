@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { getSinglePinThunk } from "../../store/pin";
+import OpenModalButton from '../OpenModalButton'
+import DeleteSinglePin from '../Pins/DeleteSinglePin';
 import "./SinglePinDetails.css";
 
 
@@ -11,8 +13,6 @@ const SinglePinDetails = () => {
     const { pinId } = useParams();
     const user = useSelector(state => state.session.user)
     const pin = useSelector(state => state.pins.singlePin);
-
-    console.log('------->', pin.user)
 
     useEffect(() => {
         dispatch(getSinglePinThunk(pinId))
@@ -24,6 +24,9 @@ const SinglePinDetails = () => {
         <div>
             <div>
                 <img src={pin.images} alt={pin.name}></img>
+            </div>
+            <div>
+                <OpenModalButton buttonText='Delete Pin' modalComponent={<DeleteSinglePin pinId={pin.id}/>} />
             </div>
             <div>
                 <select>
