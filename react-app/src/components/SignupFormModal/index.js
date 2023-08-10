@@ -65,7 +65,6 @@ function SignupFormModal() {
 
 		if (password === confirmPassword) {
 			const data = await dispatch(signUp(formData));
-			console.log('--------->', data)
 			if (data) {
 				setErrors(data);
 			} else {
