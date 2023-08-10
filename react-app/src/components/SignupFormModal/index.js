@@ -44,25 +44,32 @@ function SignupFormModal() {
 		}
 	})
 
-	console.log('PROFILE IMAGE--->', image)
-
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		const formData = new FormData();
-		formData.append("image", image);
+
+		formData.append("email", email);
+		formData.append("password", password);
+		formData.append("profile_img", image);
+		formData.append("first_name", firstName);
+		formData.append("last_name", lastName);
+		formData.append("birth_date", birthDate);
+		formData.append("country", country);
+		formData.append("interests", interests);
 
 		if (!image) {
 			console.log("No image selected");
 			return;
-		  }
+		}
 
 		if (password === confirmPassword) {
-			const data = await dispatch(signUp(email, password, image, firstName, lastName, birthDate, country, interests));
+			const data = await dispatch(signUp(formData));
+			console.log('--------->', data)
 			if (data) {
 				setErrors(data);
 			} else {
-				closeModal();
+				await closeModal();
 			}
 		} else {
 			setErrors([
@@ -70,11 +77,6 @@ function SignupFormModal() {
 			]);
 		}
 	};
-
-	const addImage = (e) => {
-	    const selectedFile = e.target.files[0]
-	    setImage(URL.createObjectURL(selectedFile))
-	}
 
 	return (
 		<>
@@ -143,8 +145,8 @@ function SignupFormModal() {
 					Profile Image
 					<input
 						type="file"
-						accept="image/*, image/jpeg, image/jpg, image/gif"
-						onChange={addImage}
+						accept="image/*"
+						onChange={(e) => setImage(e.target.files[0])}
 					/>
 				</label>
 				<label>
