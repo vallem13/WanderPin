@@ -35,6 +35,11 @@ class Pin(db.Model):
             'website': self.website,
             'images': self.images,
             'user_id': self.user_id,
+            'user': {
+                'id': self.user.id,
+                'firstName': self.user.first_name,
+                'profile_img': self.user.profile_img,
+            },
             'pins_boards': [pin_board.to_dict() for pin_board in self.pins_boards],
             'created_at': self.created_at
         }
