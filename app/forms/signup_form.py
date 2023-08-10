@@ -1,10 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, DateField, SelectField, TextAreaField, FileField
 from flask_wtf.file import FileField, FileAllowed, FileRequired
-# from ..api.AWS_helpers import ALLOWED_EXTENSIONS
+from ..api.aws_helpers import ALLOWED_EXTENSIONS
 from wtforms.validators import DataRequired, ValidationError, EqualTo, Length
 from app.models import User
-from enum import Enum
 import re
 
 
@@ -23,20 +22,13 @@ def is_valid_email(form, field):
         raise ValidationError('Invalid email address.')
 
 
-class GenderEnum(Enum):
-    female = 'female'
-    male = 'male'
-    other = 'other'
-
-
 class SignUpForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), user_exists, is_valid_email ])
+    email = StringField('Email', validators=[DataRequired(), user_exists, is_valid_email])
     password = PasswordField('Password', validators=[DataRequired(), Length(min=6)])
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
-    # profile_img = FileField('Profile Image', validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    # confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    profile_img = FileField('Profile Image', validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
     first_name = StringField('First Name', validators=[DataRequired()])
     last_name = StringField('Last Name', validators=[DataRequired()])
     birth_date = DateField('Birth Date', validators=[DataRequired()])
-    gender = SelectField('Gender', choices=[(gender.value, gender.value.capitalize()) for gender in GenderEnum], validators=[DataRequired()])
     country = StringField('Country', validators=[DataRequired()])
     interests = TextAreaField('Interests', validators=[Length(max=1000)])

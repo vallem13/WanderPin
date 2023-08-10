@@ -1,15 +1,8 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from enum import Enum as PyEnum
 from sqlalchemy.sql import func
 from datetime import datetime
-
-
-class GenderEnum(PyEnum):
-    female = 'female'
-    male = 'male'
-    other = 'other'
 
 
 class User(db.Model, UserMixin):
@@ -25,7 +18,6 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(255), nullable=False)
     last_name = db.Column(db.String(255), nullable=False)
     birth_date = db.Column(db.Date, nullable=False)
-    gender = db.Column(db.Enum(GenderEnum), nullable=False)
     country = db.Column(db.String(255), nullable=False)
     interests = db.Column(db.String(1000), nullable=True)
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
@@ -53,7 +45,6 @@ class User(db.Model, UserMixin):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'birth_date': self.birth_date,
-            'gender': self.gender.value if self.gender else None,
             'country': self.country,
             'interests': self.interests,
             'created_at': self.created_at
