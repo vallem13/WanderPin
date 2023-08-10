@@ -48,7 +48,7 @@ export const getSinglePinThunk = (pinId) => async (dispatch) => {
 }
 
 export const createSinglePinThunk = (formData) => async (dispatch) => {
-    const response = await fetch('/api/pins', {
+    const response = await fetch('/api/pins/new-pin', {
         method: 'POST',
         body: formData
     })
@@ -96,10 +96,10 @@ export default function reducer(state = initialState, action) {
     return newState
 
     case CREATE_SINGLE_PIN:
-        newState = { ...state, allPins: { ...state.allPins} }
-        const pin = action.pin
-        newState.singlePin = pin
-        newState.allPins[pin.id] = pin
+        newState = { ...state, allPins: { ...state.allPins}, singlePin: { ...action.pin} }
+        // const pin = action.pin
+        // newState.singlePin = pin
+        // newState.allPins[pin.id] = pin
     return newState
 
     default:

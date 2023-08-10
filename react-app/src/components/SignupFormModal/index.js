@@ -42,7 +42,10 @@ function SignupFormModal() {
 		if (lastName.length < 2) {
 			frontendErrors.lastName = "Last Name is required"
 		}
-	})
+
+		setErrors(frontendErrors)
+		
+	}, [email, password, confirmPassword, firstName, lastName])
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
