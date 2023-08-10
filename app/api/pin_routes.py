@@ -9,7 +9,7 @@ pin_routes = Blueprint('pins', __name__)
 
 
 # Post a new Pin
-@pin_routes.route('/', methods=['POST'])
+@pin_routes.route('/new-pin', methods=['POST'])
 @login_required
 def createPin():
 
@@ -32,6 +32,7 @@ def createPin():
             alt_text = form.data['alt_text'],
             website = form.data['website'],
             images = upload['url'],
+            user_id = form.data['user_id']
         )
 
         db.session.add(new_pin)
