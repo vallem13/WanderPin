@@ -1,0 +1,37 @@
+.pin-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .pin {
+    position: relative;
+    margin: 10px;
+    transition: transform 0.3s;
+  }
+
+  .pin img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .pin-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .pin:hover {
+    transform: scale(1.05);
+  }
+
+  .pin:hover .pin-hover {
+    opacity: 1;
+  }
