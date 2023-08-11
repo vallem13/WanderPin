@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
 from .aws_helpers import (upload_file_to_s3, get_unique_filename)
 from app.models import Pin, db
-from app.forms import PinForm
+from app.forms import PinForm, EditPinForm
 
 
 pin_routes = Blueprint('pins', __name__)
@@ -26,6 +26,29 @@ def deletePin(pinId):
 
     return {"message":f"Successfully deleted review {pin_owner}"}
 
+
+# Edit a Pin
+@pin_routes.route('/edit/<int:pinId>', methods=['PUT'])
+@login_required
+def editPin(pinId):
+
+    form = EditPinForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+
+        pin = Pin.query.get(pinId)
+
+        pin.name = form.data['name']
+        pin.description = form.data['description']
+        pin.alt_text = form.data['alt_text']
+        pin.website = form.data['website']
+
+        db.session.commit()
+
+        return pin.to_dict()
+
+    return {'errors': "Could not edit Pin"}, 500
 
 # Post a new Pin
 @pin_routes.route('/new-pin', methods=['POST'])
