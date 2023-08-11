@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { getSinglePinThunk } from "../../store/pin";
 import OpenModalButton from '../OpenModalButton'
 import DeleteSinglePin from '../Pins/DeleteSinglePin';
+import EditSinglePin from '../Pins/EditSinglePin';
 import "./SinglePinDetails.css";
 
 
@@ -27,6 +28,7 @@ const SinglePinDetails = () => {
             </div>
             <div>
                 <OpenModalButton buttonText='Delete Pin' modalComponent={<DeleteSinglePin pinId={pin.id}/>} />
+                <OpenModalButton buttonText='Edit Pin' modalComponent={<EditSinglePin pin={pin} pinId={pin.id}/>} />
             </div>
             <div>
                 <select>

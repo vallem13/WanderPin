@@ -78,7 +78,7 @@ export const createSinglePinThunk = (formData) => async (dispatch) => {
 
 export const deleteSinglePinThunk = (pinId) => async (dispatch) => {
     const response = await fetch(`/api/pins/${pinId}`, {
-        method: "DELETE",
+        method: 'DELETE',
     });
 
     if(response.ok) {
@@ -93,8 +93,28 @@ export const deleteSinglePinThunk = (pinId) => async (dispatch) => {
 	} else {
 		return ["An error occurred. Please try again."];
 	}
-  };
+};
 
+
+export const editSinglePinThunk = (pinId, formData) => async (dispatch) => {
+    const response = await fetch(`/api/pins/edit/${pinId}`, {
+        method: 'PUT',
+        body: formData
+    });
+
+    if(response.ok) {
+        const data = await response.json()
+        dispatch(createSinglePin(formData))
+        return response
+    } else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) {
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
+	}
+}
 
 
 
