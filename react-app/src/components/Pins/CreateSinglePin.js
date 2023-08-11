@@ -21,6 +21,8 @@ const CreateSinglePin = () => {
     const [frontendErrors, setFrontendErrors] = useState({})
     const [showInput, setShowInput] = useState(false);
 
+    console.log('--------->', user)
+
 
     useEffect(() => {
 

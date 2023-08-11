@@ -12,8 +12,6 @@ const HomePage = () => {
     const pinsObj = useSelector(state => state.pins.allPins)
     const pins = pinsObj ? Object.values(pinsObj) : [];
 
-    // console.log('---------->', pinsObj)
-
     useEffect(() => {
         dispatch(getAllPinsThunk());
     }, [dispatch]);

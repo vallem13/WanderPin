@@ -9,6 +9,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import HomePage from "./components/HomePage"
 import SinglePinDetails from "./components/SinglePinDetails";
 import CreateSinglePin from "./components/Pins/CreateSinglePin";
+import UserProfile from "./components/UserProfilePage";
 
 
 function App() {
@@ -32,6 +33,11 @@ function App() {
           <Route path="/home">
             <ProtectedRoute>
               <HomePage />
+            </ProtectedRoute>
+          </Route>
+          <Route path="/user">
+            <ProtectedRoute>
+              <UserProfile />
             </ProtectedRoute>
           </Route>
           <Route path="/pins/new-pin">
