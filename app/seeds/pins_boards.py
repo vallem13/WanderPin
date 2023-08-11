@@ -85,7 +85,20 @@ def seed_pins_boards():
         board_id = 4
     )
 
-    pins_boards_list = [pin_board1, pin_board2, pin_board3, pin_board4, pin_board5, pin_board6, pin_board7, pin_board8, pin_board9, pin_board10, pin_board11, pin_board12, pin_board13, pin_board14, pin_board15, pin_board16, pin_board17, pin_board18, pin_board19, pin_board20]
+    pin_board21 = PinBoard(
+        pin_id = 1,
+        board_id = 2
+    )
+    pin_board22 = PinBoard(
+        pin_id = 2,
+        board_id = 3
+    )
+    pin_board23 = PinBoard(
+        pin_id = 3,
+        board_id = 4
+    )
+
+    pins_boards_list = [pin_board1, pin_board2, pin_board3, pin_board4, pin_board5, pin_board6, pin_board7, pin_board8, pin_board9, pin_board10, pin_board11, pin_board12, pin_board13, pin_board14, pin_board15, pin_board16, pin_board17, pin_board18, pin_board19, pin_board20, pin_board21, pin_board22, pin_board23]
     single_pin_board = [db.session.add(pin_board) for pin_board in pins_boards_list]
     db.session.commit()
 
