@@ -31,6 +31,5 @@ class Board(db.Model):
             'description': self.description,
             'type': self.type,
             'user_id': self.user_id,
-            'pins_boards': [pin_board.to_dict() for pin_board in self.pins_boards],
             'created_at': self.created_at
         }

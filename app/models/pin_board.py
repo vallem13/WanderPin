@@ -21,3 +21,10 @@ class PinBoard(db.Model):
     # relationships
     pins = db.relationship('Pin', back_populates='pins_boards')
     boards = db.relationship('Board', back_populates='pins_boards')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'pins': self.pins.to_dict(),
+            'boards': self.boards.to_dict(),
+        }

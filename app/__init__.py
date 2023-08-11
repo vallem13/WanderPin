@@ -5,7 +5,7 @@ from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 from .models import db, User
-from .api import user_routes, auth_routes, pin_routes
+from .api import user_routes, auth_routes, pin_routes, board_routes, pin_board_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -28,6 +28,8 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(pin_routes, url_prefix='/api/pins')
+app.register_blueprint(board_routes, url_prefix='/api/boards')
+app.register_blueprint(pin_board_routes, url_prefix='/api/pins_boards')
 db.init_app(app)
 Migrate(app, db)
 
