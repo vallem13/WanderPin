@@ -12,8 +12,6 @@ const HomePage = () => {
     const pinsObj = useSelector(state => state.pins.allPins)
     const pins = pinsObj ? Object.values(pinsObj) : [];
 
-    // console.log('---------->', pinsObj)
-
     useEffect(() => {
         dispatch(getAllPinsThunk());
     }, [dispatch]);
@@ -21,7 +19,7 @@ const HomePage = () => {
     if (!pins.length) return null
 
     return (
-        <div>
+        <div className="image-grid">
             {pins.map((pin) => (
                 <PinCard key={pin.id} pin={pin}/>
             ))}

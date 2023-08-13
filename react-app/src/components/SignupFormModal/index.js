@@ -82,8 +82,9 @@ function SignupFormModal() {
 	};
 
 	return (
-		<>
-			<h1>Sign Up</h1>
+		<div className="signup-modal">
+			<img className='logo' src='../assets/Logo.png' alt='WanderPin' style={{ width: '100px', height: '50px' }}/>
+			<h1>Welcome!</h1>
 			<form onSubmit={handleSubmit} encType="multipart/form-data">
 				<ul>
 					{errors.map((error, idx) => (
@@ -150,6 +151,7 @@ function SignupFormModal() {
 						type="file"
 						accept="image/*"
 						onChange={(e) => setImage(e.target.files[0])}
+						className="input-button"
 					/>
 				</label>
 				<label>
@@ -174,7 +176,7 @@ function SignupFormModal() {
 				<button type="submit">Sign Up</button>
 				{/* {(imageLoading) && <p>Loading...</p>} */}
 			</form>
-		</>
+		</div>
 	);
 }
 

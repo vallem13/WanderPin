@@ -115,7 +115,7 @@ const EditSinglePin = () => {
                     />
                 </label>
                 <div>
-                    <img src={pin.images} alt={pin.name} style={{ width: '200px', height: '400px' }}></img>
+                    <img src={pin.images} alt={pin.name} style={{ width: '200px', height: '200px' }}></img>
                 </div>
                 <div>
                     <button type="submit">Save</button>

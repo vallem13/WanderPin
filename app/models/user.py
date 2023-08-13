@@ -47,5 +47,7 @@ class User(db.Model, UserMixin):
             'birth_date': self.birth_date,
             'country': self.country,
             'interests': self.interests,
+            'boards': [board.to_dict() for board in self.boards],
+            'pins': [pin.to_dict() for pin in self.pins],
             'created_at': self.created_at
         }

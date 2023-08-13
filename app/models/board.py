@@ -1,8 +1,8 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin
 from sqlalchemy.sql import func
 from datetime import datetime
+from .pin import Pin
+from .pin_board import PinBoard
 
 
 class Board(db.Model):
@@ -25,12 +25,20 @@ class Board(db.Model):
     pins_boards = db.relationship('PinBoard', back_populates='boards', cascade='all, delete-orphan')
 
     def to_dict(self):
+
+        pinBoard = Pin.query.join(PinBoard).filter(PinBoard.board_id == self.id).all()
+
+        numPins = len(pinBoard)
+
+        if numPins > 0:
+            pinImgs = [pin.images for pin in pinBoard]
+
         return {
             'id': self.id,
+            'user_id': self.user_id,
             'title': self.title,
             'description': self.description,
-            'type': self.type,
-            'user_id': self.user_id,
-            'pins_boards': [pin_board.to_dict() for pin_board in self.pins_boards],
+            'numPins': numPins,
+            'pinImgs': pinImgs,
             'created_at': self.created_at
         }
