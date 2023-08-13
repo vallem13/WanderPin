@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom"
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
@@ -6,6 +7,7 @@ import "./LoginForm.css";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
+  const history = useHistory()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -17,14 +19,17 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-      closeModal()
+      await history.push('/home')
+      await closeModal()
     }
+
   };
 
-  const demoUser = (e) => {
+  const demoUser = async (e) => {
     e.preventDefault();
-    return dispatch(login("demo@aa.io", "password"))
-      .then(closeModal)
+    await dispatch(login("demo@aa.io", "password"))
+    await history.push('/home')
+    await closeModal()
   }
 
   return (
