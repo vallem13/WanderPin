@@ -19,7 +19,7 @@ const HomePage = () => {
     if (!pins.length) return null
 
     return (
-        <div>
+        <div className="image-grid">
             {pins.map((pin) => (
                 <PinCard key={pin.id} pin={pin}/>
             ))}
