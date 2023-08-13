@@ -124,7 +124,7 @@ def seed_pins():
         images = 'https://i.pinimg.com/564x/05/1a/a8/051aa8b0c38bf5f72b2915e1a596ee2c.jpg'
     )
     pin16 = Pin(
-        user_id = 1,
+        user_id = 2,
         name = 'Machu Picchu Ancient Mystique',
         description = 'Journey to the ancient ruins of Machu Picchu, Peru, where history and stunning landscapes converge.',
         alt_text = 'Machu Picchu ruins against a backdrop of lush green mountains.',
@@ -132,7 +132,7 @@ def seed_pins():
         images = 'https://i.pinimg.com/564x/b0/24/c8/b024c8eb375b7872e7596d47c8fc3210.jpg'
     )
     pin17 = Pin(
-        user_id = 1,
+        user_id = 2,
         name = 'Aurora Borealis in Lapland',
         description = 'Witness the enchanting Northern Lights in Lapland, Finland, painting the night sky with vibrant colors.',
         alt_text = 'Aurora Borealis dancing across the night sky over snowy landscapes.',
@@ -140,7 +140,7 @@ def seed_pins():
         images = 'https://i.pinimg.com/564x/ae/16/20/ae1620b07c1825ab9f05e566abe8879f.jpg'
     )
     pin18 = Pin(
-        user_id = 1,
+        user_id = 2,
         name = 'Petra Rose-Red Beauty',
         description = 'Explore the awe-inspiring archaeological city of Petra, Jordan, famous for its carved rose-red rock structures.',
         alt_text = 'Elaborate rock-carved architecture in Petra, Jordan.',
@@ -148,7 +148,7 @@ def seed_pins():
         images = 'https://i.pinimg.com/564x/71/c2/cb/71c2cba8bd0a767fb9d3f553666e6701.jpg'
     )
     pin19 = Pin(
-        user_id = 1,
+        user_id = 2,
         name = 'Bora Bora Overwater Bungalows',
         description = 'Relax in luxury overwater bungalows in Bora Bora, French Polynesia, surrounded by turquoise waters.',
         alt_text = 'Overwater bungalows on stilts over clear blue water in Bora Bora.',
@@ -156,7 +156,7 @@ def seed_pins():
         images = 'https://i.pinimg.com/564x/f4/42/a8/f442a83462c7a1a8f0453544c6a49496.jpg'
     )
     pin20 = Pin(
-        user_id = 1,
+        user_id = 2,
         name = 'Serengeti Great Migration',
         description = 'Witness the stunning spectacle of the Great Migration in the Serengeti, Tanzania, as wildebeests traverse the plains.',
         alt_text = 'Wildebeests on the move during the Great Migration in the Serengeti.',

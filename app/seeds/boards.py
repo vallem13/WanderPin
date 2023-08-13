@@ -15,12 +15,12 @@ def seed_boards():
         description = 'The best places to retreat and relax'
     )
     board3 = Board(
-        user_id = 1,
+        user_id = 2,
         title = 'Adventure',
         description = 'Top spots for adrenaline seekers'
     )
     board4 = Board(
-        user_id = 1,
+        user_id = 2,
         title = 'Honeymoon Spots',
         description = 'Best resots for the perfect honeymoon'
     )
