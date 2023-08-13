@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { useModal } from "../../context/Modal";
-import { createSinglePinThunk } from "../../store/pin"
-import { getSinglePinThunk } from "../../store/pin";
+import { createSinglePinThunk, getAllPinsThunk } from "../../store/pin"
 import './Pins.css'
 
 const CreateSinglePin = () => {
@@ -21,8 +20,6 @@ const CreateSinglePin = () => {
     const [frontendErrors, setFrontendErrors] = useState({})
     const [showInput, setShowInput] = useState(false);
 
-    console.log('--------->', user)
-
 
     useEffect(() => {
 
@@ -32,10 +29,10 @@ const CreateSinglePin = () => {
             frontendErrors.images = "An image is required to create a pin"
         }
         if (!name) {
-            frontendErrors.images = "A title is required to post your pin"
+            frontendErrors.name = "A title is required to post your pin"
         }
         if (!description) {
-            frontendErrors.images = "A description is required to post your pin"
+            frontendErrors.description = "A description is required to post your pin"
         }
 
         setFrontendErrors(frontendErrors)
@@ -54,21 +51,15 @@ const CreateSinglePin = () => {
         formData.append("images", images);
         formData.append("user_id", user.id);
 
-
-
         if (!images) {
         	console.log("No image selected");
         	return;
         }
 
-        const data = await dispatch(createSinglePinThunk(formData));
-
-        if (data) {
-            setErrors(data);
-        } else {
-            await history.push('/home')
-            await closeModal();
-        }
+        await dispatch(createSinglePinThunk(formData));
+        await dispatch(getAllPinsThunk());
+        await history.push('/user')
+        await closeModal();
 
     };
 
@@ -79,11 +70,6 @@ const CreateSinglePin = () => {
     return (
         <div>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
-                <ul>
-                    {errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
-					))}
-                </ul>
                 <label>
                     Image
                     <input

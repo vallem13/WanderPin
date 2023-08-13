@@ -18,8 +18,6 @@ def createBoard():
 
     if form.validate_on_submit():
 
-        print('-------->', 'test')
-
         new_board = Board(
             title = form.data['title'],
             description = form.data['description'],
@@ -30,7 +28,8 @@ def createBoard():
         db.session.commit()
         return new_board.to_dict()
 
-    return {'errors': "Could not create new Board"}, 500
+    print(form.errors)
+    return {"errors": validation_errors_to_error_messages(form.errors)}
 
 
 # Get all Boards
