@@ -30,6 +30,8 @@ class Board(db.Model):
 
         numPins = len(pinBoard)
 
+        pinImgs = []
+
         if numPins > 0:
             pinImgs = [pin.images for pin in pinBoard]
 
