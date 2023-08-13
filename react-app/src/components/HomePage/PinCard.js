@@ -9,13 +9,17 @@ const PinCard = ({ pin }) => {
         history.push(`/pins/${pin.id}`)
     }
 
+    const handleSave = () => {
+        
+    }
+
     return (
         <div onClick={onClick}>
-            <div class="pin-container">
-                <div class="pin">
+            <div className="pin-container">
+                <div className="pin">
                     <img className='pin-image' src={pin.images} alt={pin.name} style={{ width: '100px', height: '200px' }} />
-                        <div class="pin-hover">
-                            <button class="save-button">Save</button>
+                        <div className="pin-hover">
+                            <button className="save-button" onClick={handleSave}>Save</button>
                         </div>
                 </div>
             </div>
