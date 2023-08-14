@@ -19,8 +19,6 @@ const UserProfile = () => {
     const boards = boardsObj ? Object.values(boardsObj) : [];
     const user_boards = boards.filter(boards => boards.user_id === user.id)
 
-    console.log('------->', pinsObj)
-
     useEffect(() => {
         dispatch(getAllBoardsThunk());
         dispatch(getAllPinsThunk());

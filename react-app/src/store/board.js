@@ -43,7 +43,7 @@ export const getAllBoardsThunk = () => async (dispatch) => {
 }
 
 export const getSingleBoardThunk = (boardId) => async (dispatch) => {
-    const response = await fetch(`/api/pins_boards${boardId}`)
+    const response = await fetch(`/api/boards/${boardId}`)
 
     if (response.ok) {
         const board = await response.json()
@@ -64,6 +64,26 @@ export const createSingleBoardThunk = (formData) => async (dispatch) => {
     if(response.ok) {
         const board = await response.json()
         dispatch(createSingleBoard(board))
+        return response
+    } else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) {
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
+	}
+}
+
+export const editSingleBoardThunk = (boardId, formData) => async (dispatch) => {
+    const response = await fetch(`/api/boards/edit/${boardId}`, {
+        method: 'PUT',
+        body: formData
+    });
+
+    if(response.ok) {
+        const data = await response.json()
+        dispatch(createSingleBoard(formData))
         return response
     } else if (response.status < 500) {
 		const data = await response.json();
