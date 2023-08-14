@@ -22,9 +22,9 @@ class PinBoard(db.Model):
     pins = db.relationship('Pin', back_populates='pins_boards')
     boards = db.relationship('Board', back_populates='pins_boards')
 
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'pin_id': self.pin_id,
-            'board_id': self.board_id
-        }
+    # def to_dict(self):
+    #     return {
+    #         'id': self.id,
+    #         'pin_id': self.pin_id,
+    #         'board_id': self.board_id
+    #     }

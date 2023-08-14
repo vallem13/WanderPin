@@ -115,7 +115,7 @@ export const editSingleBoardThunk = (boardId, formData) => async (dispatch) => {
 }
 
 export const addPinBoardThunk = (formData) => async (dispatch) => {
-    const response = await fetch('/boards/addPin', {
+    const response = await fetch('/api/boards/addPin', {
         method: 'PUT',
         body: formData
     });
