@@ -75,6 +75,25 @@ export const createSingleBoardThunk = (formData) => async (dispatch) => {
 	}
 }
 
+export const deleteSingleBoardThunk = (boardId) => async (dispatch) => {
+    const response = await fetch(`/api/boards/${boardId}`, {
+        method: 'DELETE',
+    });
+
+    if(response.ok) {
+        const board = await response.json()
+        dispatch(deleteSingleBoard(boardId))
+        return response
+    } else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) {
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
+	}
+};
+
 export const editSingleBoardThunk = (boardId, formData) => async (dispatch) => {
     const response = await fetch(`/api/boards/edit/${boardId}`, {
         method: 'PUT',
@@ -124,6 +143,11 @@ export default function reducer(state = initialState, action) {
 
         case CREATE_SINGLE_BOARD:
             newState = { ...state, allBoards: { ...state.allBoards}, singleBoard: { ...action.board} }
+        return newState
+
+        case DELETE_SINGLE_BOARD:
+            newState = { ...state, allBoards: { ...state.allBoards}, singleBoard: {}}
+            delete newState.allBoards[action.boardId]
         return newState
 
         default:

@@ -1,10 +1,10 @@
 import { useModal } from '../../context/Modal'
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom"
-import { deleteSinglePinThunk } from '../../store/pin';
-import './Pins.css'
+import { deleteSingleBoardThunk } from '../../store/board';
+import './Boards.css'
 
-const DeleteSinglePin = ({ pinId }) => {
+const DeleteSingleBoard = ({ boardId, board }) => {
 
     const { closeModal } = useModal()
     const dispatch = useDispatch()
@@ -13,8 +13,8 @@ const DeleteSinglePin = ({ pinId }) => {
 
     const deletePin = async (e) => {
         e.preventDefault()
-        await dispatch(deleteSinglePinThunk(pinId))
-        await history.push('/home')
+        await dispatch(deleteSingleBoardThunk(boardId))
+        await history.push('/user')
         await closeModal()
     };
 
@@ -24,8 +24,8 @@ const DeleteSinglePin = ({ pinId }) => {
 
     return (
         <div>
-            <h2>Are you sure?</h2>
-            <h3>AOnce you delete a Pin, you can't undo it!</h3>
+            <h2>Delete this board?</h2>
+            <h3>The board {board.title} will be removed from your profile.</h3>
             <div>
                 <button onClick={deletePin}>Delete</button>
                 <button onClick={dontDeletePin}>Cancel</button>
@@ -34,4 +34,4 @@ const DeleteSinglePin = ({ pinId }) => {
     )
 }
 
-export default DeleteSinglePin
+export default DeleteSingleBoard

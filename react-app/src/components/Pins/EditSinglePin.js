@@ -60,6 +60,7 @@ const EditSinglePin = () => {
 
     return (
         <div>
+            <h1>Edit your Pin</h1>
             <form onSubmit={handleSubmit}>
                 <ul>
                     {errors.map((error, idx) => (

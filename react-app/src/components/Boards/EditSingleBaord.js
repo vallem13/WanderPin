@@ -56,6 +56,7 @@ const EditSingleBoard = () => {
 
     return (
         <div>
+            <h1>Edit your Board</h1>
             <form onSubmit={handleSubmit}>
                 <ul>
                     {errors.map((error, idx) => (

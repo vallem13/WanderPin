@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { getSingleBoardThunk } from "../../store/board";
 import { getAllPinsThunk } from '../../store/pin';
 import OpenModalButton from '../OpenModalButton'
-// import DeleteSinglePin from '../Pins/DeleteSinglePin';
+import DeleteSingleBoard from '../Boards/DeleteSingleBoard';
 import EditSingleBoard from '../Boards/EditSingleBaord';
 import PinCard from '../HomePage/PinCard';
 import "./SingleBoardDetails.css";
@@ -32,8 +32,8 @@ const SingleBoardDetails = () => {
         <div>
             <h1>{board.title}</h1>
             <div>
-                <OpenModalButton buttonText='Edit' modalComponent={<EditSingleBoard pin={board} pinId={board.id}/>} />
-                {/* <OpenModalButton buttonText='Delete' modalComponent={<DeleteSinglePin pinId={pin.id}/>} /> */}
+                <OpenModalButton buttonText='Edit' modalComponent={<EditSingleBoard board={board} boardId={board.id}/>} />
+                <OpenModalButton buttonText='Delete' modalComponent={<DeleteSingleBoard board={board} boardId={board.id}/>} />
             </div>
             {pins.length ? (
                 <div>
