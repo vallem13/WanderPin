@@ -26,14 +26,15 @@ class Board(db.Model):
 
     def to_dict(self):
 
-        pinBoard = Pin.query.join(PinBoard).filter(PinBoard.board_id == self.id).all()
+        pins = Pin.query.join(PinBoard).filter(PinBoard.board_id == self.id).all()
+        # pinBoard = PinBoard.query.filter(PinBoard.board_id == self.id).first()
 
-        numPins = len(pinBoard)
+        numPins = len(pins)
 
         pinImgs = []
 
         if numPins > 0:
-            pinImgs = [pin.images for pin in pinBoard]
+            pinImgs = [pin.images for pin in pins]
 
         return {
             'id': self.id,
@@ -42,5 +43,6 @@ class Board(db.Model):
             'description': self.description,
             'numPins': numPins,
             'pinImgs': pinImgs,
+            # 'pins_boards': [pin.to_dict() for pin in self.pins_boards],
             'created_at': self.created_at
         }

@@ -1,11 +1,34 @@
 from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
-from app.models import Board, db
+from app.models import Board, db, Pin, PinBoard
 from .auth_routes import validation_errors_to_error_messages
-from app.forms import BoardForm, EditBoardForm
+from app.forms import BoardForm, EditBoardForm, PinBoardForm
 
 
 board_routes = Blueprint('boards', __name__)
+
+# Add Pin to Board
+@board_routes.route('/addPin', methods=['PUT'])
+@login_required
+def addPinBoard():
+
+    form = PinBoardForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+
+            board = Board.query.get(form.data['board_id'])
+            pin = Pin.query.get(form.data['pin_id'])
+
+            if not board or not pin:
+                return {'errors': "Invalid board_id or pin_id"}, 400
+
+            board.pins_boards.append(PinBoard(pin_id=pin.id))
+
+            db.session.commit()
+            return board.to_dict()
+
+    return {'errors': form.errors}, 400
 
 
 # Delete Board
