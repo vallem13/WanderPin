@@ -23,7 +23,6 @@ const SinglePinDetails = () => {
 
     return (
         <div>
-            <h1>Edit your Pin</h1>
             <div>
                 <img src={pin.images} alt={pin.name}></img>
             </div>
