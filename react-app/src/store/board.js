@@ -133,6 +133,23 @@ export const addPinBoardThunk = (formData) => async (dispatch) => {
 	}
 }
 
+export const removePinBoardThunk = (boardId, pinId) => async (dispatch) => {
+    const response = await fetch(`/api/boards/${boardId}/removePin/${pinId}`, {
+        method: 'DELETE'
+    })
+    if(response.ok) {
+        const board = await response.json()
+        dispatch(getSingleBoard(board))
+    } else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) {
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
+	}
+}
+
 
 // Initial State
 const initialState = {
