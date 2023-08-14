@@ -7,6 +7,19 @@ from app.forms import BoardForm, EditBoardForm, PinBoardForm
 
 board_routes = Blueprint('boards', __name__)
 
+
+# Remove Pin from Board
+@board_routes.route('/<int:boardId>/removePin/<int:pinId>', methods=['DELETE'])
+@login_required
+def removePinBoard(boardId, pinId):
+
+    board = Board.query.get(boardId)
+    board.pins_boards = [pin for pin in board.pins_boards if pin.id != pinId]
+
+    db.session.commit()
+    return board.to_dict()
+
+
 # Add Pin to Board
 @board_routes.route('/addPin', methods=['PUT'])
 @login_required
