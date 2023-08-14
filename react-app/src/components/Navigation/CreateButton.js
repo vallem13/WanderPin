@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
-import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
+import CreateSinglePin from "../Pins/CreateSinglePin";
+import CreateSingleBoard from "../Boards/CreateSingleBoard";
 
-function ProfileButton({ user }) {
+function CreateButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
@@ -24,51 +24,35 @@ function ProfileButton({ user }) {
       }
     };
 
-    document.addEventListener("click", closeMenu);
+    document.addEventListener('click', closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
-  const handleLogout = (e) => {
-    e.preventDefault();
-    dispatch(logout());
-  };
+  const closeMenu = () => setShowMenu(false);
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-  const closeMenu = () => setShowMenu(false);
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
+      <button onClick={openMenu}>Create</button>
       <ul className={ulClassName} ref={ulRef}>
-        {user ? (
-          <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
-          </>
-        ) : (
           <>
             <OpenModalButton
-              buttonText="Log In"
+              buttonText="Ceate Pin"
               onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
+              modalComponent={<CreateSinglePin />}
             />
 
             <OpenModalButton
-              buttonText="Sign Up"
+              buttonText="Create Board"
               onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
+              modalComponent={<CreateSingleBoard />}
             />
           </>
-        )}
       </ul>
     </>
   );
 }
 
-export default ProfileButton;
+export default CreateButton;

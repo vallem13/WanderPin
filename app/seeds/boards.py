@@ -15,17 +15,22 @@ def seed_boards():
         description = 'The best places to retreat and relax'
     )
     board3 = Board(
-        user_id = 1,
+        user_id = 2,
         title = 'Adventure',
         description = 'Top spots for adrenaline seekers'
     )
     board4 = Board(
-        user_id = 1,
+        user_id = 2,
         title = 'Honeymoon Spots',
         description = 'Best resots for the perfect honeymoon'
     )
+    board5 = Board(
+        user_id = 1,
+        title = 'New Board',
+        description = 'Empty'
+    )
 
-    boards_list = [board1, board2, board3, board4]
+    boards_list = [board1, board2, board3, board4, board5]
     single_board = [db.session.add(board) for board in boards_list]
     db.session.commit()
 

@@ -9,6 +9,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import HomePage from "./components/HomePage"
 import SinglePinDetails from "./components/SinglePinDetails";
 import CreateSinglePin from "./components/Pins/CreateSinglePin";
+import SingleBoardDetails from "./components/SingleBoardDetails";
 import UserProfile from "./components/UserProfilePage";
 
 
@@ -48,6 +49,11 @@ function App() {
           <Route path="/pins/:pinId">
             <ProtectedRoute>
               <SinglePinDetails />
+            </ProtectedRoute>
+          </Route>
+          <Route path="/boards/:boardId">
+            <ProtectedRoute>
+              <SingleBoardDetails />
             </ProtectedRoute>
           </Route>
         </Switch>

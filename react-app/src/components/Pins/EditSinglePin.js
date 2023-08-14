@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from "react-router-dom"
 import { useModal } from "../../context/Modal";
-import { editSinglePinThunk } from "../../store/pin";
-import { getSinglePinThunk } from "../../store/pin";
+import { editSinglePinThunk, getSinglePinThunk } from "../../store/pin";
 import './Pins.css'
 
 const EditSinglePin = () => {
 
     const dispatch = useDispatch()
-    const history = useHistory()
     const { closeModal } = useModal()
-    const user = useSelector(state => state.session.user)
     const pin = useSelector(state => state.pins.singlePin)
     const [name, setName] = useState(pin.name)
     const [description, setDescription] = useState(pin.description)
@@ -20,17 +16,16 @@ const EditSinglePin = () => {
     const [errors, setErrors] = useState([])
     const [frontendErrors, setFrontendErrors] = useState({})
 
-    console.log('---------->', pin.id)
 
     useEffect(() => {
 
         const frontendErrors = {}
 
         if (!name) {
-            frontendErrors.images = "A title is required to post your pin"
+            frontendErrors.name = "A title is required to post your pin"
         }
         if (!description) {
-            frontendErrors.images = "A description is required to post your pin"
+            frontendErrors.description = "A description is required to post your pin"
         }
 
         setFrontendErrors(frontendErrors)
@@ -65,6 +60,7 @@ const EditSinglePin = () => {
 
     return (
         <div>
+            <h1>Edit your Pin</h1>
             <form onSubmit={handleSubmit}>
                 <ul>
                     {errors.map((error, idx) => (
