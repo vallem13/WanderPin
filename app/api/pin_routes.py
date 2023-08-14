@@ -24,7 +24,7 @@ def deletePin(pinId):
     db.session.delete(pin_owner)
     db.session.commit()
 
-    return {"message":f"Successfully deleted review {pin_owner}"}
+    return {"message":f"Successfully deleted {pin_owner}"}
 
 
 # Edit a Pin

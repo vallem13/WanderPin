@@ -8,6 +8,25 @@ from app.forms import BoardForm, EditBoardForm
 board_routes = Blueprint('boards', __name__)
 
 
+# Delete Board
+@board_routes.route('/<int:boardId>', methods=['DELETE'])
+@login_required
+def deletePin(boardId):
+
+    current_user_id = current_user.to_dict()['id']
+    board_owner = Board.query.get(boardId)
+
+    if not board_owner:
+        return {'errors': "board not found"}, 400
+    if (current_user_id != board_owner.user_id):
+        return {'errors': "can only delete your own board"}, 401
+
+    db.session.delete(board_owner)
+    db.session.commit()
+
+    return {"message":f"Successfully deleted {board_owner}"}
+
+
 # Edit a Board
 @board_routes.route('/edit/<int:boardId>', methods=['PUT'])
 @login_required
