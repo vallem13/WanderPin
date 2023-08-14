@@ -8,6 +8,29 @@ from app.forms import BoardForm, EditBoardForm
 board_routes = Blueprint('boards', __name__)
 
 
+# Edit a Board
+@board_routes.route('/edit/<int:boardId>', methods=['PUT'])
+@login_required
+def editBoard(boardId):
+
+    form = EditBoardForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+
+        board = Board.query.get(boardId)
+
+        board.title = form.data['title']
+        board.description = form.data['description']
+
+        db.session.commit()
+
+        return board.to_dict()
+
+    return {'errors': "Could not edit Board"}, 500
+
+
+
 # Post a new Board
 @board_routes.route('/new-board', methods=['POST'])
 @login_required
