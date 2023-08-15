@@ -112,8 +112,8 @@ def seed_pins():
         name = 'Great Barrier Reef Underwater Wonderland',
         description = 'Dive into the vibrant world of the Great Barrier Reef, Australia, exploring its stunning coral reefs and marine life.',
         alt_text = 'Colorful coral reef with various fish species underwater.',
-        website = '',
-        images = ''
+        website = 'https://earthandanimals.tumblr.com/post/53305164768',
+        images = 'https://tinyurl.com/6aaja2p5'
     )
     pin15 = Pin(
         user_id = 1,
@@ -163,6 +163,45 @@ def seed_pins():
         website = 'https://www.vacayweather.com/',
         images = 'https://i.pinimg.com/564x/c3/c2/13/c3c213e4249e0a07bfe0bc316c9013ae.jpg'
     )
+#         name = 'Santorini's Caldera Views',
+#         description = 'Indulge in the stunning vistas of Santorini's caldera, Greece, as you relax on the edge of volcanic cliffs.',
+#         alt_text = 'Aerial view of Santorini's caldera with blue domed buildings.'
+
+# name = 'Japanese Cherry Blossom Delight',
+# description = 'Immerse yourself in the beauty of Japan's cherry blossom season, when streets and parks are adorned with delicate pink blooms.',
+# alt_text = 'Cherry blossom trees in full bloom along a serene pathway.'
+
+# name = 'Eiffel Tower's City of Love',
+# description = 'Experience the romance of Paris, France, with the iconic Eiffel Tower casting its enchanting glow over the city.',
+# alt_text = 'Eiffel Tower illuminated against the night sky.'
+
+# name = 'Majestic Machu Picchu Sunrise',
+# description = 'Catch the awe-inspiring sunrise over the ancient Incan city of Machu Picchu, Peru, for a truly magical experience.',
+# alt_text = 'Sunrise over Machu Picchu with misty mountains in the background.'
+
+# name = 'Awe-Inspiring Grand Canyon',
+# description = 'Stand at the edge of the Grand Canyon, USA, and witness the vastness and geological wonder of this natural masterpiece.',
+# alt_text = 'Panoramic view of the Grand Canyon with layered rock formations.'
+
+# name = 'Tropical Paradise in Maldives',
+# description = 'Relax in overwater bungalows and indulge in the crystal-clear waters and white sandy beaches of the Maldives.',
+# alt_text = 'Overwater bungalows surrounded by turquoise waters in the Maldives.'
+
+# name = 'Intriguing Stonehenge Enigma',
+# description = 'Contemplate the mysteries of Stonehenge, UK, as you stand before the enigmatic stone circle, a UNESCO World Heritage site.',
+# alt_text = 'Stonehenge with stones arranged in a circular pattern.'
+
+# name = 'African Safari Adventure',
+# description = 'Embark on a thrilling safari through the plains of Africa, witnessing the incredible diversity of wildlife in their natural habitat.',
+# alt_text = 'Elephants and zebras in the African savannah during a safari.'
+
+# name = 'Taj Mahal's Timeless Beauty',
+# description = 'Marvel at the exquisite architecture of the Taj Mahal, India, a testament to eternal love and artistic mastery.',
+# alt_text = 'Taj Mahal reflecting in the tranquil waters at sunrise.'
+
+# name = 'Enchanting Norwegian Fjords',
+# description = 'Cruise through the mesmerizing fjords of Norway, surrounded by towering cliffs and stunning natural landscapes.',
+# alt_text = 'Majestic fjord surrounded by lush greenery and calm waters.'
 
     pins_list = [pin1, pin2, pin3, pin4, pin5, pin6, pin7, pin8, pin9, pin10, pin11, pin12, pin13, pin14, pin15, pin16, pin17, pin18, pin19, pin20]
     single_pin = [db.session.add(pin) for pin in pins_list]
