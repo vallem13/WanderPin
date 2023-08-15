@@ -25,6 +25,6 @@ class PinBoard(db.Model):
     # def to_dict(self):
     #     return {
     #         'id': self.id,
-    #         'pins': self.pins.to_dict(),
-    #         'boards': self.boards.to_dict(),
+    #         'pin_id': self.pin_id,
+    #         'board_id': self.board_id
     #     }

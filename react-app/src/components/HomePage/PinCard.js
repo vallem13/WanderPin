@@ -1,5 +1,8 @@
 import { useHistory } from 'react-router';
 import React from 'react';
+import OpenModalButton from '../OpenModalButton'
+import AddPinBoard from '../AddRemovePinBoard/AddPinBoard';
+import EditSinglePin from '../Pins/EditSinglePin';
 import './PinCard.css'
 
 const PinCard = ({ pin }) => {
@@ -9,22 +12,20 @@ const PinCard = ({ pin }) => {
         history.push(`/pins/${pin.id}`)
     }
 
-    const handleSave = () => {
-        
-    }
-
     return (
         <div onClick={onClick}>
             <div className="pin-container">
                 <div className="pin">
                     <img className='pin-image' src={pin.images} alt={pin.name} style={{ width: '100px', height: '200px' }} />
                         <div className="pin-hover">
-                            <button className="save-button" onClick={handleSave}>Save</button>
+                            <OpenModalButton className="save-button" buttonText='Save' modalComponent={<AddPinBoard pin_id={pin.id}/>} />
+                            <OpenModalButton className="save-button" buttonText='Edit' modalComponent={<EditSinglePin pin={pin} pinId={pin.id}/>} />
                         </div>
                 </div>
             </div>
         </div>
     )
 }
+
 
 export default PinCard;

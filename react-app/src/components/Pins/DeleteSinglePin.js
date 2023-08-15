@@ -14,7 +14,7 @@ const DeleteSinglePin = ({ pinId }) => {
     const deletePin = async (e) => {
         e.preventDefault()
         await dispatch(deleteSinglePinThunk(pinId))
-        await history.push('/home')
+        await history.push('/user')
         await closeModal()
     };
 
@@ -25,7 +25,7 @@ const DeleteSinglePin = ({ pinId }) => {
     return (
         <div>
             <h2>Are you sure?</h2>
-            <h3>AOnce you delete a Pin, you can't undo it!</h3>
+            <h3>Once you delete a Pin, you can't undo it!</h3>
             <div>
                 <button onClick={deletePin}>Delete</button>
                 <button onClick={dontDeletePin}>Cancel</button>

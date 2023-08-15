@@ -7,6 +7,7 @@ import OpenModalButton from '../OpenModalButton'
 import DeleteSingleBoard from '../Boards/DeleteSingleBoard';
 import EditSingleBoard from '../Boards/EditSingleBaord';
 import PinCard from '../HomePage/PinCard';
+import RemovePinBoard from '../AddRemovePinBoard/RemovePinBoard';
 import "./SingleBoardDetails.css";
 
 
@@ -38,7 +39,10 @@ const SingleBoardDetails = () => {
             {pins.length ? (
                 <div>
                     {pins.map((pin) => (
+                        <div>
                         <PinCard key={pin.id} pin={pin} />
+                        <OpenModalButton className="save-button" buttonText='Remove' modalComponent={<RemovePinBoard pinId={pin.id}/>} />
+                        </div>
                     ))}
                 </div>
             ) : (

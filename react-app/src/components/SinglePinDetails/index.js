@@ -5,6 +5,7 @@ import { getSinglePinThunk } from "../../store/pin";
 import OpenModalButton from '../OpenModalButton'
 import DeleteSinglePin from '../Pins/DeleteSinglePin';
 import EditSinglePin from '../Pins/EditSinglePin';
+import AddPinBoard from '../AddRemovePinBoard/AddPinBoard';
 import "./SinglePinDetails.css";
 
 
@@ -23,7 +24,6 @@ const SinglePinDetails = () => {
 
     return (
         <div>
-            <h1>Edit your Pin</h1>
             <div>
                 <img src={pin.images} alt={pin.name}></img>
             </div>
@@ -32,19 +32,13 @@ const SinglePinDetails = () => {
                 <OpenModalButton buttonText='Edit Pin' modalComponent={<EditSinglePin pin={pin} pinId={pin.id}/>} />
             </div>
             <div>
-                <select>
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
-                </select>
-                <button>Save</button>
+                <OpenModalButton className="save-button" buttonText='Save' modalComponent={<AddPinBoard pin_id={pin.id}/>} />
             </div>
             <div>
                 <h2>{pin.name}</h2>
                 <div>
                     <img src={pin.user.profile_img} alt={pin.user.firstName} style={{ width: '40px', height: '40px' }} />
                     <p>{pin.user.firstName}</p>
-                    <button>Follow</button>
                 </div>
                 <div>
                     <h3>Comments</h3>

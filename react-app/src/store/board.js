@@ -114,6 +114,42 @@ export const editSingleBoardThunk = (boardId, formData) => async (dispatch) => {
 	}
 }
 
+export const addPinBoardThunk = (formData) => async (dispatch) => {
+    const response = await fetch('/api/boards/addPin', {
+        method: 'PUT',
+        body: formData
+    });
+
+    if(response.ok) {
+        const data = await response.json()
+        return response
+    } else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) {
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
+	}
+}
+
+export const removePinBoardThunk = (boardId, pinId) => async (dispatch) => {
+    const response = await fetch(`/api/boards/${boardId}/removePin/${pinId}`, {
+        method: 'DELETE'
+    })
+    if(response.ok) {
+        const board = await response.json()
+        dispatch(getSingleBoard(board))
+    } else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) {
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
+	}
+}
+
 
 // Initial State
 const initialState = {
