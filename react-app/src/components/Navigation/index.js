@@ -24,7 +24,7 @@ function Navigation({ isLoaded }) {
     <div>
       {isLoaded && (
         <div className="navbar">
-          <NavLink exact to="/" className="navbar-logo">
+          <NavLink exact to="/home" className="navbar-logo">
             <img className="logo" src="../assets/Logo.png" alt="WanderPin" />
           </NavLink>
           <ul className="navbar-links">
