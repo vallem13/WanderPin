@@ -18,6 +18,7 @@ const RemovePinBoard = ({ pinId }) => {
     const removePin = async (e) => {
         e.preventDefault()
         await dispatch(removePinBoardThunk(board.id, pinId))
+        
         await history.push(`/boards/${board.id}`)
         await closeModal()
     };

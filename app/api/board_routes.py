@@ -14,7 +14,7 @@ board_routes = Blueprint('boards', __name__)
 def removePinBoard(boardId, pinId):
 
     board = Board.query.get(boardId)
-    board.pins_boards = [pin for pin in board.pins_boards if pin.id != pinId]
+    board.pins = [pin for pin in board.pins if pin.id != pinId]
 
     db.session.commit()
     return board.to_dict()
