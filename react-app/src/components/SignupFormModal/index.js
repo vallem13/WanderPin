@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom"
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
 
 function SignupFormModal() {
 	const dispatch = useDispatch();
+	const history = useHistory()
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
@@ -129,6 +131,7 @@ function SignupFormModal() {
 			if (data) {
 				setErrors(data);
 			} else {
+				await history.push('/home')
 				await closeModal();
 			}
 		} else {
