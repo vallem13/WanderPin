@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom"
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
@@ -11,7 +11,30 @@ function LoginFormModal() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [frontendErrors, setFrontendErrors] = useState({})
   const { closeModal } = useModal();
+
+  useEffect(() => {
+
+    const frontendErrors = {}
+
+    const check_email = email.split('')
+    const reversed_check_email = check_email.reverse()
+
+    if (email.length < 2 || !(check_email.find((element) => element === '@') && (reversed_check_email[3] === '.' || reversed_check_email[2] === '.'))) {
+      frontendErrors.email = "Please input a valid email"
+    }
+    if (password.length < 6 || password.length > 50) {
+      frontendErrors.password = "Password must be at least 6 characters"
+    }
+    if (password.length > 50) {
+      frontendErrors.password = "Password can not be longer than 50 characters"
+    }
+
+    setFrontendErrors(frontendErrors)
+
+  }, [email, password])
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,7 +58,7 @@ function LoginFormModal() {
   return (
     <div className="login-modal-outer">
       <div className="login-modal">
-        <img className='logo' src='../assets/Logo.png' alt='WanderPin' style={{ width: '100px', height: '50px' }}/>
+        <img className='logo' src='../assets/Logo.png' alt='WanderPin' style={{ width: '100px', height: '50px' }} />
         <h1>Welcome!</h1>
         <form onSubmit={handleSubmit}>
           <ul>
@@ -52,6 +75,9 @@ function LoginFormModal() {
               required
             />
           </label>
+          {frontendErrors.email && email.length > 0 && (
+            <p className='error-message'>{frontendErrors.email}</p>
+          )}
           <label>
             Password
             <input
@@ -61,9 +87,12 @@ function LoginFormModal() {
               required
             />
           </label>
+          {frontendErrors.password && password.length > 0 && (
+            <p className='error-message'>{frontendErrors.email}</p>
+          )}
           <div className="login-buttons">
             <div className="login-button">
-            <button type="submit">Log In</button>
+              <button type="submit">Log In</button>
             </div>
             <button onClick={demoUser} >Demo User</button>
           </div>

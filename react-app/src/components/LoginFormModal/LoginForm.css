@@ -73,3 +73,7 @@
 .login-button {
     padding-bottom: 30px;
 }
+
+.error-message {
+    color: #ff4057;
+}
