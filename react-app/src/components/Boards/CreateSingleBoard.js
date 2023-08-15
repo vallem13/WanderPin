@@ -44,7 +44,6 @@ const CreateSingleBoard = () => {
         await dispatch(createSingleBoardThunk(formData));
         await dispatch(getAllBoardsThunk());
         await closeModal()
-        await history.push('/user')
     };
 
     return (

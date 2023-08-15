@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { useModal } from "../../context/Modal";
 import { addPinBoardThunk, getAllBoardsThunk } from "../../store/board";
+import OpenModalButton from "../OpenModalButton";
+import CreateSingleBoard from "../Boards/CreateSingleBoard";
 import './AddRemovePinBoard.css'
 
 const AddPinBoard = ({ pin_id }) => {
@@ -53,16 +55,27 @@ const AddPinBoard = ({ pin_id }) => {
         <div>
             <h2>Choose a Board to add the Pin</h2>
             <div>
-                {user_boards.map((board) => (
-                    <div
-                        className={`board-names ${board.id === board_id ? "active" : ""}`}
-                        onClick={() => selectBoard(board)}
-                        key={board.id}
-                    >
-                    <img src={board.pinImgs[0] ? board.pinImgs[0] : 'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'} alt={board.title} style={{ width: '100px', height: '100px' }} />
-                    {board.title}
-                </div>
-                ))}
+                {user_boards.length ? (
+                    <div>
+                        {user_boards.map((board) => (
+                            <div
+                                className={`board-names ${board.id === board_id ? "active" : ""}`}
+                                onClick={() => selectBoard(board)}
+                                key={board.id}
+                            >
+                                <img src={board.pinImgs[0] ? board.pinImgs[0] : 'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'} alt={board.title} style={{ width: '100px', height: '100px' }} />
+                                {board.title}
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div>
+                        <OpenModalButton
+                            buttonText="Create Board"
+                            modalComponent={<CreateSingleBoard />}
+                        />
+                    </div>
+                )}
             </div>
             <button onClick={handleSubmit}>Add Pin</button>
         </div>
