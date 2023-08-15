@@ -29,17 +29,19 @@ def addPinBoard():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
+        board = Board.query.get(form.data['board_id'])
+        pin = Pin.query.get(form.data['pin_id'])
 
-            board = Board.query.get(form.data['board_id'])
-            pin = Pin.query.get(form.data['pin_id'])
+        if not board or not pin:
+            return {'errors': "Invalid board_id or pin_id"}, 400
 
-            if not board or not pin:
-                return {'errors': "Invalid board_id or pin_id"}, 400
+        if PinBoard.query.filter_by(pin_id=pin.id, board_id=board.id).first():
+            return {'errors': "This pin is already added to the selected board."}, 400
 
-            board.pins_boards.append(PinBoard(pin_id=pin.id))
+        board.pins_boards.append(PinBoard(pin_id=pin.id))
 
-            db.session.commit()
-            return board.to_dict()
+        db.session.commit()
+        return board.to_dict()
 
     return {'errors': form.errors}, 400
 

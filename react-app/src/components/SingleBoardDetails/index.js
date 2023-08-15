@@ -29,19 +29,25 @@ const SingleBoardDetails = () => {
 
     if (!board.id) return null
 
+    const checkOwner = user && user.id === board.user_id
+
     return (
         <div>
             <h1>{board.title}</h1>
-            <div>
-                <OpenModalButton buttonText='Edit' modalComponent={<EditSingleBoard board={board} boardId={board.id}/>} />
-                <OpenModalButton buttonText='Delete' modalComponent={<DeleteSingleBoard board={board} boardId={board.id}/>} />
-            </div>
+            {user && checkOwner && (
+                <div>
+                    <OpenModalButton buttonText='Edit' modalComponent={<EditSingleBoard board={board} boardId={board.id} />} />
+                    <OpenModalButton buttonText='Delete' modalComponent={<DeleteSingleBoard board={board} boardId={board.id} />} />
+                </div>
+            )}
             {pins.length ? (
                 <div>
                     {pins.map((pin) => (
                         <div>
-                        <PinCard key={pin.id} pin={pin} />
-                        <OpenModalButton className="save-button" buttonText='Remove' modalComponent={<RemovePinBoard pinId={pin.id}/>} />
+                            <PinCard key={pin.id} pin={pin} />
+                            {user && checkOwner && (
+                                <OpenModalButton className="save-button" buttonText='Remove' modalComponent={<RemovePinBoard pinId={pin.id} />} />
+                            )}
                         </div>
                     ))}
                 </div>

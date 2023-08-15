@@ -22,15 +22,19 @@ const SinglePinDetails = () => {
 
     if (!pin.id) return null
 
+    const checkOwner = user && user.id === pin.user_id
+
     return (
         <div>
             <div>
                 <img src={pin.images} alt={pin.name}></img>
             </div>
-            <div>
-                <OpenModalButton buttonText='Delete Pin' modalComponent={<DeleteSinglePin pinId={pin.id}/>} />
-                <OpenModalButton buttonText='Edit Pin' modalComponent={<EditSinglePin pin={pin} pinId={pin.id}/>} />
-            </div>
+            {user && checkOwner && (
+                <div>
+                    <OpenModalButton buttonText='Delete Pin' modalComponent={<DeleteSinglePin pinId={pin.id}/>} />
+                    <OpenModalButton buttonText='Edit Pin' modalComponent={<EditSinglePin pin={pin} pinId={pin.id}/>} />
+                </div>
+            )}
             <div>
                 <OpenModalButton className="save-button" buttonText='Save' modalComponent={<AddPinBoard pin_id={pin.id}/>} />
             </div>

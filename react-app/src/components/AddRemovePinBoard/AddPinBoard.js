@@ -22,6 +22,7 @@ const AddPinBoard = ({ pin_id }) => {
         dispatch(getAllBoardsThunk())
     }, [dispatch])
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
