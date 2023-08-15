@@ -7,7 +7,7 @@ import OpenModalButton from "../OpenModalButton";
 import CreateSingleBoard from "../Boards/CreateSingleBoard";
 import './AddRemovePinBoard.css'
 
-const AddPinBoard = ({ pin_id }) => {
+const AddPinBoard = ({ pin_id, onSelectBoard }) => {
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -18,7 +18,6 @@ const AddPinBoard = ({ pin_id }) => {
     const user_boards = boards.filter(boards => boards.user_id === user.id)
     const [board_id, setBoardId] = useState('')
     const [errors, setErrors] = useState([])
-
 
     useEffect(() => {
         dispatch(getAllBoardsThunk())
@@ -55,7 +54,6 @@ const AddPinBoard = ({ pin_id }) => {
         <div>
             <h2>Choose a Board to add the Pin</h2>
             <div>
-                {user_boards.length ? (
                     <div>
                         {user_boards.map((board) => (
                             <div
@@ -68,14 +66,12 @@ const AddPinBoard = ({ pin_id }) => {
                             </div>
                         ))}
                     </div>
-                ) : (
                     <div>
                         <OpenModalButton
                             buttonText="Create Board"
                             modalComponent={<CreateSingleBoard />}
                         />
                     </div>
-                )}
             </div>
             <button onClick={handleSubmit}>Add Pin</button>
         </div>

@@ -8,6 +8,7 @@ import "./SignupForm.css";
 function SignupFormModal() {
 	const dispatch = useDispatch();
 	const history = useHistory()
+	const { closeModal } = useModal();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
@@ -17,9 +18,10 @@ function SignupFormModal() {
 	const [birthDate, setBirthDate] = useState("")
 	const [country, setCountry] = useState("")
 	const [interests, setInterests] = useState("")
+	const [submitted, setSubmitted] = useState(false)
 	const [frontendErrors, setFrontendErrors] = useState({})
 	const [errors, setErrors] = useState([]);
-	const { closeModal } = useModal();
+
 
 
 	useEffect(() => {
@@ -60,8 +62,6 @@ function SignupFormModal() {
 			"vietnam", "yemen", "zambia", "zimbabwe"
 		]
 
-
-
 		if (email.length < 2 || !(check_email.find((element) => element === '@') && (reversed_check_email[3] === '.' || reversed_check_email[2] === '.'))) {
 			frontendErrors.email = "Please input a valid email"
 		}
@@ -90,7 +90,13 @@ function SignupFormModal() {
 			frontendErrors.lastName = "Last Name can not be longer than 50 characters"
 		}
 		if (!birthDate) {
-			frontendErrors.birthDate = "Please input your Birthday"
+			frontendErrors.birthDate = "Please input your Birthday";
+		} else {
+			const currentDate = new Date();
+			const birthDateObj = new Date(birthDate);
+			const yearDifference = currentDate.getFullYear() - birthDateObj.getFullYear();
+			if (yearDifference >= 100) frontendErrors.birthDate = "Please input a valid Birthday";
+			if (yearDifference <= 16) frontendErrors.birthDate = "You must be over 16 yeards old to own an account";
 		}
 		if (!countries.find((element) => element === country.toLowerCase().trim())) {
 			frontendErrors.country = "Please input a valid country"
@@ -102,13 +108,14 @@ function SignupFormModal() {
 			frontendErrors.interests = "Interests can not be longer than 2git checkout 50 characters"
 		}
 
-
 		setFrontendErrors(frontendErrors)
 
 	}, [email, password, confirmPassword, firstName, lastName])
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+		setSubmitted(true)
 
 		const formData = new FormData();
 
@@ -130,27 +137,24 @@ function SignupFormModal() {
 			const data = await dispatch(signUp(formData));
 			if (data) {
 				setErrors(data);
+				setFrontendErrors(frontendErrors)
 			} else {
-				await history.push('/home')
-				await closeModal();
+				history.push('/home')
+				closeModal();
 			}
 		} else {
-			setErrors([
-				"Confirm Password field must be the same as the Password field",
-			]);
+			setErrors(["Confirm Password field must be the same as the Password field"]);
 		}
 	};
+
+
 
 	return (
 		<div className="signup-modal">
 			<img className='logo' src='../assets/Logo.png' alt='WanderPin' style={{ width: '100px', height: '50px' }} />
 			<h1>Welcome!</h1>
 			<form onSubmit={handleSubmit} encType="multipart/form-data">
-				<ul>
-					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
-					))}
-				</ul>
+
 				<label>
 					Email
 					<input
@@ -160,7 +164,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.email && email.length > 0 && (
+				{frontendErrors.email && submitted && (
 					<p className='error-message'>{frontendErrors.email}</p>
 				)}
 				<label>
@@ -172,7 +176,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.firstName && firstName.length > 0 && (
+				{frontendErrors.firstName && submitted && (
 					<p className='error-message'>{frontendErrors.firstName}</p>
 				)}
 				<label>
@@ -184,7 +188,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.lastName && lastName.length > 0 && (
+				{frontendErrors.lastName && submitted && (
 					<p className='error-message'>{frontendErrors.lastName}</p>
 				)}
 				<label>
@@ -196,7 +200,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.birthDate && birthDate.length > 0 && (
+				{frontendErrors.birthDate && submitted && (
 					<p className='error-message'>{frontendErrors.birthDate}</p>
 				)}
 				<label>
@@ -208,7 +212,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.country && country.length > 0 && (
+				{frontendErrors.country && submitted && (
 					<p className='error-message'>{frontendErrors.country}</p>
 				)}
 				<label>
@@ -238,7 +242,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.password && password.length > 0 && (
+				{frontendErrors.password && submitted && (
 					<p className='error-message'>{frontendErrors.password}</p>
 				)}
 				<label>
@@ -250,9 +254,14 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				{frontendErrors.confirmPassword && confirmPassword.length > 0 && (
+				{frontendErrors.confirmPassword && submitted && (
 					<p className='error-message'>{frontendErrors.confirmPassword}</p>
 				)}
+				<ul>
+					{errors.map((error, idx) => (
+						<li key={idx}>{error}</li>
+					))}
+				</ul>
 				<button type="submit">Sign Up</button>
 			</form>
 		</div>

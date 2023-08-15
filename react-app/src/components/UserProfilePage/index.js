@@ -28,6 +28,7 @@ const UserProfile = () => {
 
     return (
         <div>
+            
             <div>
                 {user_pins.map((pin) => (
                     <div>

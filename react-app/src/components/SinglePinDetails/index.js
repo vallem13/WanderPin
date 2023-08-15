@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { getSinglePinThunk } from "../../store/pin";
 import OpenModalButton from '../OpenModalButton'
-import DeleteSinglePin from '../Pins/DeleteSinglePin';
-import EditSinglePin from '../Pins/EditSinglePin';
+import EditButton from './EditButton'
 import AddPinBoard from '../AddRemovePinBoard/AddPinBoard';
 import "./SinglePinDetails.css";
 
@@ -27,16 +26,15 @@ const SinglePinDetails = () => {
     return (
         <div>
             <div>
-                <img src={pin.images} alt={pin.name}></img>
+                <img src={pin.images} alt={pin.name} style={{ width: '300px', height: '400px' }}></img>
             </div>
             {user && checkOwner && (
                 <div>
-                    <OpenModalButton buttonText='Delete Pin' modalComponent={<DeleteSinglePin pinId={pin.id}/>} />
-                    <OpenModalButton buttonText='Edit Pin' modalComponent={<EditSinglePin pin={pin} pinId={pin.id}/>} />
+                    <EditButton />
                 </div>
             )}
             <div>
-                <OpenModalButton className="save-button" buttonText='Save' modalComponent={<AddPinBoard pin_id={pin.id}/>} />
+                <OpenModalButton className="save-button" buttonText='Save to Board' modalComponent={<AddPinBoard pin_id={pin.id}/>} />
             </div>
             <div>
                 <h2>{pin.name}</h2>

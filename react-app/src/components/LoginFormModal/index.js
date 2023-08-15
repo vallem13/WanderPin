@@ -10,6 +10,7 @@ function LoginFormModal() {
   const history = useHistory()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [submitted, setSubmitted] = useState(false)
   const [errors, setErrors] = useState([]);
   const [frontendErrors, setFrontendErrors] = useState({})
   const { closeModal } = useModal();
@@ -40,11 +41,12 @@ function LoginFormModal() {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
-    } else {
-      await history.push('/home')
-      await closeModal()
-    }
+				setErrors(data);
+				setFrontendErrors(frontendErrors)
+			} else {
+				history.push('/home')
+				closeModal();
+			}
 
   };
 
@@ -75,7 +77,7 @@ function LoginFormModal() {
               required
             />
           </label>
-          {frontendErrors.email && email.length > 0 && (
+          {frontendErrors.email && submitted && (
             <p className='error-message'>{frontendErrors.email}</p>
           )}
           <label>
@@ -87,7 +89,7 @@ function LoginFormModal() {
               required
             />
           </label>
-          {frontendErrors.password && password.length > 0 && (
+          {frontendErrors.password && submitted && (
             <p className='error-message'>{frontendErrors.email}</p>
           )}
           <div className="login-buttons">
