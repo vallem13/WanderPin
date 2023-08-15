@@ -1,7 +1,8 @@
 import { useHistory } from 'react-router';
 import React from 'react';
 import OpenModalButton from '../OpenModalButton'
-import AddPinBoard from '../AddPinBoard/index';
+import AddPinBoard from '../AddRemovePinBoard/AddPinBoard';
+import EditSinglePin from '../Pins/EditSinglePin';
 import './PinCard.css'
 
 const PinCard = ({ pin }) => {
@@ -18,6 +19,7 @@ const PinCard = ({ pin }) => {
                     <img className='pin-image' src={pin.images} alt={pin.name} style={{ width: '100px', height: '200px' }} />
                         <div className="pin-hover">
                             <OpenModalButton className="save-button" buttonText='Save' modalComponent={<AddPinBoard pin_id={pin.id}/>} />
+                            <OpenModalButton className="save-button" buttonText='Edit' modalComponent={<EditSinglePin pin={pin} pinId={pin.id}/>} />
                         </div>
                 </div>
             </div>

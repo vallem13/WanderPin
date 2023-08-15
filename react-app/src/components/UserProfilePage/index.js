@@ -5,6 +5,8 @@ import { getAllBoardsThunk } from "../../store/board";
 import { getAllPinsThunk } from "../../store/pin";
 import BoardCard from "./BoardCard";
 import PinCard from "../HomePage/PinCard";
+import RemovePinBoard from "../AddRemovePinBoard/RemovePinBoard";
+import OpenModalButton from '../OpenModalButton'
 import './UserProfile.css';
 
 
@@ -28,7 +30,9 @@ const UserProfile = () => {
         <div>
             <div>
                 {user_pins.map((pin) => (
+                    <div>
                     <PinCard key={pin.id} pin={pin}/>
+                    </div>
                 ))}
             </div>
             <div>

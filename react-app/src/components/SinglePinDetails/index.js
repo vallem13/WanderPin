@@ -5,7 +5,7 @@ import { getSinglePinThunk } from "../../store/pin";
 import OpenModalButton from '../OpenModalButton'
 import DeleteSinglePin from '../Pins/DeleteSinglePin';
 import EditSinglePin from '../Pins/EditSinglePin';
-import AddPinBoard from '../AddPinBoard';
+import AddPinBoard from '../AddRemovePinBoard/AddPinBoard';
 import "./SinglePinDetails.css";
 
 

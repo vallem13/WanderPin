@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { useModal } from "../../context/Modal";
-import { addPinBoardThunk, getAllBoardsThunk, getSingleBoardThunk } from "../../store/board";
-import BoardCard from "../UserProfilePage/BoardCard";
-import './AddPinBoard.css'
+import { addPinBoardThunk, getAllBoardsThunk } from "../../store/board";
+import './AddRemovePinBoard.css'
 
 const AddPinBoard = ({ pin_id }) => {
 
