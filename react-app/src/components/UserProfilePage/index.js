@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getAllBoardsThunk } from "../../store/board";
 import { getAllPinsThunk } from "../../store/pin";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 import BoardCard from "./BoardCard";
 import PinCard from "../HomePage/PinCard";
 import './UserProfile.css';
@@ -31,31 +32,37 @@ const UserProfile = () => {
     return (
         <div>
             <div className="profile-container">
-            <img className='profile-user-image' src={user.profile_img} alt={user.first_name} />
-            <h2>{user.first_name} {user.last_name}</h2>
-            <div className="profile-buttons">
-                <button
-                    className="profile-button"
-                    onClick={() => handleDisplayTypeChange("pin")}
-                >
-                    My Pins
-                </button>
-                <button
-                    className="profile-button"
-                    onClick={() => handleDisplayTypeChange("board")}
-                >
-                    My Boards
-                </button>
+                <img className='profile-user-image' src={user.profile_img} alt={user.first_name} />
+                <h2>{user.first_name} {user.last_name}</h2>
+                <div className="profile-buttons">
+                    <button
+                        className="profile-button"
+                        onClick={() => handleDisplayTypeChange("pin")}
+                    >
+                        My Pins
+                    </button>
+                    <button
+                        className="profile-button"
+                        onClick={() => handleDisplayTypeChange("board")}
+                    >
+                        My Boards
+                    </button>
+                </div>
             </div>
-            </div>
-            <div className="grid-container">
-                {displayType === "pin" && (
-                    user_pins.map((pin) => (
-                        <div className="grid-item" key={pin.id}>
-                            <PinCard pin={pin} />
-                        </div>
-                    ))
-                )}
+                <ResponsiveMasonry
+                    columnsCountBreakPoints={{ 350: 1, 750: 2, 1026: 5 }}
+                >
+                    <Masonry>
+                        {displayType === "pin" && (
+                            user_pins.map((pin) => (
+                                <div className="grid-item" key={pin.id}>
+                                    <PinCard pin={pin} />
+                                </div>
+                            ))
+                        )}
+                    </Masonry>
+                </ResponsiveMasonry>
+                <div className="grid-container">
                 {displayType === "board" && (
                     user_boards.map((board) => (
                         <div className="grid-item" key={board.id}>

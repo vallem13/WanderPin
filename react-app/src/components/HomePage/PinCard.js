@@ -25,7 +25,7 @@ const PinCard = ({ pin }) => {
             <div className="pin-container">
                 <div className="pin">
                     <div>
-                        <img className='pin-image' src={pin.images} alt={pin.name} style={{ width: '100px', height: '200px' }} />
+                        <img className='pin-image' src={pin.images} alt={pin.name} />
                     </div>
                     <div className="pin-hover">
                         <OpenModalButton className="save-button" buttonText='Save' modalComponent={<AddPinBoard pin_id={pin.id} />} />
