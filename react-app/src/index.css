@@ -4,3 +4,11 @@
     margin: 0 auto;
     /* border: 2px solid red; */
 }
+
+#modal-content {
+    border-radius: 35px;
+}
+
+button {
+    cursor: pointer;
+}
