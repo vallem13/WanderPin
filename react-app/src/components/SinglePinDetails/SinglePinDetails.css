@@ -1,10 +1,42 @@
-/*  edit-delete-button-container */
-.edit-delete-button-container {
+
+/* Main containers */
+.edit-delete-button-parent-container {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
 }
 
-/* Button to edit and delete */
+.edit-delete-button-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    height: auto;
+    border-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0.2, 0.2, 0.2, 0.2);
+    padding: 20px;
+}
 
+/* Pin Image */
+.edit-delete-button-container img {
+    max-width: 80%;
+    height: auto;
+}
+
+/* Pin Details */
+.pin-details {
+    display: flex;
+    flex-direction: column;
+    padding-right: 20px;
+    width: 500px;
+}
+
+
+/* Button to edit and delete */
 .oval-button {
     background-color: #DCDCDC;
     border-radius: 100%;
@@ -18,4 +50,93 @@
 
 .oval-button:hover {
     background-color: #ff4057;
+}
+
+.edit-save-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit-website-container {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.icon-link {
+    font-size: 30px;
+}
+
+.icon-link:hover {
+    color: #e60023;
+}
+
+.save-to-board-button {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    text-align: left;
+}
+
+.save-to-board-button button {
+    margin: 20px;
+    padding: 15px;
+    border-radius: 50px;
+    border: 1px solid #ff4057;
+    background-color: #ff4057;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.save-to-board-button button:hover,
+.save-to-board-button button:focus {
+    background-color: #e60023;
+}
+
+.pin-owner-container {
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+}
+
+.pin-owner-container img {
+    border-radius: 50%;
+}
+
+.pin-user-firstname {
+    font-weight: bold;
+}
+
+.comment-container h3{
+    font-weight: 2000;
+}
+
+.like-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    padding-right: 50px;
+}
+
+.user-pic-comment {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+
+}
+
+.user-pic-comment img{
+    border-radius: 50%;
+}
+
+.comment-input {
+    border-radius: 50px;
+    height: 30px;
+    width: 350px;
 }
