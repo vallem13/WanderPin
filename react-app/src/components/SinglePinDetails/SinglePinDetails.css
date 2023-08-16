@@ -1,0 +1,21 @@
+/*  edit-delete-button-container */
+.edit-delete-button-container {
+    display: flex;
+}
+
+/* Button to edit and delete */
+
+.oval-button {
+    background-color: #DCDCDC;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+}
+
+.oval-button:hover {
+    background-color: #ff4057;
+}

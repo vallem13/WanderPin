@@ -24,7 +24,7 @@ const SinglePinDetails = () => {
     const checkOwner = user && user.id === pin.user_id
 
     return (
-        <div>
+        <div className="edit-delete-button-container">
             <div>
                 <img src={pin.images} alt={pin.name} style={{ width: '300px', height: '400px' }}></img>
             </div>

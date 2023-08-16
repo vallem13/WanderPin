@@ -33,8 +33,8 @@ function EditButton() {
     const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
     return (
-        <>
-            <button onClick={openMenu}>
+        <div>
+            <button onClick={openMenu} class="oval-button">
                 <span class="material-symbols-outlined">
                     steppers
                 </span>
@@ -56,7 +56,7 @@ function EditButton() {
                     />
                 </li>
             </ul>
-        </>
+        </div>
     );
 }
 
