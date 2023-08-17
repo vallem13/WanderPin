@@ -47,18 +47,20 @@ function EditButton() {
             </button>
             <ul className={ulClassName} ref={ulRef}>
                 <div className="edit-delete-container">
+                    <div className="delete-button">
                     <OpenModalButton
-                        className="edit-delete-button"
                         buttonText="Edit Pin"
                         onItemClick={closeMenu}
                         modalComponent={<EditSinglePin />}
                     />
+                    </div>
+                    <div className="delete-pin-button">
                     <OpenModalButton
-                        className="edit-delete-button"
                         buttonText="Delete Pin"
                         onItemClick={closeMenu}
                         modalComponent={<DeleteSinglePin pinId={pin.id} />}
                     />
+                    </div>
                 </div>
             </ul>
         </div>
