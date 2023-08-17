@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import CreateButton from './CreateButton';
-import './Navigation.css';
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import './Navigation.css';
 
 function Navigation({ isLoaded }) {
   const dispatch = useDispatch();
@@ -46,22 +46,22 @@ function Navigation({ isLoaded }) {
                 </li>
               </>
             ) : (
-              <>
-                <li className="navbar-link">
+              <div className="navbar-link-log-sign-container">
+                <li className="navbar-link-log-sign">
                   <OpenModalButton
                     buttonText="Log In"
                     className='navbar-button'
                     modalComponent={<LoginFormModal />}
                   />
                 </li>
-                <li className="navbar-link">
+                <li className="navbar-link-log-sign">
                   <OpenModalButton
                     buttonText="Sign Up"
                     className='navbar-button'
                     modalComponent={<SignupFormModal />}
                   />
                 </li>
-              </>
+              </div>
             )}
           </ul>
         </div>
