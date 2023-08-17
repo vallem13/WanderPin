@@ -36,7 +36,7 @@ function EditButton() {
 
     const closeMenu = () => setShowMenu(false);
 
-    const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+    const ulClassName = "edit-delete-dropdown" + (showMenu ? "" : " hidden");
 
     return (
         <div >

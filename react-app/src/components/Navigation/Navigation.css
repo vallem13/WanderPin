@@ -1,4 +1,4 @@
-.profile-dropdown {
+.create-dropdown {
   position: absolute;
 }
 
@@ -38,12 +38,18 @@
     color: white;
     border-radius: 50px;
     cursor: pointer;
+
+}
+#create-pin-board-navbar button:hover {
+    background-color: #e60023;
+
 }
 
 .create-pin-board-buttons-navbar {
   display: flex;
   flex-direction: column;
   margin: 10px;
+  z-index: 5px;
 }
 
 .navbar-links {
@@ -52,6 +58,7 @@
   padding: 0;
   display: flex;
   align-items: center;
+  z-index: 5px;
 }
 
 .navbar-link {
@@ -73,7 +80,6 @@
   font-size: 30px;
   padding-top: 10px;
 }
-
 
 .navbar-link:last-child {
   margin-right: 0;
@@ -113,4 +119,19 @@
 
 #home-button {
   font-size: 30px;
+}
+
+.create-dropdown {
+  position: absolute;
+  left: 450px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  column-gap: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.create-dropdown:hover {
+  background-color: #e60023;
 }

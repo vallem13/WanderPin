@@ -31,13 +31,12 @@ function CreateButton({ user }) {
 
   const closeMenu = () => setShowMenu(false);
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const ulClassName = "create-dropdown" + (showMenu ? "" : " hidden");
 
   return (
     <div className="create-pin-board-buttons-navbar">
       <button onClick={openMenu}>Create</button>
       <ul className={ulClassName} ref={ulRef}>
-          <>
             <OpenModalButton
               buttonText="Create Pin"
               onItemClick={closeMenu}
@@ -49,7 +48,6 @@ function CreateButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<CreateSingleBoard />}
             />
-          </>
       </ul>
     </div>
   );

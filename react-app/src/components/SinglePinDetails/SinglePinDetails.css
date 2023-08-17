@@ -1,3 +1,11 @@
+.edit-delete-dropdown {
+    position: absolute;
+  }
+
+  .hidden {
+    display: none;
+  }
+
 
 .edit-delete-button-parent-container {
     display: flex;

@@ -2,6 +2,7 @@
     position: relative;
     margin: 10px;
     transition: transform 0.3s;
+
   }
 
   .pin-image {
@@ -32,6 +33,7 @@
     align-items: center;
     opacity: 0;
     transition: opacity 0.3s;
+    border-radius: 8px;
 }
 
 .pin:hover {
@@ -45,13 +47,13 @@
 .top-left {
     align-self: flex-start;
     margin-bottom: auto;
-    margin-left: 10px;
+    margin-left: -40px;
     padding-top: 10px;
 }
 
 .bottom-left {
     align-self: flex-start;
     margin-top: auto;
-    margin-left: 50px;
+    margin-left: -160px;
     padding-bottom: 10px;
 }
