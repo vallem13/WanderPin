@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { useModal } from "../../context/Modal";
+import { useLocation } from 'react-router-dom';
 import { createSingleBoardThunk, getAllBoardsThunk, getSingleBoardThunk } from "../../store/board"
 import './Boards.css'
 
@@ -15,6 +16,9 @@ const CreateSingleBoard = () => {
     const [description, setDescription] = useState('')
     const [errors, setErrors] = useState([])
     const [frontendErrors, setFrontendErrors] = useState({})
+    const [submitted, setSubmitted] = useState(false)
+    const location = useLocation();
+    const currentPath = location.pathname;
 
 
     useEffect(() => {
@@ -42,8 +46,12 @@ const CreateSingleBoard = () => {
         formData.append("user_id", user.id);
 
         await dispatch(createSingleBoardThunk(formData));
-        await closeModal()
-        await dispatch(getSingleBoardThunk());
+        if (currentPath.startsWith('/pins/')) await closeModal()
+        else {
+            await dispatch(getAllBoardsThunk());
+            await closeModal()
+            await history.push('/user')
+        }
     };
 
     return (
@@ -51,27 +59,33 @@ const CreateSingleBoard = () => {
             <h1>Create your Board</h1>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="create-edit-board-details">
-                <label>
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        placeholder="Add your title"
-                        required
-                    />
-                </label>
-                <div>
-                    <textarea
-                        type="text"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        placeholder="Tell everyone what your Board is abaout"
-                        required
-                    />
-                </div>
-                <div className="create-edit-board-buttons">
-                    <button type="submit">Create</button>
-                </div>
+                    <label>
+                        <input
+                            type="text"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            placeholder="Add your title"
+                            required
+                        />
+                    </label>
+                    {frontendErrors.title && submitted && (
+                            <p className='error-message'>{frontendErrors.title}</p>
+                        )}
+                    <div>
+                        <textarea
+                            type="text"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            placeholder="Tell everyone what your Board is abaout"
+                            required
+                        />
+                    </div>
+                    {frontendErrors.description && submitted && (
+                            <p className='error-message'>{frontendErrors.description}</p>
+                        )}
+                    <div className="create-edit-board-buttons">
+                        <button type="submit">Create</button>
+                    </div>
                 </div>
             </form>
         </div>
