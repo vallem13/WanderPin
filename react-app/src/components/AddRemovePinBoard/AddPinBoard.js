@@ -51,29 +51,37 @@ const AddPinBoard = ({ pin_id, onSelectBoard }) => {
 
 
     return (
-        <div>
+        <div className="add-pin-container">
             <h2>Choose a Board to add the Pin</h2>
-            <div>
-                    <div>
+            <div className="board-selection-container">
+                <div className="board-scroll-container">
+                    <div className="board-display-container">
                         {user_boards.map((board) => (
                             <div
+                                id="add-board-img-name"
                                 className={`board-names ${board.id === board_id ? "active" : ""}`}
                                 onClick={() => selectBoard(board)}
                                 key={board.id}
                             >
-                                <img src={board.pinImgs[0] ? board.pinImgs[0] : 'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'} alt={board.title} style={{ width: '100px', height: '100px' }} />
+                                <img id="add-board-img" src={board.pinImgs[0] ? board.pinImgs[0] : 'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'} alt={board.title} style={{ width: '100px', height: '100px' }} />
                                 {board.title}
                             </div>
                         ))}
                     </div>
-                    <div>
+                </div>
+                <div className="add-pin-buttons-container">
+                    <div className="add-create-board-button">
                         <OpenModalButton
+                            className="custom-button"
                             buttonText="Create Board"
                             modalComponent={<CreateSingleBoard />}
                         />
                     </div>
+                    <div className="add-pin-button">
+                        <button onClick={handleSubmit}>Add Pin</button>
+                    </div>
+                </div>
             </div>
-            <button onClick={handleSubmit}>Add Pin</button>
         </div>
     )
 }
