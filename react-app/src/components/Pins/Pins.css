@@ -74,3 +74,128 @@
 .edit-pin-buttons button:hover{
     background-color: #e60023;
 }
+
+.create-pin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: auto;
+    box-shadow: 0px 2px 10px rgba(0.2, 0.2, 0.2, 0.2);
+    padding: 20px;
+}
+
+.create-pin-img-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.create-pin-img-container {
+    border: 1px dotted #282634;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 400px;
+    border-radius: 15px;
+    background-color: #DCDCDC;
+}
+
+.create-pin-img-container img{
+    border: 1px dotted #282634;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 400px;
+    border-radius: 15px;
+    background-color: #DCDCDC;
+}
+
+.choose-file {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 50px;
+    padding-right: -50px;
+}
+
+.create-pin-form-details {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.create-pin-user-img-container {
+    display: flex;
+    column-gap: 10px;
+}
+
+.create-pin-user-img-container {
+    display: flex;
+    column-gap: 10px;
+    padding-bottom: 20px;
+}
+
+.create-pin-user-img-container img{
+    border-radius: 50%;
+}
+
+.create-pin-form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.create-pin-form input{
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    color: inherit;
+    line-height: normal;
+    outline: none;
+    border-bottom: 1px solid black;
+    width: 300px;
+    word-wrap: break-word;
+}
+
+.create-pin-form textarea {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    color: inherit;
+    line-height: normal;
+    outline: none;
+    border-bottom: 1px solid black;
+    width: 300px;
+    word-wrap: break-word;
+}
+
+.alt-text-button button{
+    all: unset;
+    padding: 10px 20px;
+    background-color: #ff4057;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.create-pin-save-button {
+    padding-top: 20px;
+}
+
+.create-pin-save-button button{
+    all: unset;
+    padding: 10px 20px;
+    background-color: #ff4057;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+}
