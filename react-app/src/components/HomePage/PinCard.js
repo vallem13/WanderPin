@@ -28,13 +28,18 @@ const PinCard = ({ pin }) => {
                         <img className='pin-image' src={pin.images} alt={pin.name} />
                     </div>
                     <div className="pin-hover">
-                        <OpenModalButton className="save-button" buttonText='Save' modalComponent={<AddPinBoard pin_id={pin.id} />} />
-                        {pin.website && (
-                            <a href={pin.website}>
-                                <button>Website</button>
-                            </a>
-                        )}
-                    </div>
+        <div className="top-left">
+            <OpenModalButton className="save-button" buttonText='Save' modalComponent={<AddPinBoard pin_id={pin.id} />} />
+        </div>
+        <div className="bottom-left">
+            {pin.website && (
+                <a href={pin.website} target="_blank" className="icon-link">
+                    <i className="fa-solid fa-arrow-up-right-from-square" size='xg' style={{ color: "#ff4057" }}></i>
+                </a>
+            )}
+        </div>
+    </div>
+                   
                 </div>
             </div>
         </div>

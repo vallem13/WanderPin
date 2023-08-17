@@ -11,7 +11,16 @@
     transition: transform 0.2s, box-shadow 0.2s;
   }
 
-  .pin-hover {
+  .pin-hover button {
+    all: unset;
+    padding: 10px 20px;
+    background-color: #ff4057;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.pin-hover {
     position: absolute;
     top: 0;
     left: 0;
@@ -23,12 +32,26 @@
     align-items: center;
     opacity: 0;
     transition: opacity 0.3s;
-  }
+}
 
-  .pin:hover {
+.pin:hover {
     transform: scale(1.05);
-  }
+}
 
-  .pin:hover .pin-hover {
+.pin:hover .pin-hover {
     opacity: 1;
-  }
+}
+
+.top-left {
+    align-self: flex-start;
+    margin-bottom: auto;
+    margin-left: 10px;
+    padding-top: 10px;
+}
+
+.bottom-left {
+    align-self: flex-start;
+    margin-top: auto;
+    margin-left: 50px;
+    padding-bottom: 10px;
+}

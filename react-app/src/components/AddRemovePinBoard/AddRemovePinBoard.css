@@ -7,19 +7,15 @@
 }
 
 .board-scroll-container {
-    max-height: 350px; /* Adjust the height as needed */
+    max-height: 350px; 
     overflow-y: auto;
 }
 
 .board-names {
-    /* Your styles for individual board items */
-    flex: 0 0 calc(33.33% - 20px); /* Adjust the width and margin */
-    /* margin: 10px; */
+    flex: 0 0 calc(33.33% - 20px);
     padding: 10px;
-    /* text-align: center; */
 }
 
-/* Style the active board item */
 .board-names.active {
     border-color: #ff4057;
 }
