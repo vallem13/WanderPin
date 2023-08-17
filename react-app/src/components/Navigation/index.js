@@ -30,7 +30,7 @@ function Navigation({ isLoaded }) {
           <ul className="navbar-links">
             {sessionUser ? (
               <>
-                <li className="navbar-link">
+                <li id='create-pin-board-navbar' className="navbar-link">
                   <CreateButton user={sessionUser} />
                 </li>
                 <li className="navbar-link">

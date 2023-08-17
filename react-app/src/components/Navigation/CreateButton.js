@@ -4,6 +4,7 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import CreateSinglePin from "../Pins/CreateSinglePin";
 import CreateSingleBoard from "../Boards/CreateSingleBoard";
+import './Navigation.css'
 
 function CreateButton({ user }) {
   const dispatch = useDispatch();
@@ -34,12 +35,12 @@ function CreateButton({ user }) {
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
-    <>
+    <div className="create-pin-board-buttons-navbar">
       <button onClick={openMenu}>Create</button>
       <ul className={ulClassName} ref={ulRef}>
           <>
             <OpenModalButton
-              buttonText="Ceate Pin"
+              buttonText="Create Pin"
               onItemClick={closeMenu}
               modalComponent={<CreateSinglePin />}
             />
@@ -51,7 +52,7 @@ function CreateButton({ user }) {
             />
           </>
       </ul>
-    </>
+    </div>
   );
 }
 
