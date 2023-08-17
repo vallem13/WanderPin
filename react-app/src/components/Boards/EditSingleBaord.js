@@ -55,7 +55,7 @@ const EditSingleBoard = () => {
     };
 
     return (
-        <div>
+        <div className="create-edit-board-container">
             <h1>Edit your Board</h1>
             <form onSubmit={handleSubmit}>
                 <ul>
@@ -63,31 +63,32 @@ const EditSingleBoard = () => {
                         <li key={idx}>{error}</li>
                     ))}
                 </ul>
-                <label>
-                    Title
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        placeholder="Add your title"
-                        required
-                    />
-                </label>
-                <div>
-                    <textarea
-                        type="text"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        placeholder="Tell everyone what your Board is abaout"
-                        required
-                    />
+                <div className="create-edit-board-details">
+                    <label>
+                        <input
+                            type="text"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            placeholder="Add your title"
+                            required
+                        />
+                    </label>
+                    <div>
+                        <textarea
+                            type="text"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            placeholder="Tell everyone what your Board is abaout"
+                            required
+                        />
+                    </div>
+                    <div className="create-edit-board-buttons">
+                        <button type="submit">Save</button>
+                        <button type="submit" onClick={cancelEdit}>Cancel</button>
+                    </div>
                 </div>
-                <div>
-                    <button type="submit">Save</button>
-                    <button type="submit" onClick={cancelEdit}>Cancel</button>
-                </div>
-            </form>
-        </div>
+            </form >
+        </div >
     )
 }
 

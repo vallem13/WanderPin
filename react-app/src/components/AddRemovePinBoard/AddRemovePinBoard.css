@@ -7,7 +7,7 @@
 }
 
 .board-scroll-container {
-    max-height: 350px; 
+    max-height: 350px;
     overflow-y: auto;
 }
 
@@ -23,6 +23,7 @@
 .board-display-container {
     display: flex;
     flex-direction: column;
+    cursor: pointer;
 }
 
 #add-board-img {
@@ -72,4 +73,8 @@
 
 .add-pin-button button:hover {
     background-color: #e60023;
+}
+
+.board-names.active {
+    color: #ff4057;
 }

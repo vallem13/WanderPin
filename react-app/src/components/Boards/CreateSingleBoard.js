@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { useModal } from "../../context/Modal";
-import { createSingleBoardThunk, getAllBoardsThunk } from "../../store/board"
+import { createSingleBoardThunk, getAllBoardsThunk, getSingleBoardThunk } from "../../store/board"
 import './Boards.css'
 
 const CreateSingleBoard = () => {
@@ -42,15 +42,16 @@ const CreateSingleBoard = () => {
         formData.append("user_id", user.id);
 
         await dispatch(createSingleBoardThunk(formData));
-        await dispatch(getAllBoardsThunk());
         await closeModal()
+        await dispatch(getSingleBoardThunk());
     };
 
     return (
-        <div>
+        <div className="create-edit-board-container">
+            <h1>Create your Board</h1>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
+                <div className="create-edit-board-details">
                 <label>
-                    Title
                     <input
                         type="text"
                         value={title}
@@ -68,8 +69,9 @@ const CreateSingleBoard = () => {
                         required
                     />
                 </div>
-                <div>
+                <div className="create-edit-board-buttons">
                     <button type="submit">Create</button>
+                </div>
                 </div>
             </form>
         </div>

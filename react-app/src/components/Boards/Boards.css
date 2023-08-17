@@ -1,0 +1,55 @@
+.create-edit-board-container {
+    max-width: 900px;
+    margin: 0 auto;
+    height: auto;
+    box-shadow: 0px 2px 10px rgba(0.2, 0.2, 0.2, 0.2);
+    padding: 20px;
+}
+
+.create-edit-board-details {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.create-edit-board-details input{
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    color: inherit;
+    line-height: normal;
+    outline: none;
+    border-bottom: 1px solid black;
+    width: 300px;
+    word-wrap: break-word;
+}
+
+.create-edit-board-details textarea{
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    color: inherit;
+    line-height: normal;
+    outline: none;
+    border-bottom: 1px solid black;
+    width: 300px;
+    word-wrap: break-word;
+}
+
+.create-edit-board-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.create-edit-board-buttons button{
+    all: unset;
+    padding: 10px 20px;
+    background-color: #ff4057;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+}
