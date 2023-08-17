@@ -22,6 +22,37 @@ function SignupFormModal() {
 	const [frontendErrors, setFrontendErrors] = useState({})
 	const [errors, setErrors] = useState([]);
 
+	const countries = [
+		"afghanistan", "albania", "algeria", "andorra", "angola", "antigua and barbuda",
+		"argentina", "armenia", "australia", "austria", "azerbaijan", "bahamas", "bahrain",
+		"bangladesh", "barbados", "belarus", "belgium", "belize", "benin", "bhutan",
+		"bolivia", "bosnia and herzegovina", "botswana", "brazil", "brunei", "bulgaria",
+		"burkina faso", "burundi", "cabo verde", "cambodia", "cameroon", "canada", "central african republic",
+		"chad", "chile", "china", "colombia", "comoros", "congo", "costa rica", "cote d'ivoire",
+		"croatia", "cuba", "cyprus", "czech republic", "democratic republic of the congo", "denmark",
+		"djibouti", "dominica", "dominican republic", "ecuador", "egypt", "el salvador", "equatorial guinea",
+		"eritrea", "estonia", "eswatini", "ethiopia", "fiji", "finland", "france", "gabon", "gambia",
+		"georgia", "germany", "ghana", "greece", "grenada", "guatemala", "guinea", "guinea-bissau",
+		"guyana", "haiti", "honduras", "hungary", "iceland", "india", "indonesia", "iran", "iraq",
+		"ireland", "israel", "italy", "jamaica", "japan", "jordan", "kazakhstan", "kenya", "kiribati",
+		"korea, north", "korea, south", "kosovo", "kuwait", "kyrgyzstan", "laos", "latvia", "lebanon",
+		"lesotho", "liberia", "libya", "liechtenstein", "lithuania", "luxembourg", "madagascar",
+		"malawi", "malaysia", "maldives", "mali", "malta", "marshall islands", "mauritania",
+		"mauritius", "mexico", "micronesia", "moldova", "monaco", "mongolia", "montenegro",
+		"morocco", "mozambique", "myanmar", "namibia", "nauru", "nepal", "netherlands",
+		"new zealand", "nicaragua", "niger", "nigeria", "north macedonia", "norway", "oman",
+		"pakistan", "palau", "palestine", "panama", "papua new guinea", "paraguay", "peru",
+		"philippines", "poland", "portugal", "qatar", "romania", "russia", "rwanda",
+		"saint kitts and nevis", "saint lucia", "saint vincent and the grenadines",
+		"samoa", "san marino", "sao tome and principe", "saudi arabia", "senegal", "serbia",
+		"seychelles", "sierra leone", "singapore", "slovakia", "slovenia", "solomon islands",
+		"somalia", "south africa", "south sudan", "spain", "sri lanka", "sudan", "suriname",
+		"sweden", "switzerland", "syria", "taiwan", "tajikistan", "tanzania", "thailand",
+		"timor-leste", "togo", "tonga", "trinidad and tobago", "tunisia", "turkey",
+		"turkmenistan", "tuvalu", "uganda", "ukraine", "united arab emirates", "united kingdom",
+		"united states", "uruguay", "uzbekistan", "vanuatu", "vatican city", "venezuela",
+		"vietnam", "yemen", "zambia", "zimbabwe"
+	]
 
 
 	useEffect(() => {
@@ -30,37 +61,7 @@ function SignupFormModal() {
 
 		const check_email = email.split('')
 		const reversed_check_email = check_email.reverse()
-		const countries = [
-			"afghanistan", "albania", "algeria", "andorra", "angola", "antigua and barbuda",
-			"argentina", "armenia", "australia", "austria", "azerbaijan", "bahamas", "bahrain",
-			"bangladesh", "barbados", "belarus", "belgium", "belize", "benin", "bhutan",
-			"bolivia", "bosnia and herzegovina", "botswana", "brazil", "brunei", "bulgaria",
-			"burkina faso", "burundi", "cabo verde", "cambodia", "cameroon", "canada", "central african republic",
-			"chad", "chile", "china", "colombia", "comoros", "congo", "costa rica", "cote d'ivoire",
-			"croatia", "cuba", "cyprus", "czech republic", "democratic republic of the congo", "denmark",
-			"djibouti", "dominica", "dominican republic", "ecuador", "egypt", "el salvador", "equatorial guinea",
-			"eritrea", "estonia", "eswatini", "ethiopia", "fiji", "finland", "france", "gabon", "gambia",
-			"georgia", "germany", "ghana", "greece", "grenada", "guatemala", "guinea", "guinea-bissau",
-			"guyana", "haiti", "honduras", "hungary", "iceland", "india", "indonesia", "iran", "iraq",
-			"ireland", "israel", "italy", "jamaica", "japan", "jordan", "kazakhstan", "kenya", "kiribati",
-			"korea, north", "korea, south", "kosovo", "kuwait", "kyrgyzstan", "laos", "latvia", "lebanon",
-			"lesotho", "liberia", "libya", "liechtenstein", "lithuania", "luxembourg", "madagascar",
-			"malawi", "malaysia", "maldives", "mali", "malta", "marshall islands", "mauritania",
-			"mauritius", "mexico", "micronesia", "moldova", "monaco", "mongolia", "montenegro",
-			"morocco", "mozambique", "myanmar", "namibia", "nauru", "nepal", "netherlands",
-			"new zealand", "nicaragua", "niger", "nigeria", "north macedonia", "norway", "oman",
-			"pakistan", "palau", "palestine", "panama", "papua new guinea", "paraguay", "peru",
-			"philippines", "poland", "portugal", "qatar", "romania", "russia", "rwanda",
-			"saint kitts and nevis", "saint lucia", "saint vincent and the grenadines",
-			"samoa", "san marino", "sao tome and principe", "saudi arabia", "senegal", "serbia",
-			"seychelles", "sierra leone", "singapore", "slovakia", "slovenia", "solomon islands",
-			"somalia", "south africa", "south sudan", "spain", "sri lanka", "sudan", "suriname",
-			"sweden", "switzerland", "syria", "taiwan", "tajikistan", "tanzania", "thailand",
-			"timor-leste", "togo", "tonga", "trinidad and tobago", "tunisia", "turkey",
-			"turkmenistan", "tuvalu", "uganda", "ukraine", "united arab emirates", "united kingdom",
-			"united states", "uruguay", "uzbekistan", "vanuatu", "vatican city", "venezuela",
-			"vietnam", "yemen", "zambia", "zimbabwe"
-		]
+
 
 		if (email.length < 2 || !(check_email.find((element) => element === '@') && (reversed_check_email[3] === '.' || reversed_check_email[2] === '.'))) {
 			frontendErrors.email = "Please input a valid email"
@@ -95,11 +96,14 @@ function SignupFormModal() {
 			const currentDate = new Date();
 			const birthDateObj = new Date(birthDate);
 			const yearDifference = currentDate.getFullYear() - birthDateObj.getFullYear();
-			if (yearDifference >= 100) frontendErrors.birthDate = "Please input a valid Birthday";
-			if (yearDifference <= 16) frontendErrors.birthDate = "You must be over 16 yeards old to own an account";
+			if (yearDifference >= 100) {
+				frontendErrors.birthDate = "Please input a valid Birthday";
+			} else if (yearDifference < 16) {
+				frontendErrors.birthDate = "You must be over 16 years old to own an account";
+			}
 		}
 		if (!countries.find((element) => element === country.toLowerCase().trim())) {
-			frontendErrors.country = "Please input a valid country"
+			frontendErrors.country = "Please select a valid country";
 		}
 		if (interests.length < 2) {
 			frontendErrors.interests = "Interests is required"
@@ -135,7 +139,7 @@ function SignupFormModal() {
 
 		if (password === confirmPassword) {
 			const data = await dispatch(signUp(formData));
-			if (data) {
+			if (data || Object.keys(frontendErrors).length === 0) {
 				setErrors(data);
 				setFrontendErrors(frontendErrors)
 			} else {
@@ -146,8 +150,6 @@ function SignupFormModal() {
 			setErrors(["Confirm Password field must be the same as the Password field"]);
 		}
 	};
-
-
 
 	return (
 		<div className="signup-modal">
@@ -205,15 +207,17 @@ function SignupFormModal() {
 				)}
 				<label>
 					Country
-					<input
-						type="text"
-						value={country}
-						onChange={(e) => setCountry(e.target.value)}
-						required
-					/>
+					<select value={country} onChange={(e) => setCountry(e.target.value)} required>
+						<option value="">Select a country</option>
+						{countries.map((country, index) => (
+							<option key={index} value={country}>
+								{country}
+							</option>
+						))}
+					</select>
 				</label>
 				{frontendErrors.country && submitted && (
-					<p className='error-message'>{frontendErrors.country}</p>
+					<p className="error-message">{frontendErrors.country}</p>
 				)}
 				<label>
 					What are you interested in?
