@@ -5,6 +5,8 @@
     justify-content: center;
     align-items: center;
     height: 70vh;
+    margin-top: 60px;
+
 }
 
 .edit-delete-button-container {
@@ -25,6 +27,7 @@
 .edit-delete-button-container img {
     max-width: 80%;
     height: auto;
+    border-radius: 30px;
 }
 
 /* Pin Details */
@@ -104,6 +107,14 @@
     align-items: center;
 }
 
+.pin-info-container h1 {
+    word-wrap: break-word;
+}
+
+.pin-info-container p {
+    word-wrap: break-word;
+}
+
 .pin-owner-container img {
     border-radius: 50%;
 }
@@ -139,4 +150,51 @@
     border-radius: 50px;
     height: 30px;
     width: 350px;
+    padding-left: 20px;
+}
+
+.edit-delete-container {
+    padding: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: -10px;
+    left: -40px;
+    row-gap: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0.2, 0.2, 0.2, 0.2);
+}
+
+/* Reset the default button styles within the .edit-delete-button class */
+.edit-delete-button button {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    display: inline;
+    line-height: normal;
+}
+
+/* Apply the specified button styling */
+.edit-delete-button button.edit-delete-button {
+    /* Your specific button styling here */
+    margin: 20px;
+    padding: 15px;
+    border-radius: 50px;
+    border: 1px solid #ff4057;
+    background-color: #ff4057;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Style the buttons on hover */
+.edit-delete-button button.edit-delete-button:hover {
+    background-color: #e0354a; /* Adjust color for hover effect */
 }

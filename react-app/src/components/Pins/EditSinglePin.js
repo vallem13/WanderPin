@@ -59,65 +59,73 @@ const EditSinglePin = () => {
     };
 
     return (
-        <div>
+        <div className="edit-pin-container">
             <h1>Edit your Pin</h1>
-            <form onSubmit={handleSubmit}>
-                <ul>
-                    {errors.map((error, idx) => (
-                        <li key={idx}>{error}</li>
-                    ))}
-                </ul>
-                <label>
-                    Board
-                    <select>
-                        <option value="option1">Option 1</option>
-                        <option value="option2">Option 2</option>
-                        <option value="option3">Option 3</option>
-                    </select>
-                </label>
-                <label>
-                    Title
-                    <input
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Add your title"
-                        required
-                    />
-                </label>
-                <label>
-                    Description
-                    <textarea
-                        type="text"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    Alt Text
-                    <input
-                        type="text"
-                        value={alt_text}
-                        onChange={(e) => setAlt_text(e.target.value)}
-                    />
-                </label>
-                <label>
-                    Website
-                    <input
-                        type="text"
-                        value={website}
-                        onChange={(e) => setWebsite(e.target.value)}
-                    />
-                </label>
-                <div>
-                    <img src={pin.images} alt={pin.name} style={{ width: '200px', height: '200px' }}></img>
+            <div className="edit-pin-img-form">
+                <div className="edit-pin-img">
+                    <img src={pin.images} alt={pin.name}></img>
                 </div>
-                <div>
-                    <button type="submit">Save</button>
-                    <button type="submit" onClick={cancelEdit}>Cancel</button>
+                <div className="edit-pin-form">
+                    <form onSubmit={handleSubmit}>
+                        <ul>
+                            {errors.map((error, idx) => (
+                                <li key={idx}>{error}</li>
+                            ))}
+                        </ul>
+                        <div className="edit-pin-input">
+                            <label>
+                                <h3>Title</h3>
+                                <input
+                                    type="text"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    placeholder="Add your title"
+                                    required
+                                />
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <h3>Description</h3>
+                                <textarea
+                                    type="text"
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    required
+                                />
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <h3>Alt Text</h3>
+                                <input
+                                    type="text"
+                                    value={alt_text}
+                                    onChange={(e) => setAlt_text(e.target.value)}
+                                />
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <h3>Website</h3>
+                                <input
+                                    type="text"
+                                    value={website}
+                                    onChange={(e) => setWebsite(e.target.value)}
+                                />
+                            </label>
+                        </div>
+                        <div className="edit-pin-buttons">
+                            <div>
+                                <button type="submit">Save</button>
+                            </div>
+                            <div>
+                                <button type="submit" onClick={cancelEdit}>Cancel</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     )
 }

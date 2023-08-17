@@ -1,0 +1,17 @@
+.pin-card-container {
+    display: inline-block; /* Adjust this based on your layout */
+    position: relative;
+}
+
+.save-button {
+    position: absolute;
+    bottom: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Show the overlay button on hover */
+.pin-card-container:hover .save-button {
+    opacity: 1;
+}

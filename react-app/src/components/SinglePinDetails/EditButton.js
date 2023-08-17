@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getSinglePinThunk } from "../../store/pin";
 import OpenModalButton from "../OpenModalButton";
 import EditSinglePin from "../Pins/EditSinglePin";
 import DeleteSinglePin from "../Pins/DeleteSinglePin";
@@ -7,7 +8,12 @@ import DeleteSinglePin from "../Pins/DeleteSinglePin";
 function EditButton() {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
+    const pin = useSelector(state => state.pins.singlePin)
     const ulRef = useRef();
+
+    useEffect(() => {
+        dispatch(getSinglePinThunk());
+    }, [dispatch]);
 
     const openMenu = () => {
         if (showMenu) return;
@@ -33,28 +39,27 @@ function EditButton() {
     const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
     return (
-        <div>
+        <div >
             <button onClick={openMenu} class="oval-button">
                 <span class="material-symbols-outlined">
                     steppers
                 </span>
             </button>
             <ul className={ulClassName} ref={ulRef}>
-
-                <li>
+                <div className="edit-delete-container">
                     <OpenModalButton
+                        className="edit-delete-button"
                         buttonText="Edit Pin"
                         onItemClick={closeMenu}
                         modalComponent={<EditSinglePin />}
                     />
-                </li>
-                <li>
                     <OpenModalButton
+                        className="edit-delete-button"
                         buttonText="Delete Pin"
                         onItemClick={closeMenu}
-                        modalComponent={<DeleteSinglePin />}
+                        modalComponent={<DeleteSinglePin pinId={pin.id} />}
                     />
-                </li>
+                </div>
             </ul>
         </div>
     );
