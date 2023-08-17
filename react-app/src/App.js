@@ -9,6 +9,7 @@ import SinglePinDetails from "./components/SinglePinDetails";
 import CreateSinglePin from "./components/Pins/CreateSinglePin";
 import SingleBoardDetails from "./components/SingleBoardDetails";
 import UserProfile from "./components/UserProfilePage";
+import Splash from "./components/Splash"
 
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+              <Splash />
+            </Route>
           <Route path="/home">
             <ProtectedRoute>
               <HomePage />

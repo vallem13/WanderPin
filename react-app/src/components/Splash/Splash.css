@@ -1,0 +1,45 @@
+/* Splash.css */
+.splash-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    height: 30vh;
+}
+
+.splash-text-wrapper {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.splash-greeting-text1 {
+    font-size: 3rem;
+    color: #333;
+    margin: 60px;
+}
+
+.splash-greeting-text2 {
+    font-size: 3rem;
+    color: #e60023;
+    margin: 0;
+    margin-top: -20px;
+}
+
+.splash-images {
+    margin-top: -70px;
+    width: 100%;
+
+}
+
+.splash-image {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    margin-top: auto;
+}
+
+.splash-image-faded {
+    transform: scaleY(-1);
+    border-radius: 10px;
+}
