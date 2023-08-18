@@ -47,8 +47,9 @@
 .top-left {
     align-self: flex-start;
     margin-bottom: auto;
-    margin-left: -50px;
-    padding-top: 40px;
+    margin-left: -40px;
+    padding-top: 10px;
+    padding-right: 10px;
 }
 
 .bottom-left {
@@ -56,4 +57,5 @@
     margin-top: auto;
     margin-left: -160px;
     padding-bottom: 10px;
+    padding-left: 10px;
 }

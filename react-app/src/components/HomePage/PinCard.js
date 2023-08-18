@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import React from 'react';
 import OpenModalButton from '../OpenModalButton'
 import AddPinBoard from '../AddRemovePinBoard/AddPinBoard';
-import EditSinglePin from '../Pins/EditSinglePin';
 import './PinCard.css'
 
 const PinCard = ({ pin }) => {
@@ -39,7 +38,7 @@ const PinCard = ({ pin }) => {
             )}
         </div>
     </div>
-                   
+
                 </div>
             </div>
         </div>
