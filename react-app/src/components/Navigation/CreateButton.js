@@ -6,7 +6,6 @@ import CreateSingleBoard from "../Boards/CreateSingleBoard";
 import './Navigation.css'
 
 function CreateButton({ user }) {
-  const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 

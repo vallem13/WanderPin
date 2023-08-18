@@ -204,7 +204,7 @@
     padding: 20px;
 }
 
-.delete-pin-container {
+.delete-pin-buttons {
     display: flex;
     justify-content: space-between;
 }
