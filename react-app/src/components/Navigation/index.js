@@ -40,15 +40,15 @@ function Navigation({ isLoaded }) {
                   </div>
                 </li>
                 <li className="navbar-link">
-                <div className="tooltip"><NavLink exact to="/user"><img className="profile-image-nav" src={sessionUser.profile_img} alt="Profile" /></NavLink>
-                <span className="tooltiptext">Your Profile</span>
+                  <div className="tooltip"><NavLink exact to="/user"><img className="profile-image-nav" src={sessionUser.profile_img} alt="Profile" /></NavLink>
+                    <span className="tooltiptext">Your Profile</span>
                   </div>
                 </li>
                 <li>
-                <div className="tooltip"><button className="navbar-button" onClick={handleLogout}>
+                  <div className="tooltip"><button className="navbar-button" onClick={handleLogout}>
                     <i className="fa-solid fa-right-from-bracket" style={{ color: "#dcdcdc", width: '40px', height: '40px' }} />
                   </button>
-                  <span className="tooltiptext">Log Out</span>
+                    <span className="tooltiptext">Log Out</span>
                   </div>
                 </li>
               </>
