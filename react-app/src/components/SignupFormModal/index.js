@@ -206,7 +206,7 @@ function SignupFormModal() {
 				)}
 				<label>
 					Country
-					<select value={country} onChange={(e) => setCountry(e.target.value)} required>
+					<select className="select-country" value={country} onChange={(e) => setCountry(e.target.value)} required>
 						<option value="">Select a country</option>
 						{countries.map((country, index) => (
 							<option key={index} value={country}>

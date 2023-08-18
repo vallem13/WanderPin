@@ -1,5 +1,3 @@
-/* YourSignUpComponent.css */
-
 .signup-modal {
     width: 100%;
     max-width: 380px;
@@ -31,7 +29,8 @@
   }
 
   .signup-modal input,
-  .signup-modal textarea {
+  .signup-modal textarea,
+  .signup-modal select {
     width: 94%;
     padding: 10px;
     margin-bottom: 14px;
@@ -45,7 +44,11 @@
   }
 
   .input-button {
-    background-color: #ff4057;
+    background-color: white;
+  }
+
+  .input-button button {
+    
   }
 
   .signup-modal button {
