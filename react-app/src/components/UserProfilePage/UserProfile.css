@@ -58,28 +58,45 @@
 
 /* BardCard */
 
+/* Other styles above */
+
+/* BardCard */
+
 .boardCard {
   display: flex;
   align-items: center;
   cursor: pointer;
   column-gap: 0px;
-  border-radius: 50px;
+  border-radius: 30px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  transition: box-shadow 0.3s ease;
+}
+
+.boardCard:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .boardCard-prevImg,
 .boardCard-images {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .prevImg {
   width: 100px;
   height: 200px;
   margin-right: -10px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
+  object-fit: cover;
 }
 
 .smallImg {
   width: 100px;
   height: 100px;
   margin-left: 10px;
+  object-fit: cover;
 }
