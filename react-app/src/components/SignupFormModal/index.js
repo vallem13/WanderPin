@@ -92,16 +92,12 @@ function SignupFormModal() {
 		}
 		if (!birthDate) {
 			frontendErrors.birthDate = "Please input your Birthday";
-		} else {
-			const currentDate = new Date();
-			const birthDateObj = new Date(birthDate);
-			const yearDifference = currentDate.getFullYear() - birthDateObj.getFullYear();
-			if (yearDifference >= 100) {
-				frontendErrors.birthDate = "Please input a valid Birthday";
-			} else if (yearDifference < 16) {
-				frontendErrors.birthDate = "You must be over 16 years old to own an account";
-			}
 		}
+		let currentDate = new Date();
+		let birthDateObj = new Date(birthDate);
+		let yearDifference = currentDate.getFullYear() - birthDateObj.getFullYear();
+		if (yearDifference >= 100) frontendErrors.birthDate = "Please input a valid Birthday";
+		if (yearDifference < 16) frontendErrors.birthDate = "You must be over 16 years old to own an account";
 		if (!countries.find((element) => element === country.toLowerCase().trim())) {
 			frontendErrors.country = "Please select a valid country";
 		}
@@ -114,40 +110,43 @@ function SignupFormModal() {
 
 		setFrontendErrors(frontendErrors)
 
-	}, [email, password, confirmPassword, firstName, lastName])
+	}, [email, password, confirmPassword, firstName, lastName, birthDate, country, interests])
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		setSubmitted(true)
 
-		const formData = new FormData();
+		const allErrors = Object.keys(frontendErrors).length > 0
+		if (!allErrors) {
+			if (password === confirmPassword) {
 
-		formData.append("email", email);
-		formData.append("password", password);
-		formData.append("profile_img", image);
-		formData.append("first_name", firstName);
-		formData.append("last_name", lastName);
-		formData.append("birth_date", birthDate);
-		formData.append("country", country);
-		formData.append("interests", interests);
+				const formData = new FormData();
 
-		if (!image) {
-			console.log("No image selected");
-			return;
-		}
+				formData.append("email", email);
+				formData.append("password", password);
+				formData.append("profile_img", image);
+				formData.append("first_name", firstName);
+				formData.append("last_name", lastName);
+				formData.append("birth_date", birthDate);
+				formData.append("country", country);
+				formData.append("interests", interests);
 
-		if (password === confirmPassword) {
-			const data = await dispatch(signUp(formData));
-			if (data || Object.keys(frontendErrors).length === 0) {
-				setErrors(data);
-				setFrontendErrors(frontendErrors)
+				if (!image) {
+					console.log("No image selected");
+					return;
+				}
+
+				const data = await dispatch(signUp(formData));
+				if (data) {
+					setErrors(data);
+				} else {
+					history.push('/home')
+					closeModal();
+				}
 			} else {
-				history.push('/home')
-				closeModal();
+				setErrors(["Confirm Password field must be the same as the Password field"]);
 			}
-		} else {
-			setErrors(["Confirm Password field must be the same as the Password field"]);
 		}
 	};
 
