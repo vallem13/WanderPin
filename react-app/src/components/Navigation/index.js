@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React from 'react'
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
@@ -12,8 +12,6 @@ import './Navigation.css';
 function Navigation({ isLoaded }) {
   const dispatch = useDispatch();
   const history = useHistory()
-  const [showMenu, setShowMenu] = useState(false);
-  const ulRef = useRef(null);
   const sessionUser = useSelector(state => state.session.user);
 
   const handleLogout = async (e) => {
