@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom"
 import { useEffect } from 'react';
 import { useModal } from "../../context/Modal";
 import { getSingleBoardThunk , removePinBoardThunk} from "../../store/board"
+import "./AddRemovePinBoard.css"
 
 const RemovePinBoard = ({ pinId }) => {
 
@@ -18,7 +19,7 @@ const RemovePinBoard = ({ pinId }) => {
     const removePin = async (e) => {
         e.preventDefault()
         await dispatch(removePinBoardThunk(board.id, pinId))
-        
+
         await history.push(`/boards/${board.id}`)
         await closeModal()
     };
@@ -28,10 +29,12 @@ const RemovePinBoard = ({ pinId }) => {
     }
 
     return (
-        <div>
+        <div className="add-pin-container">
             <h1>Remove Pin from Board?</h1>
-            <button onClick={removePin}>Remove</button>
-            <button onClick={keepPin}>Cancel</button>
+            <div className="add-pin-button">
+                <button onClick={removePin}>Remove</button>
+                <button onClick={keepPin}>Cancel</button>
+            </div>
         </div>
     )
 }

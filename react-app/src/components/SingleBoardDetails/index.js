@@ -34,13 +34,18 @@ const SingleBoardDetails = () => {
 
     return (
         <div>
+            <div className='single-board-details-container'>
             <h1>{board.title}</h1>
+            <div className='edit-delete-single-board'>
             {user && checkOwner && (
                 <div>
                     <OpenModalButton buttonText='Edit' modalComponent={<EditSingleBoard board={board} boardId={board.id} />} />
                     <OpenModalButton buttonText='Delete' modalComponent={<DeleteSingleBoard board={board} boardId={board.id} />} />
                 </div>
             )}
+            </div>
+            </div>
+            <div >
             {pins.length ? (
                 <div>
                     <ResponsiveMasonry
@@ -48,11 +53,10 @@ const SingleBoardDetails = () => {
                     >
                         <Masonry>
                             {pins.map((pin) => (
-
-                                <div class="pin-card-container">
+                                <div className="pin-card-container">
                                     <PinCard key={pin.id} pin={pin} />
                                     {user && checkOwner && (
-                                        <OpenModalButton class="save-button" buttonText='Remove' modalComponent={<RemovePinBoard pinId={pin.id} />} />
+                                        <OpenModalButton buttonText='Remove' modalComponent={<RemovePinBoard pinId={pin.id} />} />
                                     )}
                                 </div>
                             ))}
@@ -62,6 +66,7 @@ const SingleBoardDetails = () => {
             ) : (
                 <h3>There aren’t any Pins on this board yet</h3>
             )}
+            </div>
         </div>
     )
 

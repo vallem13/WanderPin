@@ -60,6 +60,8 @@
 
 .add-pin-button {
     padding-top: 20px;
+    display: flex;
+    column-gap: 150px;
 }
 
 .add-pin-button button {
@@ -77,4 +79,13 @@
 
 .board-names.active {
     color: #ff4057;
+}
+
+.pin-card-container button:hover{
+    background-color: #e60023;
+}
+
+#delete-pin-board-buttons {
+    display: flex;
+    justify-content: space-between;
 }

@@ -23,10 +23,10 @@ const DeleteSingleBoard = ({ boardId, board }) => {
     }
 
     return (
-        <div>
+        <div className='delete-board-container'>
             <h2>Delete this board?</h2>
             <h3>The board {board.title} will be removed from your profile.</h3>
-            <div>
+            <div className='create-edit-board-buttons'>
                 <button onClick={deletePin}>Delete</button>
                 <button onClick={dontDeletePin}>Cancel</button>
             </div>
