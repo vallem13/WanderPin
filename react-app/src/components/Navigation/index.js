@@ -35,7 +35,7 @@ function Navigation({ isLoaded }) {
                   <CreateButton user={sessionUser} />
                 </li>
                 <li className="navbar-link">
-                  <div className="tooltip"><NavLink exact to="/home"><i id='home-button' className="fa-solid fa-house" sixe="2xl" style={{ color: "#dcdcdc", }} /></NavLink>
+                  <div className="tooltip"><NavLink exact to="/home"><i id='home-button' className="fa-solid fa-house" style={{ color: "#dcdcdc", }} /></NavLink>
                     <span className="tooltiptext">Home</span>
                   </div>
                 </li>
@@ -46,7 +46,7 @@ function Navigation({ isLoaded }) {
                 </li>
                 <li>
                   <div className="tooltip"><button className="navbar-button" onClick={handleLogout}>
-                    <i className="fa-solid fa-right-from-bracket" style={{ color: "#dcdcdc", width: '40px', height: '40px' }} />
+                    <i className="fa-solid fa-right-from-bracket" style={{ color: "#dcdcdc" }} />
                   </button>
                     <span className="tooltiptext">Log Out</span>
                   </div>

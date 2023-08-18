@@ -79,7 +79,7 @@
   cursor: pointer;
   font-size: 30px;
   align-items: center;
-  padding-top: 10px;
+  /* padding-top: 10px; */
 }
 
 .navbar-link:last-child {
