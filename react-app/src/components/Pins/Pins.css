@@ -199,3 +199,25 @@
     border-radius: 50px;
     cursor: pointer;
 }
+
+#delete-pin-container {
+    padding: 20px;
+}
+
+.delete-pin-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete-pin-buttons button{
+    all: unset;
+    padding: 10px 20px;
+    background-color: #ff4057;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.delete-pin-buttons button:hover {
+    background-color: #e60023;;
+}

@@ -36,6 +36,7 @@ const SingleBoardDetails = () => {
         <div>
             <div className='single-board-details-container'>
             <h1>{board.title}</h1>
+            <h3 className='single-board-description'>{board.description}</h3>
             <div className='edit-delete-single-board'>
             {user && checkOwner && (
                 <div>

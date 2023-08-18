@@ -23,12 +23,14 @@ const DeleteSinglePin = ({ pinId }) => {
     }
 
     return (
-        <div>
+        <div id='delete-pin-container'>
+            <div id='delete-pin-container'>
             <h2>Are you sure?</h2>
             <h3>Once you delete a Pin, you can't undo it!</h3>
-            <div>
+            <div className='delete-pin-buttons'>
                 <button onClick={deletePin}>Delete</button>
                 <button onClick={dontDeletePin}>Cancel</button>
+            </div>
             </div>
         </div>
     )

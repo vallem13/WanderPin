@@ -54,4 +54,7 @@
     background-color: #e60023;
 }
 
-
+.single-board-description {
+    max-width: 500px;
+    word-wrap: break-word;
+}
