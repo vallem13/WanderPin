@@ -3,6 +3,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
+// import SearchBar from '../SearchBar'
 import CreateButton from './CreateButton';
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
@@ -31,6 +32,9 @@ function Navigation({ isLoaded }) {
           <ul className="navbar-links">
             {sessionUser ? (
               <>
+                {/* <li className="search-bar-link">
+                  <SearchBar user={sessionUser} />
+                </li> */}
                 <li id='create-pin-board-navbar' className="navbar-link">
                   <CreateButton user={sessionUser} />
                 </li>

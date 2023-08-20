@@ -17,6 +17,8 @@ const AddPinBoard = ({ pin_id, onSelectBoard }) => {
     const boards = Object.values(boardsObj)
     const user_boards = boards.filter(boards => boards.user_id === user.id)
     const [board_id, setBoardId] = useState('')
+    const [submitted, setSubmitted] = useState(false)
+    const [frontendErrors, setFrontendErrors] = useState({})
     const [errors, setErrors] = useState([])
 
     useEffect(() => {
@@ -24,17 +26,35 @@ const AddPinBoard = ({ pin_id, onSelectBoard }) => {
     }, [dispatch])
 
 
+    useEffect(() => {
+
+        const frontendErrors = {}
+
+        if (!board_id) {
+            frontendErrors.board_id = "Please select a Board or create a new Board "
+        }
+
+        setFrontendErrors(frontendErrors)
+
+    }, [board_id])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setSubmitted(true)
+
         const formData = new FormData()
+
+        if (Object.keys(frontendErrors).length > 0) {
+            return;
+        }
 
         formData.append("pin_id", pin_id);
         formData.append("board_id", board_id);
 
         try {
             const addPin = await dispatch(addPinBoardThunk(formData));
-            if (addPin && addPin.errors) {
+            if ((addPin && addPin.errors)) {
                 setErrors(addPin.errors);
             }
         } catch (error) {
@@ -43,7 +63,10 @@ const AddPinBoard = ({ pin_id, onSelectBoard }) => {
 
         await history.push(`/boards/${board_id}`)
         await closeModal();
+
     };
+
+
 
     const selectBoard = (board) => {
         setBoardId(board.id)
@@ -77,6 +100,9 @@ const AddPinBoard = ({ pin_id, onSelectBoard }) => {
                             modalComponent={<CreateSingleBoard />}
                         />
                     </div>
+                    {frontendErrors.board_id && submitted && (
+                        <p className='error-message'>{frontendErrors.board_id}</p>
+                    )}
                     <div className="add-pin-button">
                         <button onClick={handleSubmit}>Add Pin</button>
                     </div>

@@ -105,7 +105,7 @@ function SignupFormModal() {
 			frontendErrors.interests = "Interests is required"
 		}
 		if (interests.length > 250) {
-			frontendErrors.interests = "Interests can not be longer than 2git checkout 50 characters"
+			frontendErrors.interests = "Interests can not be longer than 250 characters"
 		}
 
 		setFrontendErrors(frontendErrors)

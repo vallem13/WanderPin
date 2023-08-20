@@ -18,7 +18,7 @@ const UserProfile = () => {
     const boards = boardsObj ? Object.values(boardsObj) : [];
     const user_boards = boards.filter(boards => boards.user_id === user.id)
 
-    const [displayType, setDisplayType] = useState("pin"); // Default display type is "pin"
+    const [displayType, setDisplayType] = useState("pin");
 
     useEffect(() => {
         dispatch(getAllBoardsThunk());
@@ -49,7 +49,8 @@ const UserProfile = () => {
                     </button>
                 </div>
             </div>
-                <ResponsiveMasonry
+            {user_pins.length > 0 ? (
+                    <ResponsiveMasonry
                     columnsCountBreakPoints={{ 350: 1, 750: 2, 1026: 5 }}
                 >
                     <Masonry>
@@ -62,15 +63,31 @@ const UserProfile = () => {
                         )}
                     </Masonry>
                 </ResponsiveMasonry>
-                <div className="grid-container">
-                {displayType === "board" && (
-                    user_boards.map((board) => (
-                        <div className="grid-item" key={board.id}>
-                            <BoardCard board={board} />
-                        </div>
-                    ))
+                ) : (
+                    <div>
+                    {displayType === "pin" && (
+                        <h2>You have not created any Pins yet!</h2>
+                    )}
+                    </div>
                 )}
-            </div>
+                {user_boards.length > 0 ? (
+                    <div className="grid-container">
+                    {displayType === "board" && (
+                        user_boards.map((board) => (
+                            <div className="grid-item" key={board.id}>
+                                <BoardCard board={board} />
+                            </div>
+                        ))
+                    )}
+                    </div>
+                ) : (
+                    <div>
+                    {displayType === "board" && (
+                        <h2>You have not created any Boards yet!</h2>
+                    )}
+                    </div>
+                )}
+
         </div>
     )
 }

@@ -166,3 +166,9 @@
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
+.search-bar-link {
+  z-index: 10px;
+  position: relative;
+  padding-right: 200px;
+}
