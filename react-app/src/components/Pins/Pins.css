@@ -109,8 +109,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 300px;
-    height: 400px;
+    max-width: 300px;
+    max-height: 400px;
     border-radius: 15px;
     background-color: #DCDCDC;
 }
