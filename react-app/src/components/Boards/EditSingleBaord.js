@@ -13,6 +13,7 @@ const EditSingleBoard = () => {
     const [description, setDescription] = useState(board.description)
     const [errors, setErrors] = useState([])
     const [frontendErrors, setFrontendErrors] = useState({})
+    const [submitted, setSubmitted] = useState(false)
 
 
     useEffect(() => {
@@ -20,10 +21,16 @@ const EditSingleBoard = () => {
         const frontendErrors = {}
 
         if (!title) {
-            frontendErrors.title = "A title is required to post your pin"
+            frontendErrors.title = "A title is required to post your board"
+        }
+        if (title.length > 50) {
+            frontendErrors.title = "A title can not be longer than 50 characters";
         }
         if (!description) {
-            frontendErrors.description = "A description is required to post your pin"
+            frontendErrors.description = "A description is required to post your board"
+        }
+        if (description.length > 250) {
+            frontendErrors.description = "A description can not be longer than 250 characters";
         }
 
         setFrontendErrors(frontendErrors)
@@ -32,6 +39,12 @@ const EditSingleBoard = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        setSubmitted(true)
+
+		if (Object.keys(frontendErrors).length > 0) {
+            return;
+        }
 
         const formData = new FormData()
 
@@ -73,6 +86,9 @@ const EditSingleBoard = () => {
                             required
                         />
                     </label>
+                    {frontendErrors.title && submitted && (
+                            <p className='error-message'>{frontendErrors.title}</p>
+                        )}
                     <div>
                         <textarea
                             type="text"
@@ -82,6 +98,9 @@ const EditSingleBoard = () => {
                             required
                         />
                     </div>
+                    {frontendErrors.description && submitted && (
+                            <p className='error-message'>{frontendErrors.description}</p>
+                        )}
                     <div className="create-edit-board-buttons">
                         <button type="submit">Save</button>
                         <button type="submit" onClick={cancelEdit}>Cancel</button>
