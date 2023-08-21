@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    max-width: 500px;
     padding: 20px;
 }
 
@@ -12,8 +13,13 @@
 }
 
 .board-names {
+    max-width: 400px;
     flex: 0 0 calc(33.33% - 20px);
     padding: 10px;
+}
+
+.board-names span{
+    overflow: hidden;
 }
 
 .board-names.active {

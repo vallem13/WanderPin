@@ -87,7 +87,7 @@ const AddPinBoard = ({ pin_id, onSelectBoard }) => {
                                 key={board.id}
                             >
                                 <img id="add-board-img" src={board.pinImgs[0] ? board.pinImgs[0] : 'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'} alt={board.title} style={{ width: '100px', height: '100px' }} />
-                                {board.title}
+                                <span>{board.title}</span>
                             </div>
                         ))}
                     </div>
