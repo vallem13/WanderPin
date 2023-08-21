@@ -26,10 +26,16 @@ const CreateSingleBoard = () => {
         const frontendErrors = {}
 
         if (!title) {
-            frontendErrors.title = "A title is required to post your pin"
+            frontendErrors.title = "A title is required to post your board"
+        }
+        if (title.length > 50) {
+            frontendErrors.title = "A title can not be longer than 50 characters";
         }
         if (!description) {
-            frontendErrors.description = "A description is required to post your pin"
+            frontendErrors.description = "A description is required to post your board"
+        }
+        if (description.length > 250) {
+            frontendErrors.description = "A description can not be longer than 250 characters";
         }
 
         setFrontendErrors(frontendErrors)
@@ -38,6 +44,12 @@ const CreateSingleBoard = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        setSubmitted(true)
+
+		if (Object.keys(frontendErrors).length > 0) {
+            return;
+        }
 
         const formData = new FormData();
 

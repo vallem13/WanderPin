@@ -13,6 +13,7 @@ const EditSinglePin = () => {
     const [description, setDescription] = useState(pin.description)
     const [alt_text, setAlt_text] = useState(pin.alt_text)
     const [website, setWebsite] = useState(pin.website)
+    const [submitted, setSubmitted] = useState(false)
     const [errors, setErrors] = useState([])
     const [frontendErrors, setFrontendErrors] = useState({})
 
@@ -22,18 +23,36 @@ const EditSinglePin = () => {
         const frontendErrors = {}
 
         if (!name) {
-            frontendErrors.name = "A title is required to post your pin"
+            frontendErrors.name = "A title is required to post your pin";
+        }
+        if (name.length > 50) {
+            frontendErrors.name = "A title can not be longer than 50 characters";
         }
         if (!description) {
-            frontendErrors.description = "A description is required to post your pin"
+            frontendErrors.description = "A description is required to post your pin";
+        }
+        if (description.length > 250) {
+            frontendErrors.description = "A description can not be longer than 250 characters";
+        }
+        if (alt_text.length > 50) {
+            frontendErrors.alt_text = "Alt-text can not be longer than 250 characters";
+        }
+        if (website.length > 250) {
+            frontendErrors.website = "A website can not be longer than 250 characters";
         }
 
         setFrontendErrors(frontendErrors)
 
-    }, [name, description])
+    }, [name, description, alt_text, website])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        setSubmitted(true)
+
+		if (Object.keys(frontendErrors).length > 0) {
+            return;
+        }
 
         const formData = new FormData()
 
@@ -84,6 +103,9 @@ const EditSinglePin = () => {
                                 />
                             </label>
                         </div>
+                        {frontendErrors.name && submitted && (
+                            <p className='error-message'>{frontendErrors.name}</p>
+                        )}
                         <div>
                             <label>
                                 <h3>Description</h3>
@@ -95,6 +117,9 @@ const EditSinglePin = () => {
                                 />
                             </label>
                         </div>
+                        {frontendErrors.description && submitted && (
+                            <p className='error-message'>{frontendErrors.description}</p>
+                        )}
                         <div>
                             <label>
                                 <h3>Alt Text</h3>
@@ -105,6 +130,9 @@ const EditSinglePin = () => {
                                 />
                             </label>
                         </div>
+                        {frontendErrors.alt_text && submitted && (
+                            <p className='error-message'>{frontendErrors.alt_text}</p>
+                        )}
                         <div>
                             <label>
                                 <h3>Website</h3>
@@ -115,6 +143,9 @@ const EditSinglePin = () => {
                                 />
                             </label>
                         </div>
+                        {frontendErrors.website && submitted && (
+                                <p className='error-message'>{frontendErrors.website}</p>
+                            )}
                         <div className="edit-pin-buttons">
                             <div>
                                 <button type="submit">Save</button>

@@ -32,12 +32,24 @@ const CreateSinglePin = () => {
         if (!name) {
             frontendErrors.name = "A title is required to post your pin";
         }
+        if (name.length > 50) {
+            frontendErrors.name = "A title can not be longer than 50 characters";
+        }
         if (!description) {
             frontendErrors.description = "A description is required to post your pin";
         }
+        if (description.length > 250) {
+            frontendErrors.description = "A description can not be longer than 250 characters";
+        }
+        if (alt_text.length > 50) {
+            frontendErrors.alt_text = "Alt-text can not be longer than 250 characters";
+        }
+        if (website.length > 250) {
+            frontendErrors.website = "A website can not be longer than 250 characters";
+        }
 
         setFrontendErrors(frontendErrors);
-    }, [images, name, description]);
+    }, [images, name, description, alt_text, website]);
 
     const handleDrop = (e) => {
         e.preventDefault();
@@ -73,8 +85,9 @@ const CreateSinglePin = () => {
 
         setSubmitted(true)
 
-		const allErrors = Object.keys(frontendErrors).length > 0
-		if (!allErrors) {
+		if (Object.keys(frontendErrors).length > 0) {
+            return;
+        }
 
             const formData = new FormData();
 
@@ -90,15 +103,10 @@ const CreateSinglePin = () => {
                 return;
             }
 
-            const data = await dispatch(createSinglePinThunk(formData));
-            if (data) {
-                setErrors(data);
-            } else {
-                await dispatch(getAllPinsThunk());
-                await history.push("/user");
-                await closeModal();
-            }
-        }
+        await dispatch(createSinglePinThunk(formData));
+        await dispatch(getAllPinsThunk());
+        await history.push("/user");
+        await closeModal();
 
     };
 
@@ -184,6 +192,9 @@ const CreateSinglePin = () => {
                                     <button onClick={toggleInput}>Add alt text</button>
                                 )}
                             </div>
+                            {frontendErrors.alt_text && submitted && (
+                                <p className='error-message'>{frontendErrors.alt_text}</p>
+                            )}
                             <div>
                                 <input
                                     type="text"
@@ -192,6 +203,9 @@ const CreateSinglePin = () => {
                                     placeholder="Add a destination link"
                                 />
                             </div>
+                            {frontendErrors.website && submitted && (
+                                <p className='error-message'>{frontendErrors.website}</p>
+                            )}
                         </div>
                         <div className="create-pin-save-button">
                             <button type="submit">Save</button>
