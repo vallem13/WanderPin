@@ -20,10 +20,12 @@ function SearchBarResults() {
     }, [dispatch]);
 
     useEffect(() => {
-        if (searchQuery) {
-            const results = pinsArr.filter(pin => pin.name.toLowerCase().includes(searchQuery.toLowerCase()))
-            setSearchPins(results)
-        }
+        const results = pinsArr.filter(pin => {
+            const lowerCaseName = pin.name.toLowerCase().trim();
+            const lowerCaseQuery = searchQuery.toLowerCase().trim();
+            return lowerCaseName.includes(lowerCaseQuery);
+        });
+        setSearchPins(results);
     }, [searchQuery]);
 
     if (!searchQuery || !searchPins.length) {
