@@ -227,6 +227,9 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
+				{frontendErrors.interests && submitted && (
+					<p className='error-message'>{frontendErrors.interests}</p>
+				)}
 				<label>
 					Profile Image
 					<input
