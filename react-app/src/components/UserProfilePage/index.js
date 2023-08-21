@@ -51,7 +51,7 @@ const UserProfile = () => {
             </div>
             {user_pins.length > 0 ? (
                     <ResponsiveMasonry
-                    columnsCountBreakPoints={{ 350: 1, 750: 2, 1026: 5 }}
+                    columnsCountBreakPoints={{ 350: 2, 750: 3, 1026: 5 }}
                 >
                     <Masonry>
                         {displayType === "pin" && (

@@ -17,7 +17,7 @@ function SplashPage() {
       </div>
       <div className="splash-images">
         <ResponsiveMasonry
-          columnsCountBreakPoints={{ 350: 1, 750: 2, 1026: 7 }}
+          columnsCountBreakPoints={{ 350: 2, 750: 3, 1026: 7 }}
         >
           <Masonry gutter="10px">
           <img

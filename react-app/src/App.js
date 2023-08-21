@@ -10,6 +10,7 @@ import CreateSinglePin from "./components/Pins/CreateSinglePin";
 import SingleBoardDetails from "./components/SingleBoardDetails";
 import UserProfile from "./components/UserProfilePage";
 import Splash from "./components/Splash"
+import SearchBarResults from "./components/SearchBar/SearchBarResults"
 
 
 function App() {
@@ -35,6 +36,11 @@ function App() {
           <Route path="/user">
             <ProtectedRoute>
               <UserProfile />
+            </ProtectedRoute>
+          </Route>
+          <Route path="/search">
+            <ProtectedRoute>
+              <SearchBarResults />
             </ProtectedRoute>
           </Route>
           <Route path="/pins/new-pin">

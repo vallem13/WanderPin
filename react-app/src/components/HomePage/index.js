@@ -22,7 +22,7 @@ const HomePage = () => {
     return (
         <div className="image-grid">
             <ResponsiveMasonry
-                columnsCountBreakPoints={{ 350: 1, 750: 2, 1026: 5 }}
+                columnsCountBreakPoints={{ 350: 2, 750: 3, 1026: 5 }}
             >
                 <Masonry>
                     {pins.map((pin) => (
