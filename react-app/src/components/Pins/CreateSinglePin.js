@@ -71,25 +71,35 @@ const CreateSinglePin = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const formData = new FormData();
+        setSubmitted(true)
 
-        formData.append("name", name);
-        formData.append("description", description);
-        formData.append("alt_text", alt_text);
-        formData.append("website", website);
-        formData.append("images", images);
-        formData.append("user_id", user.id);
+		const allErrors = Object.keys(frontendErrors).length > 0
+		if (!allErrors) {
 
-        if (!images) {
-            console.log("No image selected");
-            return;
+            const formData = new FormData();
+
+            formData.append("name", name);
+            formData.append("description", description);
+            formData.append("alt_text", alt_text);
+            formData.append("website", website);
+            formData.append("images", images);
+            formData.append("user_id", user.id);
+
+            if (!images) {
+                console.log("No image selected");
+                return;
+            }
+
+            const data = await dispatch(createSinglePinThunk(formData));
+            if (data) {
+                setErrors(data);
+            } else {
+                await dispatch(getAllPinsThunk());
+                await history.push("/user");
+                await closeModal();
+            }
         }
 
-        await dispatch(createSinglePinThunk(formData));
-        await dispatch(getAllPinsThunk());
-        await history.push("/user");
-        await closeModal();
-        
     };
 
     const toggleInput = () => {
