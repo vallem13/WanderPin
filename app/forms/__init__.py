@@ -5,3 +5,4 @@ from .edit_pin_form import EditPinForm
 from .board_form import BoardForm
 from .edit_board_form import EditBoardForm
 from .pin_board_form import PinBoardForm
+from .comment_form import CommentForm

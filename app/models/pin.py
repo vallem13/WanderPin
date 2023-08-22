@@ -1,6 +1,4 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin
 from sqlalchemy.sql import func
 from datetime import datetime
 
@@ -26,6 +24,7 @@ class Pin(db.Model):
     user = db.relationship('User', back_populates='pins')
     boards = db.relationship('Board', secondary=add_prefix_for_prod('pins_boards'), back_populates='pins')
     pins_boards = db.relationship('PinBoard', back_populates='pins', cascade='all, delete-orphan')
+    comments = db.relationship('Comment', back_populates='pin', cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
@@ -41,5 +40,6 @@ class Pin(db.Model):
                 'firstName': self.user.first_name,
                 'profile_img': self.user.profile_img,
             },
+            'comments': [comment.to_dict() for comment in self.comments],
             'created_at': self.created_at
         }
