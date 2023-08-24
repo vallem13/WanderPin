@@ -8,4 +8,20 @@ from app.forms import CommentForm
 comment_routes = Blueprint('comments', __name__)
 
 
+# Delete a Comment
+@comment_routes.route('/<int:commentId>', methods=['DELETE'])
+@login_required
+def deleteComment(commentId):
 
+    current_user_id = current_user.to_dict()['id']
+    comment_owner = Comment.query.get(commentId)
+
+    if not comment_owner:
+        return {'errors': "Comment not found"}, 400
+    if (current_user_id != comment_owner.user_id):
+        return {'errors': "can only delete your own review"}, 401
+
+    db.session.delete(comment_owner)
+    db.session.commit()
+
+    return {"message":f"Successfully deleted comment {commentId}"}
