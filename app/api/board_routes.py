@@ -112,7 +112,7 @@ def createBoard():
 
 
 # Get all Boards
-@board_routes.route('/')
+@board_routes.route('')
 def getAllBoards():
 
     boards = Board.query.all()
