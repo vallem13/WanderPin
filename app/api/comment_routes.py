@@ -14,14 +14,14 @@ comment_routes = Blueprint('comments', __name__)
 def deleteComment(commentId):
 
     current_user_id = current_user.to_dict()['id']
-    comment_owner = Comment.query.get(commentId)
+    comment = Comment.query.get(commentId)
 
-    if not comment_owner:
+    if not comment:
         return {'errors': "Comment not found"}, 400
-    if (current_user_id != comment_owner.user_id):
+    if (current_user_id != comment.user_id):
         return {'errors': "can only delete your own review"}, 401
 
-    db.session.delete(comment_owner)
+    db.session.delete(comment)
     db.session.commit()
 
     return {"message":f"Successfully deleted comment {commentId}"}

@@ -6,6 +6,7 @@ import OpenModalButton from '../OpenModalButton'
 import EditButton from './EditButton'
 import AddPinBoard from '../AddRemovePinBoard/AddPinBoard';
 import CreateComment from '../Comments/CreateComment';
+import DeleteComment from '../Comments/DeleteComment'
 import "./SinglePinDetails.css";
 
 
@@ -23,7 +24,8 @@ const SinglePinDetails = () => {
 
     if (!pin.id) return null
 
-    const checkOwner = user && user.id === pin.user_id
+    const checkPinOwner = user && user.id === pin.user_id
+    // const checkCommentOwner = user && user.id === pin.comments.user_id
 
     return (
         <div className='edit-delete-button-parent-container'>
@@ -34,7 +36,7 @@ const SinglePinDetails = () => {
                 <div className='pin-details'>
                     <div className='edit-save-container'>
                         <div className='edit-website-container'>
-                            {user && checkOwner && (
+                            {user && checkPinOwner && (
                                 <div>
                                     <EditButton />
                                 </div>
@@ -60,9 +62,19 @@ const SinglePinDetails = () => {
                             <h3>Comments</h3>
                             {comments.map((comment) => (
                                 <div key={comment.id}>
-                                    <img src={user.profile_img} alt={user.firstName} style={{ width: '40px', height: '40px' }} ></img>
-                                    <p>{user.firstName}</p>
+                                    <img src={user.profile_img} alt={user.first_name} style={{ width: '40px', height: '40px' }} ></img>
+                                    <p>{user.first_name}</p>
                                     <p>{comment.content}</p>
+                                    {user.id === comment.user_id  ? (
+                                        <div>
+                                        <OpenModalButton
+                                            className="custom-button"
+                                            buttonText="Delete"
+                                            modalComponent={<DeleteComment pinId={pin.id}  commentId={comment.id} />}
+                                        />
+                                        </div>
+                                    )  : ('')}
+
                                 </div>
                             ))}
                         </div>

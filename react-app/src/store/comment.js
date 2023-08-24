@@ -23,8 +23,6 @@ export const createSingleCommentThunk = (formData, pinId) => async (dispatch) =>
         body: formData
     })
 
-    console.log('----------',response)
-
     if(response.ok) {
         const comment = await response.json()
         dispatch(createSingleComment(comment))
@@ -39,24 +37,24 @@ export const createSingleCommentThunk = (formData, pinId) => async (dispatch) =>
 	}
 }
 
-// export const deleteSingleBoardThunk = (boardId) => async (dispatch) => {
-//     const response = await fetch(`/api/boards/${boardId}`, {
-//         method: 'DELETE',
-//     });
+export const deleteSingleCommentThunk = (commentId) => async (dispatch) => {
+    const response = await fetch(`/api/comments/${commentId}`, {
+        method: 'DELETE',
+    });
 
-//     if(response.ok) {
-//         const board = await response.json()
-//         dispatch(deleteSingleBoard(boardId))
-//         return response
-//     } else if (response.status < 500) {
-// 		const data = await response.json();
-// 		if (data.errors) {
-// 			return data.errors;
-// 		}
-// 	} else {
-// 		return ["An error occurred. Please try again."];
-// 	}
-// };
+    if(response.ok) {
+        const comment = await response.json()
+        dispatch(deleteSingleComment(commentId))
+        return response
+    } else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) {
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
+	}
+};
 
 // export const editSingleBoardThunk = (boardId, formData) => async (dispatch) => {
 //     const response = await fetch(`/api/boards/edit/${boardId}`, {
