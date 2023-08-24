@@ -2,10 +2,29 @@ from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
 from .auth_routes import validation_errors_to_error_messages
 from app.models import Comment, db
-from app.forms import CommentForm
+from app.forms import EditCommentForm
 
 
 comment_routes = Blueprint('comments', __name__)
+
+
+# Edit  Comment
+@comment_routes.route('/edit/<int:commentId>', methods=['PUT'])
+@login_required
+def editComment(commentId):
+
+    form = EditCommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+
+        comment = Comment.query.get(commentId)
+        comment.content=form.data['content']
+
+        db.session.commit()
+        return comment.to_dict()
+
+    return {"errors": validation_errors_to_error_messages(form.errors)}
 
 
 # Delete a Comment

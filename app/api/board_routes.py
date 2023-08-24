@@ -108,7 +108,6 @@ def createBoard():
         db.session.commit()
         return new_board.to_dict()
 
-    print(form.errors)
     return {"errors": validation_errors_to_error_messages(form.errors)}
 
 

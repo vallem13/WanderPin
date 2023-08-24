@@ -6,3 +6,4 @@ from .board_form import BoardForm
 from .edit_board_form import EditBoardForm
 from .pin_board_form import PinBoardForm
 from .comment_form import CommentForm
+from .edit_comment_form import  EditCommentForm
