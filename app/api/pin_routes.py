@@ -1,11 +1,37 @@
 from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
 from .aws_helpers import (upload_file_to_s3, get_unique_filename)
-from app.models import Pin, db
-from app.forms import PinForm, EditPinForm
+from .auth_routes import validation_errors_to_error_messages
+from app.models import Pin, Comment, db
+from app.forms import PinForm, EditPinForm, CommentForm
 
 
 pin_routes = Blueprint('pins', __name__)
+
+
+# Create Comment for Pin
+@pin_routes.route('/<int:pinId>/comments', methods=['POST'])
+@login_required
+def createComment(pinId):
+
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+
+        new_comment = Comment(
+            content = form.data['content'],
+            pin_id = pinId,
+            user_id = current_user.id
+        )
+
+        db.session.add(new_comment)
+        db.session.commit()
+
+        return new_comment.to_dict()
+
+    return {"errors": validation_errors_to_error_messages(form.errors)}
+
 
 
 # Delete Pin
@@ -85,7 +111,7 @@ def createPin():
 
 
 # Get all Pins
-@pin_routes.route('/')
+@pin_routes.route('')
 def getAllPins():
 
     pins = Pin.query.all()

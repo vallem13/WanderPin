@@ -5,6 +5,7 @@ import { getSinglePinThunk } from "../../store/pin";
 import OpenModalButton from '../OpenModalButton'
 import EditButton from './EditButton'
 import AddPinBoard from '../AddRemovePinBoard/AddPinBoard';
+import CreateComment from '../Comments/CreateComment';
 import "./SinglePinDetails.css";
 
 
@@ -14,6 +15,7 @@ const SinglePinDetails = () => {
     const { pinId } = useParams();
     const user = useSelector(state => state.session.user)
     const pin = useSelector(state => state.pins.singlePin);
+    const comments = pin.comments || [];
 
     useEffect(() => {
         dispatch(getSinglePinThunk(pinId))
@@ -56,21 +58,23 @@ const SinglePinDetails = () => {
                         </div>
                         <div className='comment-container'>
                             <h3>Comments</h3>
-                            <p>No comments yet! Add one to start the conversation.</p>
+                            {comments.map((comment) => (
+                                <div key={comment.id}>
+                                    <img src={user.profile_img} alt={user.firstName} style={{ width: '40px', height: '40px' }} ></img>
+                                    <p>{user.firstName}</p>
+                                    <p>{comment.content}</p>
+                                </div>
+                            ))}
                         </div>
                         <div className='like-button'>
                             <h3>What do you think?</h3>
                             <div> 0
-                            <i class="fa-sharp fa-solid fa-heart" style={{color: "#ff4057",}}></i>
+                                <i class="fa-sharp fa-solid fa-heart" style={{ color: "#ff4057", }}></i>
                             </div>
                         </div>
                         <div className='user-pic-comment'>
                             <img src={user.profile_img} alt={user.firstName} style={{ width: '40px', height: '40px' }} ></img>
-                            <input
-                                type="text"
-                                placeholder='Feature coming soon...'
-                                className='comment-input'
-                            />
+                            <CreateComment pin_id={pin.id} user_id={user.id} />
                         </div>
                     </div>
                 </div>
