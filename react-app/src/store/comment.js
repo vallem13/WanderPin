@@ -56,25 +56,25 @@ export const deleteSingleCommentThunk = (commentId) => async (dispatch) => {
 	}
 };
 
-// export const editSingleBoardThunk = (boardId, formData) => async (dispatch) => {
-//     const response = await fetch(`/api/boards/edit/${boardId}`, {
-//         method: 'PUT',
-//         body: formData
-//     });
+export const editSingleCommentThunk = (commentId, formData) => async (dispatch) => {
+    const response = await fetch(`/api/comments/edit/${commentId}`, {
+        method: 'PUT',
+        body: formData
+    });
 
-//     if(response.ok) {
-//         const data = await response.json()
-//         dispatch(createSingleBoard(formData))
-//         return response
-//     } else if (response.status < 500) {
-// 		const data = await response.json();
-// 		if (data.errors) {
-// 			return data.errors;
-// 		}
-// 	} else {
-// 		return ["An error occurred. Please try again."];
-// 	}
-// }
+    if(response.ok) {
+        const data = await response.json()
+        dispatch(createSingleComment(formData))
+        return response
+    } else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) {
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
+	}
+}
 
 // Initial State
 const initialState = {

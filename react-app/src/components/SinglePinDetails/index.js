@@ -7,6 +7,7 @@ import EditButton from './EditButton'
 import AddPinBoard from '../AddRemovePinBoard/AddPinBoard';
 import CreateComment from '../Comments/CreateComment';
 import DeleteComment from '../Comments/DeleteComment'
+import EditComment from '../Comments/EditComment';
 import "./SinglePinDetails.css";
 
 
@@ -71,6 +72,11 @@ const SinglePinDetails = () => {
                                             className="custom-button"
                                             buttonText="Delete"
                                             modalComponent={<DeleteComment pinId={pin.id}  commentId={comment.id} />}
+                                        />
+                                        <OpenModalButton
+                                            className="custom-button"
+                                            buttonText="Edit"
+                                            modalComponent={<EditComment pinId={pin.id}  comment={comment} />}
                                         />
                                         </div>
                                     )  : ('')}
