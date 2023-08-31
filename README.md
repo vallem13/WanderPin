@@ -14,7 +14,7 @@ A spinoff of Pinterest where users are allowed to image-share as social media se
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 
-<img src="(https://www.kapwing.com/videos/64f02341e1f7a000250f87b6)" alt="Description of GIF">
+<img src="https://www.kapwing.com/videos/64f02341e1f7a000250f87b6" alt="Description of GIF">
 
 
 ## Getting started
