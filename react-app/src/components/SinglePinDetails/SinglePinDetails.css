@@ -157,24 +157,29 @@
     display: flex;
     flex-direction: column;
     row-gap: 5px;
+    display: inline-block;
+    word-wrap: break-word;
 }
 
 .avatar-image {
     display: flex;
     align-items: center;
     max-width: 375px;
-    display: inline-block;
+    word-wrap: break-word;
 }
+
 
 .user-avatar {
     width: 30px;
     height: 50px;
     border-radius: 100%;
     margin-right: 10px;
+
 }
 
 .comment-content {
     display: flex;
+
 }
 
 .user-name {
@@ -184,6 +189,8 @@
 
 .comment-text {
     margin-left: 5px;
+    max-width: 300px;
+    word-wrap: break-word;
 }
 
 .comment-actions {
