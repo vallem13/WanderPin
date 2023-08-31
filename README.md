@@ -1,4 +1,4 @@
-# Flask React Project
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=lato&duration=1000&color=BAD974&multiline=true&width=435&lines=This+is+WanderPin%2C+📍)](https://git.io/typing-svg)
 
 This is the starter for the Flask React project.
 
