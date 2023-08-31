@@ -2,6 +2,8 @@
 
 A spinoff of Pinterest where users are allowed to image-share as social media services.
 
+Check out WanderPin Live [here](https://wanderpin.onrender.com)!
+
 ## Technologies
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
@@ -14,7 +16,37 @@ A spinoff of Pinterest where users are allowed to image-share as social media se
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 
-![Description of GIF](https://www.kapwing.com/videos/64f02341e1f7a000250f87b6)
+<img src="./assets/Signup.gif" alt="Description of GIF" style="max-width: 50%; height: auto;"><img src="./assets/SinglePin.gif" alt="Description of GIF" style="max-width: 50%; height: auto;">
+
+
+## Features
+
+### Users
+* Users can sign up, log in, and log out.
+* Users can use a demo login to navigate through the site.
+
+### Pins
+* Users should be able to view all Pins.
+* Users should be able to create new Pins.
+* Users should be able to update their Pins
+* Users should be able to delete their Pins.
+
+### Boards
+* Users should be able to view all boards on a user's profile.
+* Users should be able to create new boards and add/remove Pins.
+* Users should be able to update their boards.
+* Users should be able to delete their boards.
+
+### Comments
+* Users should be able to view all comments on a pin.
+* Users should be able to create new comments on a pin.
+* Users should be able to update their comment from a pin.
+* Users should be able to delete their comment from a pin.
+
+### Bonus: Search
+* Users should be able to search for Pins.
+* Users should be able to view the results of their search.
+
 
 ## Getting started
 1. Clone this repository (only this branch)
