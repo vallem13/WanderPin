@@ -6,6 +6,7 @@ import OpenModalButton from '../OpenModalButton'
 import EditButton from './EditButton'
 import AddPinBoard from '../AddRemovePinBoard/AddPinBoard';
 import CreateComment from '../Comments/CreateComment';
+import CommentActionsDropdown from './CommentButtons';
 import DeleteComment from '../Comments/DeleteComment'
 import EditComment from '../Comments/EditComment';
 import "./SinglePinDetails.css";
@@ -26,7 +27,13 @@ const SinglePinDetails = () => {
     if (!pin.id) return null
 
     const checkPinOwner = user && user.id === pin.user_id
-    // const checkCommentOwner = user && user.id === pin.comments.user_id
+
+    function calculateWeeksAgo(fromDate, toDate) {
+        const millisecondsPerWeek = 7 * 24 * 60 * 60 * 1000;
+        const diffInMilliseconds = toDate - fromDate;
+        const diffInWeeks = Math.floor(diffInMilliseconds / millisecondsPerWeek);
+        return diffInWeeks;
+    }
 
     return (
         <div className='edit-delete-button-parent-container'>
@@ -59,31 +66,39 @@ const SinglePinDetails = () => {
                             <img src={pin.user.profile_img} alt={pin.user.firstName} style={{ width: '40px', height: '40px' }} />
                             <h3 className='pin-user-firstname'>{pin.user.firstName}</h3>
                         </div>
+                        <h3 className='comment-title'>Comments</h3>
                         <div className='comment-container'>
-                            <h3>Comments</h3>
+                            {comments.length > 0 ? (
+                                <div>
                             {comments.map((comment) => (
-                                <div key={comment.id}>
-                                    <img src={user.profile_img} alt={user.first_name} style={{ width: '40px', height: '40px' }} ></img>
-                                    <p>{user.first_name}</p>
-                                    <p>{comment.content}</p>
-                                    {user.id === comment.user_id  ? (
-                                        <div>
-                                        <OpenModalButton
-                                            className="custom-button"
-                                            buttonText="Delete"
-                                            modalComponent={<DeleteComment pinId={pin.id}  commentId={comment.id} />}
-                                        />
-                                        <OpenModalButton
-                                            className="custom-button"
-                                            buttonText="Edit"
-                                            modalComponent={<EditComment pinId={pin.id}  comment={comment} />}
-                                        />
+                                <div className='comment' key={comment.id}>
+                                        <img className='user-avatar' src={user.profile_img} alt={user.first_name} style={{ width: '40px', height: '40px' }}></img>
+                                    <div className='single-comment-container'>
+                                        <div className='avatar-image'>
+                                            <p className='user-name'>{user.first_name}</p>
+                                            <p className='comment-text'>{comment.content}</p>
                                         </div>
-                                    )  : ('')}
-
+                                        <div className='comment-content'>
+                                            <div className='buttons-date'>
+                                                {user.id === comment.user_id ? (
+                                                    <div className='comment-actions'>
+                                                        <div>{calculateWeeksAgo(new Date(comment.created_at), new Date())} w</div>
+                                                        <CommentActionsDropdown pin={pin} comment={comment} />
+                                                    </div>
+                                                ) : null}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             ))}
+                            </div>
+                            ) : (
+                                <div>
+                                    <h3>No comments for this Pin</h3>
+                                </div>
+                            )}
                         </div>
+
                         <div className='like-button'>
                             <h3>What do you think?</h3>
                             <div> 0
