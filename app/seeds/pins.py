@@ -243,8 +243,90 @@ def seed_pins():
         website = 'https://norwaytravelguide.no/connect-with-locals/Vidar/the-geiranger-fjord',
         images = 'https://i.pinimg.com/564x/17/31/71/17317109bd645fe818d72903987ec811.jpg'
     )
+    pin31 = Pin(
+        user_id = 2,
+        name = 'Trekking the Inca Trail',
+        description = 'Embark on a trekking adventure along the historic Inca Trail, leading to the awe-inspiring ruins of Machu Picchu.',
+        alt_text = 'Hikers on the Inca Trail with Machu Picchu in the background.',
+        website = 'https://www.flickr.com/photos/whimzykat/5208530639/',
+        images = 'https://i.pinimg.com/564x/54/c9/4b/54c94ba7abb134062939354de6de9a03.jpg'
+    )
+    pin32 = Pin(
+        user_id = 3,
+        name = 'Cycling through Dutch Tulip Fields',
+        description = 'Cycle through vibrant tulip fields of the Netherlands during the annual bloom season, surrounded by a riot of colors.',
+        alt_text = 'Biker riding through colorful tulip fields in the Netherlands.',
+        website = 'https://kipamojo.world/netherlands/Visiting-the-Tulip-Fields-in-Goeree-Overflakkee/',
+        images = 'https://i.pinimg.com/564x/85/5f/a2/855fa233e774f21c28076ca730edbafd.jpg'
+    )
+    pin33 = Pin(
+        user_id = 1,
+        name = 'Relaxing on Maldives\' Overwater Bungalows',
+        description = 'Indulge in luxury and relaxation in an overwater bungalow in the Maldives, with stunning turquoise waters at your doorstep.',
+        alt_text = 'Overwater bungalow surrounded by clear turquoise waters in the Maldives.',
+        website = '',
+        images = 'https://i.pinimg.com/564x/d0/dc/36/d0dc3659f252b20416b350abc6289edd.jpg'
+    )
+    pin34 = Pin(
+        user_id = 2,
+        name = 'Cruising the Norwegian Fjords',
+        description = 'Embark on a cruise through the dramatic landscapes of the Norwegian fjords, passing waterfalls and towering cliffs.',
+        alt_text = 'Cruise ship sailing through a narrow Norwegian fjord with waterfalls.',
+        website = 'https://www.flickr.com/photos/florian_boepple/23076034019',
+        images = 'https://i.pinimg.com/564x/d4/15/40/d4154088d527d19729595af61c1fcf42.jpg'
+    )
+    pin35 = Pin(
+        user_id = 3,
+        name = 'Paragliding Over Swiss Alps',
+        description = 'Experience the thrill of paragliding over the stunning Swiss Alps, taking in panoramic views of snow-capped peaks.',
+        alt_text = 'Paraglider soaring over the majestic Swiss Alps.',
+        website = 'https://www.flickr.com/photos/58772731@N07/15095114676/',
+        images = 'https://i.pinimg.com/564x/b8/ae/2c/b8ae2cd5e2a7a0667b4d5268efaea8c6.jpg'
+    )
+    pin36 = Pin(
+        user_id = 1,
+        name = 'Cherry Blossom Season in Kyoto',
+        description = 'Witness the enchanting cherry blossom season in Kyoto, Japan, as the city is bathed in delicate shades of pink.',
+        alt_text = 'Cherry blossoms in full bloom along a serene pathway in Kyoto.',
+        website = '',
+        images = 'https://i.pinimg.com/564x/ef/19/9d/ef199dbca6b18facef5537086cfa6dce.jpg'
+    )
+    pin37 = Pin(
+        user_id = 2,
+        name = 'Rafting the Grand Canyon',
+        description = 'Embark on a thrilling white-water rafting expedition through the majestic Grand Canyon, surrounded by towering cliffs.',
+        alt_text = 'Rafters navigating the turbulent waters of the Grand Canyon.',
+        website = 'https://myfamilytravels.com/grand-canyon-rafting-whitewater-adventures/',
+        images = 'https://i.pinimg.com/564x/72/62/32/726232901ccd1f0f18fbac4c0b23c441.jpg'
+    )
+    pin38 = Pin(
+        user_id = 3,
+        name = 'Exploring Petra\'s Ancient Treasury',
+        description = 'Discover the intricate rock-carved architecture of Petra, Jordan, including the famous Treasury monument.',
+        alt_text = 'The iconic Treasury building in Petra illuminated by the sun.',
+        website = 'https://www.flickr.com/photos/garymcgovern/6962970818/',
+        images = 'https://i.pinimg.com/564x/3e/39/cf/3e39cf1dc9be84fd407576bda3e017dc.jpg'
+    )
+    pin39 = Pin(
+        user_id = 1,
+        name = 'Skiing in the Swiss Alps',
+        description = 'Hit the slopes in the Swiss Alps, enjoying world-class skiing and snowboarding against a stunning alpine backdrop.',
+        alt_text = 'Skier carving through fresh powder snow in the Swiss Alps.',
+        website = 'https://alliemtaylor.blog/2019/01/20/10-beautiful-winter-travel-destinations/',
+        images = 'https://i.pinimg.com/564x/d4/c4/74/d4c474958f4d3ace301eb5521bb66ca9.jpg'
+    )
+    pin40 = Pin(
+        user_id = 3,
+        name = 'Bungee Jumping in Queenstown',
+        description = 'Experience the adrenaline rush of bungee jumping in Queenstown, New Zealand, from the iconic Kawarau Bridge.',
+        alt_text = 'Bungee jumper in free fall over the turquoise waters of a river.',
+        website = 'https://www.theblondeabroad.com/how-to-spend-48-hours-in-queenstown/',
+        images = 'https://i.pinimg.com/564x/39/3b/0c/393b0ce0fa6e18220137b240bc4625c2.jpg'
+    )
 
-    pins_list = [pin1, pin2, pin3, pin4, pin5, pin6, pin7, pin8, pin9, pin10, pin11, pin12, pin13, pin14, pin15, pin16, pin17, pin18, pin19, pin20, pin21, pin22, pin23, pin24, pin25, pin26, pin27, pin28, pin29, pin30]
+
+
+    pins_list = [pin1, pin2, pin3, pin4, pin5, pin6, pin7, pin8, pin9, pin10, pin11, pin12, pin13, pin14, pin15, pin16, pin17, pin18, pin19, pin20, pin21, pin22, pin23, pin24, pin25, pin26, pin27, pin28, pin29, pin30, pin31, pin32, pin33, pin34, pin35, pin36, pin37, pin38, pin39, pin40]
     single_pin = [db.session.add(pin) for pin in pins_list]
     db.session.commit()
 
