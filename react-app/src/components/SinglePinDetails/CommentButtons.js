@@ -24,6 +24,7 @@ function CommentActionsDropdown({ pin, comment }) {
       window.removeEventListener('click', handleOutsideClick);
     };
   }, []);
+  
   return (
     <div className='comment-actions'>
       <div className={`dropdown ${isDropdownOpen ? 'open' : ''}`}>

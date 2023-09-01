@@ -53,6 +53,7 @@ const EditComment = ({ comment, pinId }) => {
     };
 
     return (
+        <div className="edit-single-pin-container">
         <form onSubmit={handleSubmit} encType="multipart/form-data">
             <textarea
                 className='comment-input'
@@ -68,6 +69,7 @@ const EditComment = ({ comment, pinId }) => {
                 <button type="submit" onClick={cancelEdit}>Cancel</button>
             </div>
         </form>
+        </div>
     )
 }
 
