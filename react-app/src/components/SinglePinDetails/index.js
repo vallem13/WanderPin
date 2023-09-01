@@ -75,8 +75,8 @@ const SinglePinDetails = () => {
                                         <img className='user-avatar' src={user.profile_img} alt={user.first_name} style={{ width: '40px', height: '40px' }}></img>
                                     <div className='single-comment-container'>
                                         <div className='avatar-image'>
-                                            <p className='user-name'>{user.first_name}</p>
-                                            <p className='comment-text'>{comment.content}</p>
+                                            <p className='user-name'>{user.first_name}<p className='comment-text'>{comment.content}</p></p>
+
                                         </div>
                                         <div className='comment-content'>
                                             <div className='buttons-date'>
@@ -100,10 +100,10 @@ const SinglePinDetails = () => {
                         </div>
 
                         <div className='like-button'>
-                            <h3>What do you think?</h3>
+                            {/* <h3>What do you think?</h3>
                             <div> 0
                                 <i class="fa-sharp fa-solid fa-heart" style={{ color: "#ff4057", }}></i>
-                            </div>
+                            </div> */}
                         </div>
                         <div className='user-pic-comment'>
                             <img src={user.profile_img} alt={user.firstName} style={{ width: '40px', height: '40px' }} ></img>

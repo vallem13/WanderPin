@@ -12,7 +12,7 @@
     justify-content: center;
     align-items: center;
     height: 70vh;
-    margin-top: 60px;
+    margin-top: 80px;
 
 }
 
@@ -85,6 +85,7 @@
     border: none;
     background-color: transparent;
     text-align: left;
+    font-family: inherit;
 }
 
 .save-to-board-button button {
@@ -97,6 +98,7 @@
     font-weight: bold;
     color: white;
     cursor: pointer;
+    font-family: inherit;
 }
 
 .save-to-board-button button:hover,
@@ -165,7 +167,6 @@
     display: flex;
     align-items: center;
     max-width: 375px;
-    word-wrap: break-word;
 }
 
 
@@ -183,6 +184,8 @@
 }
 
 .user-name {
+    display: flex;
+    align-items: center;
     font-weight: 800;
     color: #ff4057;
 }
@@ -191,6 +194,7 @@
     margin-left: 5px;
     max-width: 300px;
     word-wrap: break-word;
+    color: black;
 }
 
 .comment-actions {
@@ -219,6 +223,7 @@
     display: flex;
     align-items: center;
     column-gap: 20px;
+    padding-top: 20px;
 
 }
 
