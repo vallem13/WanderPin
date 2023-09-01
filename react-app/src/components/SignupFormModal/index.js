@@ -14,6 +14,7 @@ function SignupFormModal() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const [showPassword, setShowPassword] = useState(false);
 	const [image, setImage] = useState(null)
 	const [firstName, setFirstName] = useState("")
 	const [lastName, setLastName] = useState("")
@@ -152,6 +153,10 @@ function SignupFormModal() {
 		}
 	};
 
+	const toggleShowPassword = () => {
+		setShowPassword(!showPassword);
+	};
+
 	return (
 		<div className="signup-modal">
 			<img className='logo' src='../assets/Logo.png' alt='WanderPin' style={{ width: '100px', height: '50px' }} />
@@ -243,24 +248,38 @@ function SignupFormModal() {
 				</label>
 				<label>
 					Password
-					<input
-						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						required
-					/>
+					<div className="input-with-icon">
+						<input
+							type={showPassword ? 'text' : 'password'}
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							required
+						/>
+						<i
+							className={`fa-solid ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}
+							style={{ color: '#ff4057', cursor: 'pointer' }}
+							onClick={toggleShowPassword}
+						></i>
+					</div>
 				</label>
 				{frontendErrors.password && submitted && (
 					<p className='error-message'>{frontendErrors.password}</p>
 				)}
 				<label>
 					Confirm Password
-					<input
-						type="password"
-						value={confirmPassword}
-						onChange={(e) => setConfirmPassword(e.target.value)}
-						required
-					/>
+					<div className="input-with-icon">
+						<input
+							type={showPassword ? 'text' : 'password'}
+							value={confirmPassword}
+							onChange={(e) => setConfirmPassword(e.target.value)}
+							required
+						/>
+						<i
+							className={`fa-solid ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}
+							style={{ color: '#ff4057', cursor: 'pointer' }}
+							onClick={toggleShowPassword}
+						></i>
+					</div>
 				</label>
 				{frontendErrors.confirmPassword && submitted && (
 					<p className='error-message'>{frontendErrors.confirmPassword}</p>
@@ -273,10 +292,10 @@ function SignupFormModal() {
 				<button type="submit">Sign Up</button>
 			</form>
 			<p id="already-member">Already a member? <OpenModalButton
-                    buttonText="Log In"
-                    // className='navbar-button'
-                    modalComponent={<LoginFormModal />}
-                  /></p>
+				buttonText="Log In"
+				// className='navbar-button'
+				modalComponent={<LoginFormModal />}
+			/></p>
 		</div>
 	);
 }

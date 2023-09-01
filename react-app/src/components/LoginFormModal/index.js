@@ -10,6 +10,7 @@ function LoginFormModal() {
   const history = useHistory()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [submitted, setSubmitted] = useState(false)
   const [errors, setErrors] = useState([]);
   const [frontendErrors, setFrontendErrors] = useState({})
@@ -57,6 +58,10 @@ function LoginFormModal() {
     await closeModal()
   }
 
+  const toggleShowPassword = () => {
+		setShowPassword(!showPassword);
+	};
+
   return (
     <div className="login-modal-outer">
       <div className="login-modal">
@@ -81,14 +86,21 @@ function LoginFormModal() {
             <p className='error-message'>{frontendErrors.email}</p>
           )}
           <label>
-            Password
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </label>
+					Password
+					<div className="input-with-icon">
+						<input
+							type={showPassword ? 'text' : 'password'}
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							required
+						/>
+						<i
+							className={`fa-solid ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}
+							style={{ color: '#ff4057', cursor: 'pointer' }}
+							onClick={toggleShowPassword}
+						></i>
+					</div>
+				</label>
           {frontendErrors.password && submitted && (
             <p className='error-message'>{frontendErrors.email}</p>
           )}
