@@ -27,6 +27,7 @@ function SearchBar() {
             if (searchQuery.trim() !== '') {
                 history.push(`/search?query=${encodeURIComponent(searchQuery)}`)
             }
+            setSearchQuery('');
         }
     }
 
