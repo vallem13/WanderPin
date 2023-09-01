@@ -48,7 +48,7 @@
   }
 
   .input-button button {
-    
+
   }
 
   .signup-modal button {
@@ -78,4 +78,25 @@
 
   .signup-modal ul li {
     margin-bottom: 6px;
+  }
+
+  #already-member {
+    color: #DCDCDC;
+
+  }
+
+  #already-member button{
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    outline: none;
+    color:#ff4057;
+  }
+
+  #already-member button:hover {
+    color:#DCDCDC;
   }

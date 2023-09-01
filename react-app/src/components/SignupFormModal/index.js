@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom"
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
+import OpenModalButton from "../OpenModalButton";
+import LoginFormModal from "../LoginFormModal";
 import "./SignupForm.css";
 
 function SignupFormModal() {
@@ -270,6 +272,11 @@ function SignupFormModal() {
 				</ul>
 				<button type="submit">Sign Up</button>
 			</form>
+			<p id="already-member">Already a member? <OpenModalButton
+                    buttonText="Log In"
+                    // className='navbar-button'
+                    modalComponent={<LoginFormModal />}
+                  /></p>
 		</div>
 	);
 }
