@@ -5,3 +5,4 @@ from .pin import Pin
 from .board import Board
 from .pin_board import PinBoard
 from .comment import Comment
+from .follow import Follow

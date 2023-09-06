@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy.sql import func
 from datetime import datetime
+from .follow import Follow
 
 
 class User(db.Model, UserMixin):
@@ -26,6 +27,20 @@ class User(db.Model, UserMixin):
     boards = db.relationship('Board', back_populates='user', cascade='all, delete-orphan')
     pins = db.relationship('Pin', back_populates='user', cascade='all, delete-orphan')
     comments = db.relationship('Comment', back_populates='user', cascade='all, delete-orphan')
+    follower = db.relationship(
+        'Follow',
+        foreign_keys=[Follow.current_user],
+        back_populates='follower',
+        cascade='all, delete-orphan',
+        primaryjoin="User.id == Follow.current_user"
+    )
+    following = db.relationship(
+        'Follow',
+        foreign_keys=[Follow.following_user],
+        back_populates='following',
+        cascade='all, delete-orphan',
+        primaryjoin="User.id == Follow.following_user"
+    )
 
     @property
     def password(self):
