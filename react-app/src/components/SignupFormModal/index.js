@@ -5,7 +5,11 @@ import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
+import { GoogleLogin } from 'react-google-login'
+import { gapi } from 'gapi-script'
 import "./SignupForm.css";
+
+const clientId = '973670222630-04hnc8ldv5ndel1teal0nki98pcbllgt.apps.googleusercontent.com'
 
 function SignupFormModal() {
 	const dispatch = useDispatch();
@@ -56,6 +60,16 @@ function SignupFormModal() {
 		"united states", "uruguay", "uzbekistan", "vanuatu", "vatican city", "venezuela",
 		"vietnam", "yemen", "zambia", "zimbabwe"
 	]
+
+	useEffect(() => {
+		function start() {
+			gapi.client.init({
+				clientId: clientId,
+				scope: ''
+			})
+		}
+		gapi.load('client:auth2', start)
+	})
 
 
 	useEffect(() => {
@@ -156,6 +170,14 @@ function SignupFormModal() {
 	const toggleShowPassword = () => {
 		setShowPassword(!showPassword);
 	};
+
+	const onSuccess = (res) => {
+		console.log('LOGIN SUCCESS! Current User: ', res.profileObj)
+	}
+
+	const onFailure = (res) => {
+		console.log('LOGIN FAILED! Res: ', res)
+	}
 
 	return (
 		<div className="signup-modal">
@@ -291,6 +313,16 @@ function SignupFormModal() {
 				</ul>
 				<button type="submit">Sign Up</button>
 			</form>
+			<div id='signInButton'>
+            <GoogleLogin
+                clientId={clientId}
+                buttonText='Login with Google'
+                onSuccess={onSuccess}
+                onFailure={onFailure}
+                cookiePolicy={'single_host_origin'}
+                isSignedIn={true}
+            />
+        </div>
 			<p id="already-member">Already a member? <OpenModalButton
 				buttonText="Log In"
 				// className='navbar-button'
