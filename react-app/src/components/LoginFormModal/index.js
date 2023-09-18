@@ -68,11 +68,6 @@ function LoginFormModal() {
         <img className='logo' src='../assets/Logo.png' alt='WanderPin' style={{ width: '100px', height: '50px' }} />
         <h1>Welcome!</h1>
         <form onSubmit={handleSubmit}>
-          <ul>
-            {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
-            ))}
-          </ul>
           <label>
             Email
             <input
@@ -104,6 +99,11 @@ function LoginFormModal() {
           {frontendErrors.password && submitted && (
             <p className='error-message'>{frontendErrors.email}</p>
           )}
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
           <div className="login-buttons">
             <div className="login-button">
               <button type="submit">Log In</button>
