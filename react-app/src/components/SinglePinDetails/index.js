@@ -7,8 +7,6 @@ import EditButton from './EditButton'
 import AddPinBoard from '../AddRemovePinBoard/AddPinBoard';
 import CreateComment from '../Comments/CreateComment';
 import CommentActionsDropdown from './CommentButtons';
-import DeleteComment from '../Comments/DeleteComment'
-import EditComment from '../Comments/EditComment';
 import "./SinglePinDetails.css";
 
 

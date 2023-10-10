@@ -11,7 +11,7 @@ function LoginFormModal() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [submitted, setSubmitted] = useState(false)
+  const [submitted, ] = useState(false)
   const [errors, setErrors] = useState([]);
   const [frontendErrors, setFrontendErrors] = useState({})
   const { closeModal } = useModal();

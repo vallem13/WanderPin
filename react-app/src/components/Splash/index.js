@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";

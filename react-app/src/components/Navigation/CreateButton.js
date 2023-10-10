@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
 import CreateSinglePin from "../Pins/CreateSinglePin";
 import CreateSingleBoard from "../Boards/CreateSingleBoard";

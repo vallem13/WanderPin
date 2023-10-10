@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 import { getAllPinsThunk } from "../../store/pin";
 import PinCard from "./PinCard";
