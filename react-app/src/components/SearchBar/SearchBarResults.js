@@ -20,32 +20,37 @@ function SearchBarResults() {
     }, [dispatch]);
 
     useEffect(() => {
-        const results = pinsArr.filter(pin => {
-            const lowerCaseName = pin.name.toLowerCase().trim();
-            const lowerCaseQuery = searchQuery.toLowerCase().trim();
-            return lowerCaseName.includes(lowerCaseQuery);
-        });
-        setSearchPins(results);
-    }, [searchQuery]);
+        if (searchQuery) {
+            const filtered = pinsArr.filter((pin) =>
+                pin.name.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+            setSearchPins(filtered);
+        } else {
+            setSearchPins([]);
+        }
+    }, [searchQuery, pinsArr]);
 
     if (!searchQuery || !searchPins.length) {
         return <h2>Sorry! We couldn't find any pins.</h2>
     }
 
     return (
-            <div className="pins-container">
-                <ResponsiveMasonry
-                    columnsCountBreakPoints={{ 350: 2, 750: 3, 1026: 5 }}
-                >
-                    <Masonry>
-                        {searchPins.map(pin => (
-                            <div key={pin.id} className="">
-                                <PinCard pin={pin} />
-                            </div>
-                        ))}
-                    </Masonry>
-                </ResponsiveMasonry>
-            </div>
+        <div className="pins-container">
+            {!searchPins.length ? (<h2>Sorry! We couldn't find any pins.</h2>) : (<ResponsiveMasonry
+                columnsCountBreakPoints={{ 350: 2, 750: 3, 1026: 5 }}
+            >
+                <Masonry>
+                    {searchPins.map(pin => (
+                        <div key={pin.id} className="">
+                            <PinCard pin={pin} />
+                        </div>
+                    ))}
+                </Masonry>
+            </ResponsiveMasonry>)
+
+            }
+
+        </div>
     );
 }
 

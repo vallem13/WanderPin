@@ -59,6 +59,7 @@ function Navigation({ isLoaded }) {
                 </li>
               </>
             ) : (
+
               <div className="navbar-link-log-sign-container">
                 <li className="navbar-link-log-sign">
                   <OpenModalButton

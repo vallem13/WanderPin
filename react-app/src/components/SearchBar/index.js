@@ -9,7 +9,6 @@ function SearchBar() {
     const dispatch = useDispatch();
     const history = useHistory()
     const pinsObj = useSelector(state => state.pins.allPins)
-    const pinsArr = Object.values(pinsObj)
     const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {

@@ -15,7 +15,6 @@ const CreateSinglePin = () => {
     const [alt_text, setAlt_text] = useState("");
     const [website, setWebsite] = useState("");
     const [images, setImages] = useState(null);
-    const [errors, setErrors] = useState([]);
     const [frontendErrors, setFrontendErrors] = useState({});
     const [submitted, setSubmitted] = useState(false)
     const [showInput, setShowInput] = useState(false);

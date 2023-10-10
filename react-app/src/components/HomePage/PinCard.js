@@ -13,12 +13,6 @@ const PinCard = ({ pin }) => {
         history.push(`/pins/${pin.id}`)
     }
 
-    const redirectWebsite = () => {
-        history.push(`${pin.website}`)
-    }
-
-    const checkOwner = user && user.id === pin.user_id
-
     return (
         <div onClick={onClick}>
             <div className="pin-container">
