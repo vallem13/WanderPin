@@ -173,7 +173,41 @@ function SignupFormModal() {
 		setShowPassword(!showPassword);
 	};
 
-	
+	const onSuccess = async (res) => {
+		const { googleId, tokenId } = res;
+
+		try {
+		  // Send the Google OAuth token to your backend for validation
+		  const response = await fetch('/api/google-login', {
+			method: 'POST',
+			headers: {
+			  'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ tokenId }),
+		  });
+
+		  if (response.status === 200) {
+			// Successful authentication on the server
+			// You should receive a token from your server
+			const data = await response.json();
+
+			// Store the token securely on the client-side (e.g., in a cookie or localStorage)
+			// Here, we'll just log it for demonstration purposes
+			console.log('User Token:', data.token);
+
+			// Update your app's state to indicate the user is authenticated
+			// You might use state management libraries like Redux or React Context
+		  } else {
+			console.error('Authentication failed on the server');
+		  }
+		} catch (error) {
+		  console.error('Error during authentication:', error);
+		}
+	  };
+
+	  const onFailure = (res) => {
+		console.log('LOGIN FAILED! Res: ', res);
+	  };
 
 	return (
 		<div className="signup-modal">
