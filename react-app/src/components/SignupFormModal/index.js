@@ -62,15 +62,7 @@ function SignupFormModal() {
 		"vietnam", "yemen", "zambia", "zimbabwe"
 	]
 
-	useEffect(() => {
-		function start() {
-			gapi.client.init({
-				clientId: clientId,
-				scope: ''
-			})
-		}
-		gapi.load('client:auth2', start)
-	})
+	
 
 
 	useEffect(() => {
