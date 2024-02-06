@@ -114,6 +114,7 @@ function SignupFormModal() {
 		let currentDate = new Date();
 		let birthDateObj = new Date(birthDate);
 		let yearDifference = currentDate.getFullYear() - birthDateObj.getFullYear();
+
 		if (yearDifference >= 100) frontendErrors.birthDate = "Please input a valid Birthday";
 		if (yearDifference < 16) frontendErrors.birthDate = "You must be over 16 years old to own an account";
 		if (!countries.find((element) => element === country.toLowerCase().trim())) {
