@@ -10,6 +10,7 @@ import { gapi } from 'gapi-script'
 import "./SignupForm.css";
 
 const clientId = '973670222630-04hnc8ldv5ndel1teal0nki98pcbllgt.apps.googleusercontent.com'
+const scope = 'profile email'; // Define the scopes your application needs
 
 function SignupFormModal() {
 	const dispatch = useDispatch();
@@ -171,13 +172,41 @@ function SignupFormModal() {
 		setShowPassword(!showPassword);
 	};
 
-	const onSuccess = (res) => {
-		console.log('LOGIN SUCCESS! Current User: ', res.profileObj)
-	}
+	const onSuccess = async (res) => {
+		const { googleId, tokenId } = res;
 
-	const onFailure = (res) => {
-		console.log('LOGIN FAILED! Res: ', res)
-	}
+		try {
+		  // Send the Google OAuth token to your backend for validation
+		  const response = await fetch('/api/google-login', {
+			method: 'POST',
+			headers: {
+			  'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ tokenId }),
+		  });
+
+		  if (response.status === 200) {
+			// Successful authentication on the server
+			// You should receive a token from your server
+			const data = await response.json();
+
+			// Store the token securely on the client-side (e.g., in a cookie or localStorage)
+			// Here, we'll just log it for demonstration purposes
+			console.log('User Token:', data.token);
+
+			// Update your app's state to indicate the user is authenticated
+			// You might use state management libraries like Redux or React Context
+		  } else {
+			console.error('Authentication failed on the server');
+		  }
+		} catch (error) {
+		  console.error('Error during authentication:', error);
+		}
+	  };
+
+	  const onFailure = (res) => {
+		console.log('LOGIN FAILED! Res: ', res);
+	  };
 
 	return (
 		<div className="signup-modal">
@@ -314,15 +343,16 @@ function SignupFormModal() {
 				<button type="submit">Sign Up</button>
 			</form>
 			<div id='signInButton'>
-            <GoogleLogin
-                clientId={clientId}
-                buttonText='Login with Google'
-                onSuccess={onSuccess}
-                onFailure={onFailure}
-                cookiePolicy={'single_host_origin'}
-                isSignedIn={true}
-            />
-        </div>
+        <GoogleLogin
+          clientId={clientId}
+          buttonText='Login with Google'
+          onSuccess={onSuccess}
+          onFailure={onFailure}
+          cookiePolicy={'single_host_origin'}
+          isSignedIn={true}
+          scope={scope} // Add the scope here
+        />
+      </div>
 			<p id="already-member">Already a member? <OpenModalButton
 				buttonText="Log In"
 				// className='navbar-button'
